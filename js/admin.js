@@ -983,70 +983,140 @@ function addTableDonHang(data) {
     TONGTIEN = 0;
     for (var i = 0; i < data.length; i++) {
         var d = data[i];
+        
+        // Map trạng thái
+        var trangThai = 'Đang xử lý';
+        if (d.TrangThai == 0) trangThai = 'Đã hủy';
+        else if (d.TrangThai == 1) trangThai = 'Chờ xác nhận';
+        else if (d.TrangThai == 2) trangThai = 'Đã xác nhận';
+        else if (d.TrangThai == 3) trangThai = 'Đang giao';
+        else if (d.TrangThai == 4) trangThai = 'Đã giao';
+        
         s += `<tr>
             <td style="width: 5%">` + (i + 1) + `</td>
             <td style="width: 13%">` + d.MaHD + `</td>
-            <td style="width: 7%">` + d.MaND + `</td>
-            <td style="width: 20%">` + /*d.sp*/ + `</td>
-            <td style="width: 15%">` + d.TongTien + `</td>
+            <td style="width: 7%">` + d.NguoiNhan + `</td>
+            <td style="width: 20%">` + d.SDT + ` - ` + d.DiaChi + `</td>
+            <td style="width: 15%">` + parseInt(d.TongTien).toLocaleString() + ` đ</td>
             <td style="width: 10%">` + d.NgayLap + `</td>
-            <td style="width: 10%">` + d.TinhTrang + `</td>
-            <td style="width: 10%">
-                <div class="tooltip">
-                    <i class="fa fa-check" onclick="duyet('` + d.MaHD + `', true)"></i>
-                    <span class="tooltiptext">Duyệt</span>
-                </div>
-                <div class="tooltip">
-                    <i class="fa fa-remove" onclick="duyet('` + d.MaHD + `', false)"></i>
-                    <span class="tooltiptext">Hủy</span>
-                </div>
-                
+            <td style="width: 10%">` + trangThai + `</td>
+            <td style="width: 10%; white-space: nowrap;">
+                <i class="fa fa-eye" onclick="xemChiTietDonHang('` + d.MaHD + `')" style="cursor: pointer; margin: 0 5px;"></i>
+                <i class="fa fa-check" onclick="duyetDonHang('` + d.MaHD + `', 2)" style="cursor: pointer; margin: 0 5px; color: green;"></i>
+                <i class="fa fa-times" onclick="huyDonHang('` + d.MaHD + `')" style="cursor: pointer; margin: 0 5px; color: red;"></i>
             </td>
         </tr>`;
-        TONGTIEN += stringToNum(d.tongtien);
+        TONGTIEN += parseInt(d.TongTien);
     }
 
     s += `</table>`;
     tc.innerHTML = s;
 }
 
-function getListDonHang() {
-    var u = getListUser();
-    var result = [];
-    for (var i = 0; i < u.length; i++) {
-        for (var j = 0; j < u[i].donhang.length; j++) {
-            // Tổng tiền
-            var tongtien = 0;
-            for (var s of u[i].donhang[j].sp) {
-                var timsp = timKiemTheoMa(list_products, s.ma);
-                if (timsp.MaKM.name == 'giareonline') tongtien += stringToNum(timsp.MaKM.value);
-                else tongtien += stringToNum(timsp.DonGia);
+// Xem chi tiết đơn hàng
+function xemChiTietDonHang(maHD) {
+    $.ajax({
+        type: "POST",
+        url: "php/xulydonhang.php",
+        dataType: "json",
+        data: {
+            request: "getdetail",
+            mahd: maHD
+        },
+        success: function(data) {
+            var html = '<table style="width:100%"><tr><th>STT</th><th>Sản phẩm</th><th>Số lượng</th><th>Đơn giá</th></tr>';
+            for (var i = 0; i < data.length; i++) {
+                html += '<tr><td>' + (i+1) + '</td><td>' + data[i].TenSP + '</td><td>' + data[i].SoLuong + '</td><td>' + parseInt(data[i].DonGia).toLocaleString() + ' đ</td></tr>';
             }
-
-            // Ngày giờ
-            var x = new Date(u[i].donhang[j].ngaymua).toLocaleString();
-
-            // Các sản phẩm
-            var sps = '';
-            for (var s of u[i].donhang[j].sp) {
-                sps += `<p style="text-align: right">` + (timKiemTheoMa(list_products, s.ma).name + ' [' + s.soluong + ']') + `</p>`;
-            }
-
-            // Lưu vào result
-            result.push({
-                "ma": u[i].donhang[j].ngaymua.toString(),
-                "khach": u[i].username,
-                "sp": sps,
-                "tongtien": numToString(tongtien),
-                "ngaygio": x,
-                "tinhTrang": u[i].donhang[j].tinhTrang
+            html += '</table>';
+            
+            Swal.fire({
+                title: 'Chi tiết đơn hàng #' + maHD,
+                html: html,
+                width: 600
             });
         }
-    }
-    return result;
+    });
 }
 
-// Duyệt
+// Duyệt đơn hàng
+function duyetDonHang(maHD, trangThai) {
+    Swal.fire({
+        type: 'question',
+        title: 'Xác nhận duyệt đơn hàng #' + maHD + '?',
+        showCancelButton: true,
+        confirmButtonText: 'Duyệt',
+        cancelButtonText: 'Hủy'
+    }).then((result) => {
+        if(result.value) {
+            $.ajax({
+                type: "POST",
+                url: "php/xulydonhang.php",
+                dataType: "json",
+                data: {
+                    request: "updatestatus",
+                    mahd: maHD,
+                    trangthai: trangThai
+                },
+                success: function(data) {
+                    Swal.fire({
+                        type: 'success',
+                        title: 'Đã duyệt đơn hàng!'
+                    });
+                    refreshTableDonHang();
+                },
+                error: function(e) {
+                    Swal.fire({
+                        type: 'error',
+                        title: 'Lỗi khi duyệt đơn hàng',
+                        html: e.responseText
+                    });
+                }
+            });
+        }
+    });
+}
+
+// Hủy đơn hàng
+function huyDonHang(maHD) {
+    Swal.fire({
+        type: 'warning',
+        title: 'Bạn có chắc muốn HỦY đơn hàng #' + maHD + '?',
+        text: 'Hành động này không thể hoàn tác!',
+        showCancelButton: true,
+        confirmButtonText: 'Hủy đơn',
+        cancelButtonText: 'Không'
+    }).then((result) => {
+        if(result.value) {
+            $.ajax({
+                type: "POST",
+                url: "php/xulydonhang.php",
+                dataType: "json",
+                data: {
+                    request: "updatestatus",
+                    mahd: maHD,
+                    trangthai: 0
+                },
+                success: function(data) {
+                    Swal.fire({
+                        type: 'success',
+                        title: 'Đã hủy đơn hàng!'
+                    });
+                    refreshTableDonHang();
+                },
+                error: function(e) {
+                    Swal.fire({
+                        type: 'error',
+                        title: 'Lỗi khi hủy đơn hàng',
+                        html: e.responseText
+                    });
+                }
+            });
+        }
+    });
+}
+
+// Duyệt (code cũ - có thể xóa)
 function duyet(maDonHang, duyetDon) {
     var u = getListUser();
     for (var i = 0; i < u.length; i++) {
