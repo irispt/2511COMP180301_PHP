@@ -53,6 +53,21 @@ class SanPhamBUS extends DB_business
 
         return $this->update_by_id($sanpham, $id);
     }
+
+    // Xóa sản phẩm và TẤT CẢ dữ liệu liên quan (đánh giá, chi tiết hóa đơn)
+    function xoa_san_pham_va_lien_quan($maSP)
+    {
+        $db = new DB_driver();
+        
+        // 1. Xóa tất cả đánh giá của sản phẩm này
+        $db->remove("danhgia", "MaSP='$maSP'");
+        
+        // 2. Xóa tất cả chi tiết hóa đơn chứa sản phẩm này
+        $db->remove("chitiethoadon", "MaSP='$maSP'");
+        
+        // 3. Cuối cùng mới xóa sản phẩm
+        return $this->delete_by_id($maSP);
+    }
 }
 
 // ================== LOẠI SẢN PHẨM ==================
