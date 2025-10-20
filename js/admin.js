@@ -520,23 +520,256 @@ function xoaSanPham(trangthai, masp, tensp) {
     }
 }
 
+// Hàm lấy thông tin từ form SỬA (có thêm dòng Hình)
+function layThongTinSanPhamTuTableSua(id, soLuongCu, hinhAnhCu) {
+    console.log("=== BẮT ĐẦU LẤY THÔNG TIN SẢN PHẨM ===");
+    console.log("ID khung:", id);
+    console.log("Số lượng cũ:", soLuongCu);
+    console.log("Hình ảnh cũ:", hinhAnhCu);
+    
+    try {
+        var khung = document.getElementById(id);
+        if (!khung) {
+            console.error("Không tìm thấy khung với id:", id);
+            return null;
+        }
+        
+        var tr = khung.getElementsByTagName('tr');
+        console.log("Số dòng tr trong form:", tr.length);
+
+        // tr[0]: tiêu đề
+        // tr[1]: Mã SP (disabled)
+        var masp = tr[1].getElementsByTagName('td')[1].getElementsByTagName('input')[0].value;
+        console.log("Mã SP:", masp);
+        
+        // tr[2]: Tên SP
+        var name = tr[2].getElementsByTagName('td')[1].getElementsByTagName('input')[0].value;
+        console.log("Tên SP:", name);
+        
+        // tr[3]: Hãng
+        var company = tr[3].getElementsByTagName('td')[1].getElementsByTagName('select')[0].value;
+        console.log("Hãng:", company);
+        
+        // tr[4]: Hình (có thêm dòng này so với form thêm)
+        var imgInput = document.getElementById("hinhanh");
+        var img = imgInput && imgInput.value ? imgInput.value : hinhAnhCu; // nếu không đổi thì giữ nguyên ảnh cũ
+        console.log("Hình ảnh:", img);
+        
+        // tr[5]: Giá tiền
+        var price = tr[5].getElementsByTagName('td')[1].getElementsByTagName('input')[0].value;
+        console.log("Giá:", price);
+    // tr[6]: Số sao
+    var star = tr[6].getElementsByTagName('td')[1].getElementsByTagName('input')[0].value;
+    console.log("Số sao:", star);
+    
+    // tr[7]: Đánh giá
+    var rateCount = tr[7].getElementsByTagName('td')[1].getElementsByTagName('input')[0].value;
+    console.log("Số đánh giá:", rateCount);
+    
+    // tr[8]: Khuyến mãi
+    var promoName = tr[8].getElementsByTagName('td')[1].getElementsByTagName('select')[0].value;
+    console.log("Khuyến mãi:", promoName);
+    
+    // tr[9]: Giá trị KM
+    var promoValue = tr[9].getElementsByTagName('td')[1].getElementsByTagName('input')[0].value;
+    console.log("Giá trị KM:", promoValue);
+    // tr[10]: Thông số kỹ thuật (header)
+    // tr[11]: Màn hình
+    var screen = tr[11].getElementsByTagName('td')[1].getElementsByTagName('input')[0].value;
+    // tr[12]: HDH
+    var os = tr[12].getElementsByTagName('td')[1].getElementsByTagName('input')[0].value;
+    // tr[13]: Camera sau
+    var camara = tr[13].getElementsByTagName('td')[1].getElementsByTagName('input')[0].value;
+    // tr[14]: Camera trước
+    var camaraFront = tr[14].getElementsByTagName('td')[1].getElementsByTagName('input')[0].value;
+    // tr[15]: CPU
+    var cpu = tr[15].getElementsByTagName('td')[1].getElementsByTagName('input')[0].value;
+    // tr[16]: RAM
+    var ram = tr[16].getElementsByTagName('td')[1].getElementsByTagName('input')[0].value;
+    // tr[17]: ROM
+    var rom = tr[17].getElementsByTagName('td')[1].getElementsByTagName('input')[0].value;
+    // tr[18]: Thẻ nhớ
+    var microUSB = tr[18].getElementsByTagName('td')[1].getElementsByTagName('input')[0].value;
+    // tr[19]: Pin
+    var battery = tr[19].getElementsByTagName('td')[1].getElementsByTagName('input')[0].value;
+    
+    console.log("Thông số kỹ thuật:", {screen, os, camara, camaraFront, cpu, ram, rom, microUSB, battery});
+
+    // Số lượng - form sửa không có trường này, giữ nguyên giá trị cũ
+    var amount = soLuongCu; 
+
+    var result = {
+        "name": name,
+        "img": img,
+        "price": price,
+        "company": company,
+        "amount": amount,
+        "star": star,
+        "rateCount": rateCount,
+        "promo": {
+            "name": promoName,
+            "value": promoValue
+        },
+        "detail": {
+            "screen": screen,
+            "os": os,
+            "camara": camara,
+            "camaraFront": camaraFront,
+            "cpu": cpu,
+            "ram": ram,
+            "rom": rom,
+            "microUSB": microUSB,
+            "battery": battery
+        },
+        "masp": masp,
+        "TrangThai": 1
+    };
+    
+    console.log("=== KẾT QUẢ THU ĐƯỢC ===");
+    console.log(result);
+    
+    return result;
+    } catch (error) {
+        console.error("Lỗi khi lấy thông tin sản phẩm:", error);
+        alert("Lỗi: " + error.message);
+        return null;
+    }
+}
+
+// Wrapper cho form submit
+function suaSanPhamSubmit() {
+    console.log("=== SUBMIT FORM SỬA SẢN PHẨM ===");
+    console.log("currentEditingSP:", window.currentEditingSP);
+    
+    if (window.currentEditingSP) {
+        return suaSanPham(
+            window.currentEditingSP.MaSP,
+            window.currentEditingSP.SoLuong,
+            window.currentEditingSP.HinhAnh
+        );
+    }
+    console.error("Không có window.currentEditingSP");
+    return false;
+}
+
 // Sửa
-function suaSanPham(masp) {
-    var Sp = layThongTinSanPhamTuTable('khungSuaSanPham');
-    console.log(Sp);
+function suaSanPham(masp, soLuong, hinhAnh) {
+    console.log("=== BẮT ĐẦU FUNCTION suaSanPham ===");
+    console.log("Tham số nhận được - MaSP:", masp, "SoLuong:", soLuong, "HinhAnh:", hinhAnh);
+    
+    var Sp = layThongTinSanPhamTuTableSua('khungSuaSanPham', soLuong, hinhAnh);
+    
+    if (!Sp) {
+        console.error("Không lấy được thông tin sản phẩm");
+        alert("LỖI: Không lấy được thông tin sản phẩm từ form");
+        return false;
+    }
+    
+    console.log("Đã lấy được thông tin sản phẩm:", Sp);
+
+    // map client object to DB column names
+    var data = {
+        MaSP: masp,
+        MaLSP: Sp.company,
+        TenSP: Sp.name,
+        DonGia: Sp.price,
+        SoLuong: Sp.amount,
+        HinhAnh: Sp.img,
+        MaKM: Sp.promo.name,
+        ManHinh: Sp.detail.screen,
+        HDH: Sp.detail.os,
+        CamSau: Sp.detail.camara,
+        CamTruoc: Sp.detail.camaraFront,
+        CPU: Sp.detail.cpu,
+        Ram: Sp.detail.ram,
+        Rom: Sp.detail.rom,
+        SDCard: Sp.detail.microUSB,
+        Pin: Sp.detail.battery,
+        SoSao: Sp.star,
+        SoDanhGia: Sp.rateCount,
+        TrangThai: Sp.TrangThai
+    };
+
+    console.log("=== DỮ LIỆU GỬI LÊN SERVER ===");
+    console.log(data);
+    console.log("JSON:", JSON.stringify(data));
+
+    $.ajax({
+        type: "POST",
+        url: "php/xulysanpham.php",
+        dataType: "json",
+        data: {
+            request: "update",
+            data: data
+        },
+        success: function(res) {
+            console.log("=== PHẢN HỒI TỪ SERVER ===");
+            console.log("Response:", res);
+            console.log("Type:", typeof res);
+            
+            if (res === true || res == 1) {
+                // refresh list and close overlay
+                console.log("✅ CẬP NHẬT THÀNH CÔNG!");
+                Swal.fire({
+                    type: 'success',
+                    title: 'Cập nhật thành công!',
+                    timer: 1500,
+                    showConfirmButton: false
+                });
+                refreshTableSanPham();
+                var khung = document.getElementById('khungSuaSanPham');
+                if (khung) khung.style.transform = 'scale(0)';
+            } else {
+                console.error("❌ LỖI TỪ SERVER:", res);
+                Swal.fire({
+                    type: 'error',
+                    title: 'Lỗi khi cập nhật sản phẩm',
+                    html: JSON.stringify(res)
+                });
+            }
+        },
+        error: function(e) {
+            console.error("=== LỖI KẾT NỐI SERVER ===");
+            console.error("Status:", e.status);
+            console.error("Response Text:", e.responseText);
+            console.error("Error Object:", e);
+            
+            Swal.fire({
+                type: 'error',
+                title: 'Lỗi khi kết nối server',
+                html: e.responseText
+            });
+        }
+    });
+
+    console.log("=== AJAX REQUEST ĐÃ GỬI ĐI ===");
     return false;
 }
 
 function addKhungSuaSanPham(masp) {
+    console.log("=== MỞ FORM SỬA SẢN PHẨM ===");
+    console.log("Mã sản phẩm:", masp);
+    
     var sp;
     for (var p of list_products) {
         if (p.MaSP == masp) {
             sp = p;
         }
     }
+    
+    console.log("Sản phẩm tìm được:", sp);
+
+    // Lưu data vào biến toàn cục để tránh escape issue
+    window.currentEditingSP = {
+        MaSP: sp.MaSP,
+        SoLuong: sp.SoLuong,
+        HinhAnh: sp.HinhAnh
+    };
+    
+    console.log("Lưu vào window.currentEditingSP:", window.currentEditingSP);
 
     var s = `<span class="close" onclick="this.parentElement.style.transform = 'scale(0)';">&times;</span>
-    <form method="post" action="" enctype="multipart/form-data" onsubmit="return suaSanPham('` + sp.MaSP + `')">
+    <form method="post" action="" enctype="multipart/form-data" onsubmit="return suaSanPhamSubmit()">
         <table class="overlayTable table-outline table-content table-header">
             <tr>
                 <th colspan="2">` + sp.TenSP + `</th>
