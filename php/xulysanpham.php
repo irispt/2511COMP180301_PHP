@@ -102,7 +102,11 @@
         case 'delete':
                 $spBUS = new SanPhamBUS();
                 $maSPDel = $_POST['maspdelete'];
-                die (json_encode($spBUS->delete_by_id($maSPDel)));
+                
+                // Xóa sản phẩm và tất cả dữ liệu liên quan (đánh giá, chi tiết hóa đơn)
+                $result = $spBUS->xoa_san_pham_va_lien_quan($maSPDel);
+                
+                die (json_encode($result));
             break;
 
         case 'hide' :
