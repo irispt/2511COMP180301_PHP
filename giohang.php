@@ -33,7 +33,7 @@
 	<link rel="stylesheet" href="css/footer.css">
 	<!-- js -->
 	<script src="js/dungchung.js"></script>
-	<script src="js/giohang.js"></script>
+	<script src="js/giohang.js?v=<?php echo time(); ?>"></script>
 
 	<?php require_once "php/echoHTML.php"; ?>
 
@@ -56,11 +56,11 @@
 				          <span aria-hidden="true">&times;</span>
 				        </button>
 				    </div>
-				    <form action="" onsubmit="return xacNhanThanhToan()">
+				    <form id="formThanhToan" action="" method="post">
 						<div class="modal-body" id="thongtinthanhtoan"></div>
 						<div class="modal-footer">
 				        	<button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-				        	<button type="submit" class="btn btn-primary" id="btnXacNhan">Xác nhận</button>
+				        	<button type="button" class="btn btn-primary" id="btnXacNhan">Xác nhận</button>
 				      	</div>
 				    </form>
 		    	</div>

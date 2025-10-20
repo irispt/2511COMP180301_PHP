@@ -1015,25 +1015,116 @@ function addTableDonHang(data) {
 
 // Xem chi tiết đơn hàng
 function xemChiTietDonHang(maHD) {
+    console.log("Xem chi tiết đơn hàng:", maHD);
+    
+    // Lấy thông tin đơn hàng
     $.ajax({
         type: "POST",
         url: "php/xulydonhang.php",
         dataType: "json",
         data: {
-            request: "getdetail",
+            request: "getfulldetail",
             mahd: maHD
         },
-        success: function(data) {
-            var html = '<table style="width:100%"><tr><th>STT</th><th>Sản phẩm</th><th>Số lượng</th><th>Đơn giá</th></tr>';
-            for (var i = 0; i < data.length; i++) {
-                html += '<tr><td>' + (i+1) + '</td><td>' + data[i].TenSP + '</td><td>' + data[i].SoLuong + '</td><td>' + parseInt(data[i].DonGia).toLocaleString() + ' đ</td></tr>';
+        success: function(response) {
+            console.log("Chi tiết đơn hàng:", response);
+            
+            if (!response.hoadon || !response.chitiet) {
+                Swal.fire({
+                    type: 'error',
+                    title: 'Không tìm thấy đơn hàng!'
+                });
+                return;
             }
-            html += '</table>';
+            
+            var hd = response.hoadon;
+            var ct = response.chitiet;
+            
+            // Map trạng thái
+            var trangThai = 'Đang xử lý';
+            var colorClass = 'info';
+            if (hd.TrangThai == 0) { trangThai = 'Đã hủy'; colorClass = 'danger'; }
+            else if (hd.TrangThai == 1) { trangThai = 'Chờ xác nhận'; colorClass = 'warning'; }
+            else if (hd.TrangThai == 2) { trangThai = 'Đã xác nhận'; colorClass = 'primary'; }
+            else if (hd.TrangThai == 3) { trangThai = 'Đang giao'; colorClass = 'info'; }
+            else if (hd.TrangThai == 4) { trangThai = 'Đã giao'; colorClass = 'success'; }
+            
+            // Tạo HTML
+            var html = `
+                <div style="text-align: left; padding: 20px;">
+                    <h3 style="margin-top: 0; color: #333; border-bottom: 2px solid #4CAF50; padding-bottom: 10px;">
+                        📋 Đơn hàng #${hd.MaHD}
+                    </h3>
+                    
+                    <div style="background: #f5f5f5; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                        <h4 style="margin-top: 0; color: #555;">👤 Thông tin người nhận</h4>
+                        <p style="margin: 5px 0;"><strong>Họ tên:</strong> ${hd.NguoiNhan}</p>
+                        <p style="margin: 5px 0;"><strong>Số điện thoại:</strong> ${hd.SDT}</p>
+                        <p style="margin: 5px 0;"><strong>Địa chỉ:</strong> ${hd.DiaChi}</p>
+                        <p style="margin: 5px 0;"><strong>Phương thức TT:</strong> ${hd.PhuongThucTT}</p>
+                        <p style="margin: 5px 0;"><strong>Ngày đặt:</strong> ${hd.NgayLap}</p>
+                        <p style="margin: 5px 0;"><strong>Trạng thái:</strong> 
+                            <span style="background: #${colorClass === 'success' ? '4CAF50' : colorClass === 'danger' ? 'f44336' : colorClass === 'warning' ? 'ff9800' : '2196F3'}; 
+                                         color: white; padding: 3px 10px; border-radius: 12px; font-size: 12px;">
+                                ${trangThai}
+                            </span>
+                        </p>
+                    </div>
+                    
+                    <h4 style="color: #555; margin-bottom: 10px;">🛒 Sản phẩm đã đặt</h4>
+                    <table style="width: 100%; border-collapse: collapse; margin-bottom: 15px;">
+                        <thead>
+                            <tr style="background: #4CAF50; color: white;">
+                                <th style="padding: 10px; text-align: left; border: 1px solid #ddd;">STT</th>
+                                <th style="padding: 10px; text-align: left; border: 1px solid #ddd;">Sản phẩm</th>
+                                <th style="padding: 10px; text-align: center; border: 1px solid #ddd;">Số lượng</th>
+                                <th style="padding: 10px; text-align: right; border: 1px solid #ddd;">Đơn giá</th>
+                                <th style="padding: 10px; text-align: right; border: 1px solid #ddd;">Thành tiền</th>
+                            </tr>
+                        </thead>
+                        <tbody>`;
+            
+            var tongTien = 0;
+            for (var i = 0; i < ct.length; i++) {
+                var thanhTien = ct[i].SoLuong * ct[i].DonGia;
+                tongTien += thanhTien;
+                
+                html += `
+                    <tr style="background: ${i % 2 === 0 ? '#ffffff' : '#f9f9f9'};">
+                        <td style="padding: 10px; border: 1px solid #ddd;">${i + 1}</td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">${ct[i].TenSP}</td>
+                        <td style="padding: 10px; text-align: center; border: 1px solid #ddd;">${ct[i].SoLuong}</td>
+                        <td style="padding: 10px; text-align: right; border: 1px solid #ddd;">${parseInt(ct[i].DonGia).toLocaleString()} đ</td>
+                        <td style="padding: 10px; text-align: right; border: 1px solid #ddd; font-weight: bold;">${thanhTien.toLocaleString()} đ</td>
+                    </tr>`;
+            }
+            
+            html += `
+                        </tbody>
+                        <tfoot>
+                            <tr style="background: #4CAF50; color: white; font-weight: bold;">
+                                <td colspan="4" style="padding: 12px; text-align: right; border: 1px solid #ddd;">TỔNG TIỀN:</td>
+                                <td style="padding: 12px; text-align: right; border: 1px solid #ddd; font-size: 16px;">${parseInt(hd.TongTien).toLocaleString()} đ</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            `;
             
             Swal.fire({
-                title: 'Chi tiết đơn hàng #' + maHD,
+                title: '',
                 html: html,
-                width: 600
+                width: 800,
+                confirmButtonText: 'Đóng',
+                confirmButtonColor: '#4CAF50'
+            });
+        },
+        error: function(e) {
+            console.error("Lỗi:", e);
+            Swal.fire({
+                type: 'error',
+                title: 'Lỗi khi lấy chi tiết đơn hàng',
+                html: e.responseText
             });
         }
     });

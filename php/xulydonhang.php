@@ -21,6 +21,27 @@
 				die (json_encode($result));
 			break;
 
+		case 'getfulldetail':
+				$mahd = $_POST['mahd'];
+				
+				// Lấy thông tin hóa đơn
+				$hoadon = (new HoaDonBUS())->select_by_id('*', $mahd);
+				
+				// Lấy chi tiết sản phẩm
+				$sql = "SELECT ct.*, sp.TenSP, sp.HinhAnh
+						FROM chitiethoadon ct 
+						JOIN sanpham sp ON ct.MaSP = sp.MaSP 
+						WHERE ct.MaHD = $mahd";
+				$chitiet = (new DB_driver())->get_list($sql);
+				
+				$result = array(
+					"hoadon" => $hoadon,
+					"chitiet" => $chitiet
+				);
+				
+				die (json_encode($result));
+			break;
+
 		case 'updatestatus':
 				$mahd = $_POST['mahd'];
 				$trangthai = $_POST['trangthai'];
