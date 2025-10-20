@@ -453,71 +453,41 @@ function autoMaSanPham(company) {
 
 // Xóa
 function xoaSanPham(trangthai, masp, tensp) {
-    if (trangthai == 1)
-    {
-        // alert ("Sản phẩm còn đang bán");
-        Swal.fire({
-            type: 'warning',
-            title: 'Bạn có muốn ẨN ' + tensp + ' không!',
-            showCancelButton: true
-        }).then((result) => {
-            if(result.value) {
-                $.ajax({
-                    type: "POST",
-                    url: "php/xulysanpham.php",
-                    dataType: "json",
-                    // timeout: 1500, // sau 1.5 giây mà không phản hồi thì dừng => hiện lỗi
-                    data: {
-                        request: "hide",
-                        id: masp,
-                        trangthai: 0
-                    },
-                    success: function(data, status, xhr) {
-                        Swal.fire({
-                            type: 'success',
-                            title: 'Ẩn thành công'
-                        })
-                        refreshTableSanPham();
-                    },
-                    error: function(e) {
-                        Swal.fire({
-                            type: "error",
-                            title: "Lỗi xóa",
-                            html: e.responseText
-                        });
-                    }
-                });
-            }
-        })
-    }
-    else
-    {
-        if (window.confirm('Bạn có chắc muốn xóa ' + tensp)) {
-            // Xóa
+    // Luôn xóa thật, không còn ẩn nữa
+    Swal.fire({
+        type: 'warning',
+        title: 'Bạn có chắc muốn XÓA ' + tensp + ' không?',
+        text: 'Sản phẩm sẽ bị xóa vĩnh viễn khỏi database!',
+        showCancelButton: true,
+        confirmButtonText: 'Xóa',
+        cancelButtonText: 'Hủy'
+    }).then((result) => {
+        if(result.value) {
             $.ajax({
                 type: "POST",
                 url: "php/xulysanpham.php",
                 dataType: "json",
-                // timeout: 1500, // sau 1.5 giây mà không phản hồi thì dừng => hiện lỗi
                 data: {
                     request: "delete",
                     maspdelete: masp
                 },
                 success: function(data, status, xhr) {
-                    
+                    Swal.fire({
+                        type: 'success',
+                        title: 'Xóa thành công!'
+                    });
+                    refreshTableSanPham();
                 },
-                error: function() {
+                error: function(e) {
                     Swal.fire({
                         type: "error",
-                        title: "Lỗi xóa"
+                        title: "Lỗi khi xóa",
+                        html: e.responseText
                     });
                 }
             });
-
-            // Vẽ lại table 
-            refreshTableSanPham();
         }
-    }
+    })
 }
 
 // Hàm lấy thông tin từ form SỬA (có thêm dòng Hình)
