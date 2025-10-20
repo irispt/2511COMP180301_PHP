@@ -262,15 +262,10 @@ function addTableProducts(list_products) {
             <td style="width: 15%">` + parseInt(p.DonGia).toLocaleString() + `</td>
             <td style="width: 10%">` + /*promoToStringValue(*/ (p.KM.TenKM) /*)*/ + `</td>
             <td style="width: 10%">` + (p.TrangThai==1?"Hiện":"Ẩn") + `</td>
-            <td style="width: 10%">
-                <div class="tooltip">
-                    <i class="fa fa-wrench" onclick="addKhungSuaSanPham('` + p.MaSP + `')"></i>
-                    <span class="tooltiptext">Sửa</span>
-                </div>
-                <div class="tooltip">
-                    <i class="fa fa-trash" onclick="xoaSanPham('` + p.TrangThai + `', '` + p.MaSP + `', '` + p.TenSP + `')"></i>
-                    <span class="tooltiptext">Xóa</span>
-                </div>
+            <td style="width: 10%; white-space: nowrap;">
+                <i class="fa ` + (p.TrangThai==1?"fa-eye":"fa-eye-slash") + `" onclick="anHienSanPham('` + p.MaSP + `', '` + p.TenSP + `', ` + p.TrangThai + `)" style="cursor: pointer; margin: 0 5px;"></i>
+                <i class="fa fa-wrench" onclick="addKhungSuaSanPham('` + p.MaSP + `')" style="cursor: pointer; margin: 0 5px;"></i>
+                <i class="fa fa-trash" onclick="xoaSanPham('` + p.TrangThai + `', '` + p.MaSP + `', '` + p.TenSP + `')" style="cursor: pointer; margin: 0 5px;"></i>
             </td>
         </tr>`;
     }
@@ -488,6 +483,47 @@ function xoaSanPham(trangthai, masp, tensp) {
             });
         }
     })
+}
+
+// Ẩn/Hiện sản phẩm
+function anHienSanPham(masp, tensp, trangThaiHienTai) {
+    var trangThaiMoi = trangThaiHienTai == 1 ? 0 : 1;
+    var thongBao = trangThaiHienTai == 1 ? 'ẨN' : 'HIỆN';
+    
+    Swal.fire({
+        type: 'question',
+        title: 'Bạn có muốn ' + thongBao + ' sản phẩm "' + tensp + '" không?',
+        showCancelButton: true,
+        confirmButtonText: thongBao,
+        cancelButtonText: 'Hủy'
+    }).then((result) => {
+        if(result.value) {
+            $.ajax({
+                type: "POST",
+                url: "php/xulysanpham.php",
+                dataType: "json",
+                data: {
+                    request: "hide",
+                    id: masp,
+                    trangthai: trangThaiMoi
+                },
+                success: function(data, status, xhr) {
+                    Swal.fire({
+                        type: 'success',
+                        title: thongBao + ' sản phẩm thành công!'
+                    });
+                    refreshTableSanPham();
+                },
+                error: function(e) {
+                    Swal.fire({
+                        type: "error",
+                        title: "Lỗi khi " + thongBao.toLowerCase() + " sản phẩm",
+                        html: e.responseText
+                    });
+                }
+            });
+        }
+    });
 }
 
 // Hàm lấy thông tin từ form SỬA (có thêm dòng Hình)

@@ -349,30 +349,33 @@ header h2 {
 
 .tooltip .tooltiptext {
     visibility: hidden;
-    width: 50px;
+    width: auto;
+    min-width: 70px;
+    white-space: nowrap;
     background-color: #555;
     color: #fff;
     text-align: center;
     border-radius: 6px;
-    padding: 5px;
+    padding: 5px 8px;
     position: absolute;
-    z-index: 21;
-    bottom: -150%;
+    z-index: 1000;
+    bottom: 125%;
     left: 50%;
-    margin-left: -25px;
+    transform: translateX(-50%);
     opacity: 0;
     transition: opacity 0.3s;
+    pointer-events: none;
 }
 
-.tooltip .tooltiptext::before {
+.tooltip .tooltiptext::after {
     content: "";
     position: absolute;
-    top: -10px;
+    top: 100%;
     left: 50%;
     margin-left: -5px;
     border-width: 5px;
     border-style: solid;
-    border-color: transparent transparent #555 transparent;
+    border-color: #555 transparent transparent transparent;
 }
 
 .tooltip:hover .tooltiptext {
