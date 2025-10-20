@@ -83,6 +83,21 @@
                 die (json_encode($spBUS->add_new($spAddArr)));
             break;
 
+        // cập nhật sản phẩm
+        case 'update':
+                $data = $_POST['data'];
+                // đảm bảo MaSP tồn tại
+                if (!isset($data['MaSP'])) die (json_encode(false));
+
+                $ma = $data['MaSP'];
+                // loại bỏ MaSP khỏi dữ liệu để update
+                unset($data['MaSP']);
+
+                $spBUS = new SanPhamBUS();
+                $res = $spBUS->update_by_id($data, $ma);
+                die (json_encode($res));
+            break;
+
         // xóa
         case 'delete':
                 $spBUS = new SanPhamBUS();
