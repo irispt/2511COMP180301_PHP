@@ -165,17 +165,17 @@
                                         }
                                         else
                                         {
-                                            /*$tmp = explode(".", $_FILES["hinhanh"]["name"]);
+                                            $tmp = explode(".", $_FILES["hinhanh"]["name"]);
                                             $duoifile = end($tmp);
                                             $masp = $_POST['maspThem'];
-                                            $tenfilemoi = $masp . "." . $duoifile;*/
+                                            $tenfilemoi = $masp . "." . $duoifile;
                                             $file = $_FILES["hinhanh"]["name"];
                                             $tenfilemoi = "img/products/" .$_FILES["hinhanh"]["name"];
                                             move_uploaded_file( $_FILES["hinhanh"]["tmp_name"], $tenfilemoi);
                                         }
                                     }
                                 }
-                        // require_once ("php/uploadfile.php");
+                        require_once ("php/uploadfile.php");
                         ?>
                         <tr>
                             <td>Hình:</td>

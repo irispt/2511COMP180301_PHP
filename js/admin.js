@@ -984,14 +984,19 @@ function addTableDonHang(data) {
     for (var i = 0; i < data.length; i++) {
         var d = data[i];
         
+        // Log để debug
+        if (i === 0) console.log("Trạng thái đơn đầu tiên:", d.TrangThai, typeof d.TrangThai);
+        
         // Map trạng thái với màu sắc
         var trangThaiHTML = '';
-        switch(parseInt(d.TrangThai)) {
+        var trangThaiNum = parseInt(d.TrangThai);
+        
+        switch(trangThaiNum) {
             case 0:
                 trangThaiHTML = '<span style="color: red; font-weight: bold;">Đã hủy</span>';
                 break;
             case 1:
-                trangThaiHTML = '<span style="color: orange; font-weight: bold;">Đang xử lý</span>';
+                trangThaiHTML = '<span style="color: orange; font-weight: bold;">Chờ xác nhận</span>';
                 break;
             case 2:
                 trangThaiHTML = '<span style="color: blue; font-weight: bold;">Đã xác nhận</span>';
@@ -1006,23 +1011,24 @@ function addTableDonHang(data) {
                 trangThaiHTML = '<span style="color: green; font-weight: bold;">Đã giao thành công</span>';
                 break;
             default:
-                trangThaiHTML = '<span style="color: gray;">Không xác định</span>';
+                trangThaiHTML = '<span style="color: gray;">Không xác định (' + d.TrangThai + ')</span>';
         }
         
         // Tạo button hành động dựa vào trạng thái
         var actionButtons = '<i class="fa fa-eye" onclick="xemChiTietDonHang(\'' + d.MaHD + '\')" style="cursor: pointer; margin: 0 5px;" title="Xem chi tiết"></i>';
         
-        if (d.TrangThai == 1) {
-            // Đang xử lý → có thể Xác nhận hoặc Hủy
-            actionButtons += '<i class="fa fa-check" onclick="chuyenTrangThai(\'' + d.MaHD + '\', 2)" style="cursor: pointer; margin: 0 5px; color: blue;" title="Xác nhận đơn"></i>';
+        if (trangThaiNum == 1) {
+            // Chờ xác nhận → có thể Xác nhận hoặc Hủy
+            actionButtons += '<i class="fa fa-check" onclick="chuyenTrangThai(\'' + d.MaHD + '\', 2)" style="cursor: pointer; margin: 0 5px; color: green;" title="Xác nhận đơn"></i>';
             actionButtons += '<i class="fa fa-times" onclick="huyDonHang(\'' + d.MaHD + '\')" style="cursor: pointer; margin: 0 5px; color: red;" title="Hủy đơn"></i>';
-        } else if (d.TrangThai == 2) {
+        } else if (trangThaiNum == 2) {
             // Đã xác nhận → Lên đơn
             actionButtons += '<i class="fa fa-file-text" onclick="chuyenTrangThai(\'' + d.MaHD + '\', 3)" style="cursor: pointer; margin: 0 5px; color: purple;" title="Lên đơn"></i>';
-        } else if (d.TrangThai == 3) {
+            actionButtons += '<i class="fa fa-times" onclick="huyDonHang(\'' + d.MaHD + '\')" style="cursor: pointer; margin: 0 5px; color: red;" title="Hủy đơn"></i>';
+        } else if (trangThaiNum == 3) {
             // Đã lên đơn → Đang giao
             actionButtons += '<i class="fa fa-truck" onclick="chuyenTrangThai(\'' + d.MaHD + '\', 4)" style="cursor: pointer; margin: 0 5px; color: teal;" title="Giao hàng"></i>';
-        } else if (d.TrangThai == 4) {
+        } else if (trangThaiNum == 4) {
             // Đang giao → Đã giao thành công
             actionButtons += '<i class="fa fa-check-circle" onclick="chuyenTrangThai(\'' + d.MaHD + '\', 5)" style="cursor: pointer; margin: 0 5px; color: green;" title="Hoàn thành"></i>';
         }
