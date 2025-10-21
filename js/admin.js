@@ -1428,7 +1428,7 @@ function timKiemNguoiDung(inp) {
 
 function openThemNguoiDung() {
     Swal.fire({
-        title: 'Thêm Khách Hàng',
+        title: 'Thêm Người Dùng',
         html: `
             <input id="hoThem" class="swal2-input" placeholder="Họ" required>
             <input id="tenThem" class="swal2-input" placeholder="Tên" required>
@@ -1440,6 +1440,11 @@ function openThemNguoiDung() {
                 <option value="Nam">Nam</option>
                 <option value="Nữ">Nữ</option>
                 <option value="Khác">Khác</option>
+            </select>
+            <select id="maQuyenThem" class="swal2-input" required>
+                <option value="">-- Chọn quyền --</option>
+                <option value="1">Khách hàng</option>
+                <option value="2">Admin</option>
             </select>
             <input id="taiKhoanThem" class="swal2-input" placeholder="Tài khoản" required>
             <input id="matKhauThem" class="swal2-input" placeholder="Mật khẩu" type="password" required>
@@ -1455,10 +1460,11 @@ function openThemNguoiDung() {
             const sdt = document.getElementById('sdtThem').value;
             const diaChi = document.getElementById('diaChiThem').value;
             const gioiTinh = document.getElementById('gioiTinhThem').value;
+            const maQuyen = document.getElementById('maQuyenThem').value;
             const taiKhoan = document.getElementById('taiKhoanThem').value;
             const matKhau = document.getElementById('matKhauThem').value;
             
-            if (!ho || !ten || !email || !sdt || !diaChi || !gioiTinh || !taiKhoan || !matKhau) {
+            if (!ho || !ten || !email || !sdt || !diaChi || !gioiTinh || !maQuyen || !taiKhoan || !matKhau) {
                 Swal.showValidationMessage('Vui lòng điền đầy đủ thông tin!');
                 return false;
             }
@@ -1483,6 +1489,7 @@ function openThemNguoiDung() {
                 sdt: sdt,
                 diaChi: diaChi,
                 gioiTinh: gioiTinh,
+                maQuyen: maQuyen,
                 taiKhoan: taiKhoan,
                 matKhau: matKhau
             };
@@ -1507,6 +1514,7 @@ function themNguoiDung(data) {
             sdt: data.sdt,
             diaChi: data.diaChi,
             gioiTinh: data.gioiTinh,
+            maQuyen: data.maQuyen,
             taiKhoan: data.taiKhoan,
             matKhau: data.matKhau
         },

@@ -41,14 +41,17 @@
 	function dangNhap() {
 		$taikhoan=$_POST['data_username'];
 		$matkhau=$_POST['data_pass'];
-		$matkhau=md5($matkhau);
 
-		$sql = "SELECT * FROM nguoidung WHERE TaiKhoan='$taikhoan' AND MatKhau='$matkhau' AND MaQuyen=1 AND TrangThai=1";
+		// Lấy thông tin user để kiểm tra
+		$sql = "SELECT * FROM nguoidung WHERE TaiKhoan='$taikhoan' AND TrangThai=1";
 		$result = (new DB_driver())->get_row($sql);
 
 		if($result != false){
-		    $_SESSION['currentUser']=$result;
-		    die (json_encode($result)); 
+			// Kiểm tra mật khẩu - hỗ trợ cả md5 (cũ) và password_hash (mới)
+			if (md5($matkhau) == $result['MatKhau'] || password_verify($matkhau, $result['MatKhau'])) {
+				$_SESSION['currentUser']=$result;
+				die (json_encode($result)); 
+			}
 		}  
 		die (json_encode(null));
 	}

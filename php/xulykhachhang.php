@@ -49,6 +49,8 @@
 				}
 				
 				// Thêm người dùng mới
+				$maQuyen = isset($_POST['maQuyen']) ? intval($_POST['maQuyen']) : 1; // Mặc định là khách hàng
+				
 				$data = [
 					'Ho' => $_POST['ho'],
 					'Ten' => $_POST['ten'],
@@ -58,7 +60,7 @@
 					'DiaChi' => $_POST['diaChi'],
 					'TaiKhoan' => $_POST['taiKhoan'],
 					'MatKhau' => password_hash($_POST['matKhau'], PASSWORD_DEFAULT),
-					'MaQuyen' => 3, // Khách hàng
+					'MaQuyen' => $maQuyen,
 					'TrangThai' => 1 // Active
 				];
 				
