@@ -1427,7 +1427,117 @@ function timKiemNguoiDung(inp) {
 }
 
 function openThemNguoiDung() {
-    window.alert('Not Available!');
+    Swal.fire({
+        title: 'Thêm Khách Hàng',
+        html: `
+            <input id="hoThem" class="swal2-input" placeholder="Họ" required>
+            <input id="tenThem" class="swal2-input" placeholder="Tên" required>
+            <input id="emailThem" class="swal2-input" placeholder="Email" type="email" required>
+            <input id="sdtThem" class="swal2-input" placeholder="Số điện thoại" required>
+            <input id="diaChiThem" class="swal2-input" placeholder="Địa chỉ" required>
+            <select id="gioiTinhThem" class="swal2-input" required>
+                <option value="">-- Chọn giới tính --</option>
+                <option value="Nam">Nam</option>
+                <option value="Nữ">Nữ</option>
+                <option value="Khác">Khác</option>
+            </select>
+            <input id="taiKhoanThem" class="swal2-input" placeholder="Tài khoản" required>
+            <input id="matKhauThem" class="swal2-input" placeholder="Mật khẩu" type="password" required>
+        `,
+        width: '500px',
+        showCancelButton: true,
+        confirmButtonText: 'Thêm',
+        cancelButtonText: 'Hủy',
+        preConfirm: () => {
+            const ho = document.getElementById('hoThem').value;
+            const ten = document.getElementById('tenThem').value;
+            const email = document.getElementById('emailThem').value;
+            const sdt = document.getElementById('sdtThem').value;
+            const diaChi = document.getElementById('diaChiThem').value;
+            const gioiTinh = document.getElementById('gioiTinhThem').value;
+            const taiKhoan = document.getElementById('taiKhoanThem').value;
+            const matKhau = document.getElementById('matKhauThem').value;
+            
+            if (!ho || !ten || !email || !sdt || !diaChi || !gioiTinh || !taiKhoan || !matKhau) {
+                Swal.showValidationMessage('Vui lòng điền đầy đủ thông tin!');
+                return false;
+            }
+            
+            // Validate email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                Swal.showValidationMessage('Email không hợp lệ!');
+                return false;
+            }
+            
+            // Validate số điện thoại
+            if (sdt.length < 10 || sdt.length > 12 || !/^\d+$/.test(sdt)) {
+                Swal.showValidationMessage('Số điện thoại phải là 10-12 chữ số!');
+                return false;
+            }
+            
+            return {
+                ho: ho,
+                ten: ten,
+                email: email,
+                sdt: sdt,
+                diaChi: diaChi,
+                gioiTinh: gioiTinh,
+                taiKhoan: taiKhoan,
+                matKhau: matKhau
+            };
+        }
+    }).then((result) => {
+        if (result.value) {
+            themNguoiDung(result.value);
+        }
+    });
+}
+
+function themNguoiDung(data) {
+    $.ajax({
+        url: 'php/xulykhachhang.php',
+        type: 'POST',
+        dataType: 'json',
+        data: {
+            request: 'add',
+            ho: data.ho,
+            ten: data.ten,
+            email: data.email,
+            sdt: data.sdt,
+            diaChi: data.diaChi,
+            gioiTinh: data.gioiTinh,
+            taiKhoan: data.taiKhoan,
+            matKhau: data.matKhau
+        },
+        success: function(response) {
+            if (response.success) {
+                Swal.fire({
+                    type: 'success',
+                    title: 'Thành công!',
+                    text: 'Đã thêm khách hàng mới',
+                    timer: 2000
+                }).then(() => {
+                    refreshTableKhachHang();
+                });
+            } else {
+                Swal.fire({
+                    type: 'error',
+                    title: 'Lỗi!',
+                    text: response.message || 'Không thể thêm khách hàng'
+                });
+            }
+        },
+        error: function(e) {
+            console.error('Lỗi:', e.responseText);
+            Swal.fire({
+                type: 'error',
+                title: 'Lỗi!',
+                text: 'Có lỗi xảy ra khi thêm khách hàng',
+                html: e.responseText
+            });
+        }
+    });
 }
 
 // vô hiệu hóa người dùng (tạm dừng, không cho đăng nhập vào)
@@ -1501,8 +1611,6 @@ function getValueOfTypeInTable_KhachHang(tr, loai) {
     return false;
 }
 
-// ================== Sort ====================
-// https://github.com/HoangTran0410/First_html_css_js/blob/master/sketch.js
 var decrease = true; // Sắp xếp giảm dần
 
 // loại là tên cột, func là hàm giúp lấy giá trị từ cột loai
@@ -1566,8 +1674,8 @@ function progress(percent, bg, width, height) {
             </div>`
 }
 
-// for(var i = 0; i < list_products.length; i++) {
-//     list_products[i].masp = list_products[i].company.substring(0, 3) + vitriCompany(list_products[i], i);
-// }
+for(var i = 0; i < list_products.length; i++) {
+    list_products[i].masp = list_products[i].company.substring(0, 3) + vitriCompany(list_products[i], i);
+}
 
-// console.log(JSON.stringify(list_products));
+console.log(JSON.stringify(list_products));
