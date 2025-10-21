@@ -984,13 +984,48 @@ function addTableDonHang(data) {
     for (var i = 0; i < data.length; i++) {
         var d = data[i];
         
-        // Map trạng thái
-        var trangThai = 'Đang xử lý';
-        if (d.TrangThai == 0) trangThai = 'Đã hủy';
-        else if (d.TrangThai == 1) trangThai = 'Chờ xác nhận';
-        else if (d.TrangThai == 2) trangThai = 'Đã xác nhận';
-        else if (d.TrangThai == 3) trangThai = 'Đang giao';
-        else if (d.TrangThai == 4) trangThai = 'Đã giao';
+        // Map trạng thái với màu sắc
+        var trangThaiHTML = '';
+        switch(parseInt(d.TrangThai)) {
+            case 0:
+                trangThaiHTML = '<span style="color: red; font-weight: bold;">Đã hủy</span>';
+                break;
+            case 1:
+                trangThaiHTML = '<span style="color: orange; font-weight: bold;">Đang xử lý</span>';
+                break;
+            case 2:
+                trangThaiHTML = '<span style="color: blue; font-weight: bold;">Đã xác nhận</span>';
+                break;
+            case 3:
+                trangThaiHTML = '<span style="color: purple; font-weight: bold;">Đã lên đơn</span>';
+                break;
+            case 4:
+                trangThaiHTML = '<span style="color: teal; font-weight: bold;">Đang giao</span>';
+                break;
+            case 5:
+                trangThaiHTML = '<span style="color: green; font-weight: bold;">Đã giao thành công</span>';
+                break;
+            default:
+                trangThaiHTML = '<span style="color: gray;">Không xác định</span>';
+        }
+        
+        // Tạo button hành động dựa vào trạng thái
+        var actionButtons = '<i class="fa fa-eye" onclick="xemChiTietDonHang(\'' + d.MaHD + '\')" style="cursor: pointer; margin: 0 5px;" title="Xem chi tiết"></i>';
+        
+        if (d.TrangThai == 1) {
+            // Đang xử lý → có thể Xác nhận hoặc Hủy
+            actionButtons += '<i class="fa fa-check" onclick="chuyenTrangThai(\'' + d.MaHD + '\', 2)" style="cursor: pointer; margin: 0 5px; color: blue;" title="Xác nhận đơn"></i>';
+            actionButtons += '<i class="fa fa-times" onclick="huyDonHang(\'' + d.MaHD + '\')" style="cursor: pointer; margin: 0 5px; color: red;" title="Hủy đơn"></i>';
+        } else if (d.TrangThai == 2) {
+            // Đã xác nhận → Lên đơn
+            actionButtons += '<i class="fa fa-file-text" onclick="chuyenTrangThai(\'' + d.MaHD + '\', 3)" style="cursor: pointer; margin: 0 5px; color: purple;" title="Lên đơn"></i>';
+        } else if (d.TrangThai == 3) {
+            // Đã lên đơn → Đang giao
+            actionButtons += '<i class="fa fa-truck" onclick="chuyenTrangThai(\'' + d.MaHD + '\', 4)" style="cursor: pointer; margin: 0 5px; color: teal;" title="Giao hàng"></i>';
+        } else if (d.TrangThai == 4) {
+            // Đang giao → Đã giao thành công
+            actionButtons += '<i class="fa fa-check-circle" onclick="chuyenTrangThai(\'' + d.MaHD + '\', 5)" style="cursor: pointer; margin: 0 5px; color: green;" title="Hoàn thành"></i>';
+        }
         
         s += `<tr>
             <td style="width: 5%">` + (i + 1) + `</td>
@@ -999,11 +1034,9 @@ function addTableDonHang(data) {
             <td style="width: 20%">` + d.SDT + ` - ` + d.DiaChi + `</td>
             <td style="width: 15%">` + parseInt(d.TongTien).toLocaleString() + ` đ</td>
             <td style="width: 10%">` + d.NgayLap + `</td>
-            <td style="width: 10%">` + trangThai + `</td>
+            <td style="width: 10%">` + trangThaiHTML + `</td>
             <td style="width: 10%; white-space: nowrap;">
-                <i class="fa fa-eye" onclick="xemChiTietDonHang('` + d.MaHD + `')" style="cursor: pointer; margin: 0 5px;"></i>
-                <i class="fa fa-check" onclick="duyetDonHang('` + d.MaHD + `', 2)" style="cursor: pointer; margin: 0 5px; color: green;"></i>
-                <i class="fa fa-times" onclick="huyDonHang('` + d.MaHD + `')" style="cursor: pointer; margin: 0 5px; color: red;"></i>
+                ` + actionButtons + `
             </td>
         </tr>`;
         TONGTIEN += parseInt(d.TongTien);
@@ -1040,14 +1073,35 @@ function xemChiTietDonHang(maHD) {
             var hd = response.hoadon;
             var ct = response.chitiet;
             
-            // Map trạng thái
-            var trangThai = 'Đang xử lý';
-            var colorClass = 'info';
-            if (hd.TrangThai == 0) { trangThai = 'Đã hủy'; colorClass = 'danger'; }
-            else if (hd.TrangThai == 1) { trangThai = 'Chờ xác nhận'; colorClass = 'warning'; }
-            else if (hd.TrangThai == 2) { trangThai = 'Đã xác nhận'; colorClass = 'primary'; }
-            else if (hd.TrangThai == 3) { trangThai = 'Đang giao'; colorClass = 'info'; }
-            else if (hd.TrangThai == 4) { trangThai = 'Đã giao'; colorClass = 'success'; }
+            // Map trạng thái với màu Bootstrap
+            var trangThaiText = 'Đang xử lý';
+            var colorClass = 'warning';
+            switch(parseInt(hd.TrangThai)) {
+                case 0:
+                    trangThaiText = 'Đã hủy';
+                    colorClass = 'danger';
+                    break;
+                case 1:
+                    trangThaiText = 'Đang xử lý';
+                    colorClass = 'warning';
+                    break;
+                case 2:
+                    trangThaiText = 'Đã xác nhận';
+                    colorClass = 'primary';
+                    break;
+                case 3:
+                    trangThaiText = 'Đã lên đơn';
+                    colorClass = 'info';
+                    break;
+                case 4:
+                    trangThaiText = 'Đang giao';
+                    colorClass = 'secondary';
+                    break;
+                case 5:
+                    trangThaiText = 'Đã giao thành công';
+                    colorClass = 'success';
+                    break;
+            }
             
             // Tạo HTML
             var html = `
@@ -1064,9 +1118,9 @@ function xemChiTietDonHang(maHD) {
                         <p style="margin: 5px 0;"><strong>Phương thức TT:</strong> ${hd.PhuongThucTT}</p>
                         <p style="margin: 5px 0;"><strong>Ngày đặt:</strong> ${hd.NgayLap}</p>
                         <p style="margin: 5px 0;"><strong>Trạng thái:</strong> 
-                            <span style="background: #${colorClass === 'success' ? '4CAF50' : colorClass === 'danger' ? 'f44336' : colorClass === 'warning' ? 'ff9800' : '2196F3'}; 
+                            <span style="background: #${colorClass === 'success' ? '4CAF50' : colorClass === 'danger' ? 'f44336' : colorClass === 'warning' ? 'ff9800' : colorClass === 'primary' ? '2196F3' : colorClass === 'info' ? '00bcd4' : '9e9e9e'}; 
                                          color: white; padding: 3px 10px; border-radius: 12px; font-size: 12px;">
-                                ${trangThai}
+                                ${trangThaiText}
                             </span>
                         </p>
                     </div>
@@ -1130,13 +1184,20 @@ function xemChiTietDonHang(maHD) {
     });
 }
 
-// Duyệt đơn hàng
-function duyetDonHang(maHD, trangThai) {
+// Chuyển trạng thái đơn hàng
+function chuyenTrangThai(maHD, trangThaiMoi) {
+    var trangThaiText = {
+        2: 'Xác nhận đơn hàng',
+        3: 'Lên đơn giao hàng',
+        4: 'Bắt đầu giao hàng',
+        5: 'Hoàn thành đơn hàng'
+    };
+    
     Swal.fire({
         type: 'question',
-        title: 'Xác nhận duyệt đơn hàng #' + maHD + '?',
+        title: trangThaiText[trangThaiMoi] + ' #' + maHD + '?',
         showCancelButton: true,
-        confirmButtonText: 'Duyệt',
+        confirmButtonText: 'Xác nhận',
         cancelButtonText: 'Hủy'
     }).then((result) => {
         if(result.value) {
@@ -1147,25 +1208,32 @@ function duyetDonHang(maHD, trangThai) {
                 data: {
                     request: "updatestatus",
                     mahd: maHD,
-                    trangthai: trangThai
+                    trangthai: trangThaiMoi
                 },
-                success: function(data) {
+                success: function(response) {
                     Swal.fire({
                         type: 'success',
-                        title: 'Đã duyệt đơn hàng!'
+                        title: 'Thành công!',
+                        text: 'Đã cập nhật trạng thái đơn hàng',
+                        timer: 1500
                     });
                     refreshTableDonHang();
                 },
                 error: function(e) {
                     Swal.fire({
                         type: 'error',
-                        title: 'Lỗi khi duyệt đơn hàng',
+                        title: 'Lỗi!',
                         html: e.responseText
                     });
                 }
             });
         }
     });
+}
+
+// Duyệt đơn hàng (giữ lại cho tương thích)
+function duyetDonHang(maHD, trangThai) {
+    chuyenTrangThai(maHD, trangThai);
 }
 
 // Hủy đơn hàng
