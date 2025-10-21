@@ -153,35 +153,11 @@
                                 </select>
                             </td>
                         </tr>
-                        <?php
-                            $tenfilemoi= "";
-                                if (isset($_POST["submit"]))
-                                {
-                                    if (($_FILES["hinhanh"]["type"]=="image/jpeg") ||($_FILES["hinhanh"]["type"]=="image/png") || ($_FILES["hinhanh"]["type"]=="image/jpg") && ($_FILES["hinhanh"]["size"] < 50000) )
-                                    {
-                                        if ($_FILES["file"]["error"] > 0 || file_exists("img/products/" . basename($_FILES["hinhanh"]["name"]))) 
-                                        {
-                                            echo ("Error Code: " . $_FILES["file"]["error"] . "<br />Chỉnh sửa ảnh lại sau)");
-                                        }
-                                        else
-                                        {
-                                            $tmp = explode(".", $_FILES["hinhanh"]["name"]);
-                                            $duoifile = end($tmp);
-                                            $masp = $_POST['maspThem'];
-                                            $tenfilemoi = $masp . "." . $duoifile;
-                                            $file = $_FILES["hinhanh"]["name"];
-                                            $tenfilemoi = "img/products/" .$_FILES["hinhanh"]["name"];
-                                            move_uploaded_file( $_FILES["hinhanh"]["tmp_name"], $tenfilemoi);
-                                        }
-                                    }
-                                }
-                        require_once ("php/uploadfile.php");
-                        ?>
                         <tr>
                             <td>Hình:</td>
                             <td>
-                                <img class="hinhDaiDien" id="anhDaiDienSanPhamThem" src="">
-                                <input type="file" name="hinhanh" onchange="capNhatAnhSanPham(this.files, 'anhDaiDienSanPhamThem', '<?php echo $tenfilemoi; ?>')">
+                                <img class="hinhDaiDien" id="anhDaiDienSanPhamThem" src="" style="max-width: 200px; max-height: 200px;">
+                                <input type="file" name="hinhanh" accept="image/*" onchange="capNhatAnhSanPham(this.files, 'anhDaiDienSanPhamThem', '')">
                                 <input style="display: none;" type="text" id="hinhanh" value="">
                             </td>
                         </tr>

@@ -363,14 +363,6 @@ function themSanPham() {
         return false;
     }
 
-    //kt hình
-    /*var pattCheckHinh= /^([0-9]{1,})[.](png|jpeg|jpg)$/;
-    if (pattCheckHinh.test(newSp.img) == false)
-    {
-        alert ("Ảnh không hợp lệ");
-        return false;
-    }*/
-
     //kt giá tiền
     var pattCheckGia = /^([0-9]){1,}(000)$/;
     if (pattCheckGia.test(newSp.price) == false)
@@ -387,25 +379,53 @@ function themSanPham() {
         return false;
     }
 
+    // Lấy file ảnh
+    var fileInput = document.querySelector('#khungThemSanPham input[type="file"]');
+    var file = fileInput.files[0];
+    
+    if (!file) {
+        alert("Vui lòng chọn ảnh sản phẩm!");
+        return false;
+    }
+
+    // Tạo FormData để upload file
+    var formData = new FormData();
+    formData.append('request', 'add');
+    formData.append('hinhanh', file);
+    formData.append('masp', newSp.masp);
+    formData.append('name', newSp.name);
+    formData.append('company', newSp.company);
+    formData.append('price', newSp.price);
+    formData.append('amount', newSp.amount);
+    formData.append('promo', newSp.promo.name);
+    formData.append('screen', newSp.detail.screen);
+    formData.append('os', newSp.detail.os);
+    formData.append('camara', newSp.detail.camara);
+    formData.append('camaraFront', newSp.detail.camaraFront);
+    formData.append('cpu', newSp.detail.cpu);
+    formData.append('ram', newSp.detail.ram);
+    formData.append('rom', newSp.detail.rom);
+    formData.append('microUSB', newSp.detail.microUSB);
+    formData.append('battery', newSp.detail.battery);
+
     $.ajax({
         type: "POST",
         url: "php/xulysanpham.php",
-        dataType: "json",
-        // timeout: 1500, // sau 1.5 giây mà không phản hồi thì dừng => hiện lỗi
-        data: {
-            request: "add",
-            dataAdd: newSp
-        },
+        data: formData,
+        processData: false,  // Không xử lý data
+        contentType: false,  // Không set contentType
         success: function(data, status, xhr) {
             Swal.fire({
                 type: 'success',
-                title: 'Thêm thành công'
-            })
+                title: 'Thêm thành công',
+                text: 'Sản phẩm "' + newSp.name + '" đã được thêm!'
+            });
             resetForm();
             document.getElementById('khungThemSanPham').style.transform = 'scale(0)';
             refreshTableSanPham();
         },
         error: function(e) {
+            console.error("Lỗi:", e);
             Swal.fire({
                 type: "error",
                 title: "Lỗi add",
@@ -414,11 +434,7 @@ function themSanPham() {
         }
     });
 
-    
-
-    alert('Thêm sản phẩm "' + newSp.name + '" thành công.');
-    refreshTableSanPham();
-
+    return false;
 }
 function resetForm() {
     var khung = document.getElementById('khungThemSanPham');

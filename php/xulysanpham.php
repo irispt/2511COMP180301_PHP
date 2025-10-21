@@ -56,31 +56,67 @@
 
         //thêm
         case 'add':
-                $data = $_POST['dataAdd'];
+                // Xử lý upload ảnh
+                $uploadDir = '../img/products/';
+                $imagePath = '';
+                
+                if (isset($_FILES['hinhanh']) && $_FILES['hinhanh']['error'] == 0) {
+                    $fileName = $_FILES['hinhanh']['name'];
+                    $tmpName = $_FILES['hinhanh']['tmp_name'];
+                    $fileExt = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+                    
+                    // Kiểm tra định dạng file
+                    $allowedExts = ['jpg', 'jpeg', 'png', 'gif'];
+                    if (!in_array($fileExt, $allowedExts)) {
+                        die(json_encode(['success' => false, 'message' => 'Chỉ chấp nhận file ảnh (jpg, jpeg, png, gif)']));
+                    }
+                    
+                    // Tạo tên file mới với mã sản phẩm
+                    $maSP = $_POST['masp'];
+                    $newFileName = $maSP . '.' . $fileExt;
+                    $targetPath = $uploadDir . $newFileName;
+                    
+                    // Upload file
+                    if (move_uploaded_file($tmpName, $targetPath)) {
+                        $imagePath = 'img/products/' . $newFileName;
+                    } else {
+                        die(json_encode(['success' => false, 'message' => 'Không thể upload ảnh']));
+                    }
+                } else {
+                    die(json_encode(['success' => false, 'message' => 'Vui lòng chọn ảnh']));
+                }
+                
+                // Tạo mảng dữ liệu sản phẩm
                 $spAddArr = array(
-                    'MaSP' => $data['masp'],
-                    'MaLSP' => $data['company'],
-                    'TenSP' => $data['name'],
-                    'DonGia' => $data['price'],
-                    'SoLuong' => $data['amount'],
-                    'HinhAnh' => $data['img'],
-                    'MaKM' => $data['promo']['name'],
-                    'ManHinh' => $data['detail']['screen'],
-                    'HDH' => $data['detail']['os'],
-                    'CamSau' => $data['detail']['camara'],
-                    'CamTruoc' => $data['detail']['camaraFront'],
-                    'CPU' => $data['detail']['cpu'],
-                    'Ram' => $data['detail']['ram'],
-                    'Rom' => $data['detail']['rom'],
-                    'SDCard' => $data['detail']['microUSB'],
-                    'Pin' => $data['detail']['battery'],
-                    'SoSao' => $data['star'],
-                    'SoDanhGia' => $data['rateCount'],
-                    'TrangThai' => $data['TrangThai']
+                    'MaSP' => $_POST['masp'],
+                    'MaLSP' => $_POST['company'],
+                    'TenSP' => $_POST['name'],
+                    'DonGia' => $_POST['price'],
+                    'SoLuong' => $_POST['amount'],
+                    'HinhAnh' => $imagePath,
+                    'MaKM' => isset($_POST['promo']) ? $_POST['promo'] : 'null',
+                    'ManHinh' => isset($_POST['screen']) ? $_POST['screen'] : '',
+                    'HDH' => isset($_POST['os']) ? $_POST['os'] : '',
+                    'CamSau' => isset($_POST['camara']) ? $_POST['camara'] : '',
+                    'CamTruoc' => isset($_POST['camaraFront']) ? $_POST['camaraFront'] : '',
+                    'CPU' => isset($_POST['cpu']) ? $_POST['cpu'] : '',
+                    'Ram' => isset($_POST['ram']) ? $_POST['ram'] : '',
+                    'Rom' => isset($_POST['rom']) ? $_POST['rom'] : '',
+                    'SDCard' => isset($_POST['microUSB']) ? $_POST['microUSB'] : '',
+                    'Pin' => isset($_POST['battery']) ? $_POST['battery'] : '',
+                    'SoSao' => 0,
+                    'SoDanhGia' => 0,
+                    'TrangThai' => 1
                 );
 
                 $spBUS = new SanPhamBUS();
-                die (json_encode($spBUS->add_new($spAddArr)));
+                $result = $spBUS->add_new($spAddArr);
+                
+                if ($result) {
+                    die(json_encode(['success' => true, 'message' => 'Thêm sản phẩm thành công']));
+                } else {
+                    die(json_encode(['success' => false, 'message' => 'Không thể thêm sản phẩm vào database']));
+                }
             break;
 
         // cập nhật sản phẩm
