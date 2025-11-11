@@ -252,8 +252,10 @@ function htmlThanhToan(userHienTai) {
 		<div class="form-group">
 		    <select class="browser-default custom-select" id="selectHinhThucTT">
 		      <option value="" disabled selected>Hình thức thanh toán</option>
-			  <option value="Trực tiếp khi nhận hàng">Trực tiếp khi nhận hàng</option>
-			  <option value="Qua thẻ ngân hàng">Qua thẻ ngân hàng</option>
+			  <option value="Trực tiếp khi nhận hàng">💵 Trực tiếp khi nhận hàng (COD)</option>
+			  <option value="MoMo">📱 Ví điện tử MoMo</option>
+			  <option value="MoMo ATM">💳 Thẻ ATM/Ngân hàng qua MoMo</option>
+			  <option value="MoMo VISA">💳 Thẻ VISA/MasterCard qua MoMo</option>
 			</select>
 		</div>
 	`);
@@ -315,6 +317,22 @@ function xacNhanThanhToan() {
 	
 	console.log("Gửi đơn hàng:", dulieu);
 	
+	// Nếu chọn thanh toán MoMo, gọi API riêng
+	if (phuongThucTT === "MoMo") {
+		xuLyThanhToanMoMo(dulieu, "create_momo_payment");
+	} else if (phuongThucTT === "MoMo ATM") {
+		xuLyThanhToanMoMo(dulieu, "create_momo_atm_payment");
+	} else if (phuongThucTT === "MoMo VISA") {
+		xuLyThanhToanMoMo(dulieu, "create_momo_visa_payment");
+	} else {
+		xuLyThanhToanTrucTiep(dulieu);
+	}
+	
+	return false;
+}
+
+// Xử lý thanh toán trực tiếp khi nhận hàng
+function xuLyThanhToanTrucTiep(dulieu) {
 	// Hiển thị loading
 	Swal.fire({
 		title: 'Đang xử lý...',
@@ -377,8 +395,94 @@ function xacNhanThanhToan() {
 			});
 		}
 	});
+}
 
-	return false;
+// Xử lý thanh toán qua MoMo
+function xuLyThanhToanMoMo(dulieu, requestType) {
+	requestType = requestType || "create_momo_payment"; // Default là ví MoMo
+	
+	var paymentName = "MoMo";
+	if (requestType === "create_momo_atm_payment") {
+		paymentName = "thẻ ATM/Ngân hàng";
+	} else if (requestType === "create_momo_visa_payment") {
+		paymentName = "thẻ VISA/MasterCard";
+	}
+	
+	// Hiển thị loading
+	Swal.fire({
+		title: 'Đang tạo thanh toán ' + paymentName + '...',
+		text: 'Vui lòng chờ trong giây lát',
+		allowOutsideClick: false,
+		allowEscapeKey: false,
+		showConfirmButton: false,
+		onBeforeOpen: () => {
+			Swal.showLoading();
+		}
+	});
+
+	$.ajax({
+		type: "POST",
+		url: "php/momo_payment.php",
+		dataType: "json",
+		data: {
+			request: requestType,
+			dulieu: dulieu
+		},
+		success: function(response) {
+			console.log("MoMo response:", response);
+			
+			if (response.success && response.payUrl) {
+				// Xóa giỏ hàng trước khi chuyển sang MoMo
+				capNhatMoiThu([]);
+				
+				// Đóng modal
+				$('#exampleModal').modal('hide');
+				
+				// Hiển thị thông báo và chuyển hướng
+				var messageHtml = 'Bạn sẽ được chuyển đến trang thanh toán <b>' + paymentName + '</b>';
+				
+				// Nếu là thanh toán VISA, thêm hướng dẫn
+				if (requestType === "create_momo_visa_payment") {
+					messageHtml += '<br><br><div style="background:#fff3cd;padding:10px;border-radius:5px;margin-top:10px;font-size:14px;">💡 <b>Lưu ý:</b> Trên trang MoMo, hãy click vào tab <b>"Thẻ"</b> hoặc <b>"Card"</b> để nhập thông tin thẻ VISA/MasterCard</div>';
+				}
+				
+				Swal.fire({
+					type: 'success',
+					title: 'Chuyển đến trang thanh toán...',
+					html: messageHtml,
+					timer: 4000,
+					showConfirmButton: true,
+					confirmButtonText: 'OK, đã hiểu'
+				}).then(() => {
+					// Chuyển hướng đến trang thanh toán MoMo
+					window.location.href = response.payUrl;
+				});
+			} else {
+				throw new Error(response.message || 'Không thể tạo thanh toán ' + paymentName);
+			}
+		},
+		error: function(e) {
+			console.error("Lỗi MoMo:", e.responseText);
+			
+			// Reset flag
+			window.isProcessingPayment = false;
+			
+			// Enable button lại
+			$('#btnXacNhan').prop('disabled', false).text('Xác nhận');
+			
+			var errorMsg = 'Đã có lỗi xảy ra khi tạo thanh toán ' + paymentName;
+			try {
+				var errorData = JSON.parse(e.responseText);
+				if (errorData.message) errorMsg = errorData.message;
+			} catch(ex) {}
+			
+			Swal.fire({
+				type: 'error',
+				title: 'Lỗi thanh toán!',
+				text: errorMsg
+			});
+		}
+	});
 }
 
 function xoaHet() {

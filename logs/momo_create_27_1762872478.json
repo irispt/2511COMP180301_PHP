@@ -1,0 +1,27 @@
+{
+    "request": {
+        "partnerCode": "MOMO",
+        "accessKey": "F8BBA842ECF85",
+        "requestId": "1762872478",
+        "amount": "8690000",
+        "orderId": "27_1762872478",
+        "orderInfo": "Thanh toan don hang #27 - sadha đâsd",
+        "redirectUrl": "http:\/\/localhost\/Project-PHP\/momo_return.php",
+        "ipnUrl": "http:\/\/localhost\/Project-PHP\/momo_ipn.php",
+        "extraData": "eyJtYUhEIjoiMjciLCJtYU5ndW9pRHVuZyI6IjEyIiwicGF5bWVudFR5cGUiOiJwYXlXaXRoQVRNIn0=",
+        "requestType": "payWithATM",
+        "signature": "8c741ab3c6a128cb0289ba06dae71684c9d3d5ebcadaa59d88737a5df2c05a08",
+        "lang": "vi"
+    },
+    "response": {
+        "partnerCode": "MOMO",
+        "orderId": "27_1762872478",
+        "requestId": "1762872478",
+        "amount": 8690000,
+        "responseTime": 1762872479499,
+        "message": "Thành công.",
+        "resultCode": 0,
+        "payUrl": "https:\/\/test-payment.momo.vn\/v2\/gateway\/pay?t=TU9NT3wyN18xNzYyODcyNDc4&s=32df0b458615c4968ac22a9d940d5454a58071672388ce0904cfbe4e33cb9b9d"
+    },
+    "timestamp": "2025-11-11 21:47:59"
+}

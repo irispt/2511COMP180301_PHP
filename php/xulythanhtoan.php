@@ -19,7 +19,7 @@
 			"DiaChi" => $dulieu["diaChiNguoiNhan"],
 			"PhuongThucTT" => $dulieu["phuongThucTT"],
 			"TongTien" => $dulieu["tongTien"],
-			"TrangThai" => 1
+			"TrangThai" => 1 // 1 = Chờ xác nhận (thanh toán COD)
 		));
 		
 		$hoadonMaxID = $hoadonBUS->get_list("SELECT * FROM hoadon ORDER BY MaHD DESC LIMIT 0, 1");
@@ -37,6 +37,7 @@
 			));
 		}
 		
-		die (json_encode(true));		break;
+		die (json_encode(true));		
+		break;
 	}
 ?>
