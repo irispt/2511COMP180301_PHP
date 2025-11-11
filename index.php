@@ -29,6 +29,11 @@
 	<link rel="stylesheet" href="lib/ion.rangeSlider-2.2.0/css/ion.rangeSlider.skinHTML5.css">
 	<script src="lib/ion.rangeSlider-2.2.0/js/ion-rangeSlider/ion.rangeSlider.min.js"></script>
 
+    <!-- Swiper (hero slider) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <!-- AOS (scroll animations) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+
 	<!-- tidio - live chat -->
 	<!-- <script src="//code.tidio.co/bfiiplaaohclhqwes5xivoizqkq56guu.js"></script> -->
 
@@ -46,6 +51,12 @@
 	<!-- js -->
 	<script src="js/dungchung.js"></script>
 	<script src="js/trangchu.js"></script>
+
+	<!-- Lightweight JS libs: Alpine (UI state), Swiper, AOS, lazysizes -->
+	<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+	<script defer src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+	<script defer src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+	<script defer src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js" async></script>
 
 	<?php require_once "php/echoHTML.php"; ?>
 </head>
@@ -71,6 +82,13 @@
 
 	<i class="fa fa-arrow-up" id="goto-top-page" onclick="gotoTop()"></i>
 	<i class="fa fa-arrow-down" id="goto-bot-page" onclick="gotoBot()"></i>
+
+	<script>
+		// Initialize AOS when DOM is ready
+		document.addEventListener('DOMContentLoaded', function() {
+			if (window.AOS) AOS.init({ duration: 700, once: true });
+		});
+	</script>
 
 </body>
 

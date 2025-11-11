@@ -118,31 +118,49 @@ function setupBanner() {
                 var realPath = url.split('../').join('');
                 addBanner(realPath, realPath);
             }
-
-            // Khởi động thư viện hỗ trợ banner - chỉ chạy khi đã tạo hình trong banner
-            $('.owl-carousel').owlCarousel({
-                items: 1.5,
-                margin: 100,
-                center: true,
-                loop: true,
-                smartSpeed: 450,
-                nav: false,
-
-                autoplay: true,
-                autoplayTimeout: 3500,
-
-                responsive: {
-                    0: {
-                        items: 1
-                    },
-                    600: {
-                        items: 1.25
-                    },
-                    1000: {
-                        items: 1.5
+            // If Swiper markup exists, init Swiper; else fall back to existing owl-carousel
+            if (document.querySelector('.hero-swiper .swiper-wrapper')) {
+                // ensure images are ready, then initialize
+                setTimeout(function() {
+                    if (window.heroSwiper) {
+                        window.heroSwiper.destroy(true, true);
                     }
-                }
-            });
+                    window.heroSwiper = new Swiper('.hero-swiper', {
+                        slidesPerView: 1,
+                        spaceBetween: 30,
+                        loop: true,
+                        centeredSlides: true,
+                        autoplay: {
+                            delay: 3500,
+                            disableOnInteraction: false
+                        },
+                        pagination: { el: '.swiper-pagination', clickable: true },
+                        navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+                        breakpoints: {
+                            600: { slidesPerView: 1 },
+                            1000: { slidesPerView: 1 }
+                        }
+                    });
+                }, 50);
+            } else {
+                $('.owl-carousel').owlCarousel({
+                    items: 1.5,
+                    margin: 100,
+                    center: true,
+                    loop: true,
+                    smartSpeed: 450,
+                    nav: false,
+
+                    autoplay: true,
+                    autoplayTimeout: 3500,
+
+                    responsive: {
+                        0: { items: 1 },
+                        600: { items: 1.25 },
+                        1000: { items: 1.5 }
+                    }
+                });
+            }
         },
         error: function() {
             Swal.fire({
@@ -367,9 +385,9 @@ function addToWeb(p, ele, returnString) {
 
     // Cho mọi thứ vào tag <li>... </li>
     var newLi =
-        `<li class="sanPham">
+        `<li class="sanPham" data-aos="fade-up">
         <a href="` + chitietSp + `">
-            <img src="` + p.HinhAnh + `" alt="">
+            <img data-src="` + p.HinhAnh + `" class="lazyload" alt="` + (p.TenSP || '') + `">
             <h3>` + p.TenSP + `</h3>
             <div class="price">
                 ` + pricediv + `
@@ -392,6 +410,8 @@ function addToWeb(p, ele, returnString) {
     // Thêm tag <li> vừa tạo vào <ul> homeproduct (mặc định) , hoặc tag ele truyền vào
     var products = ele || document.getElementById('products');
     products.innerHTML += newLi;
+    // If AOS is loaded, refresh to bind animations for dynamically added elements
+    try { if (window.AOS) window.AOS.refresh(); } catch (e) { }
 }
 
 // =========== Đọc dữ liệu từ url ============
@@ -682,18 +702,22 @@ function filterProductsName(ele) {
 
 // Thêm banner
 function addBanner(img, link) {
-    // <a target='_blank' href=` + link + `>
-    var newDiv = `<div class='item'>
-                        <img src=` + img + `>
-                    </div>`;
-    var banner = document.getElementsByClassName('owl-carousel')[0];
-    banner.innerHTML += newDiv;
+    // If using Swiper, append slides to .swiper-wrapper; otherwise append to owl-carousel
+    var swiperWrapper = document.querySelector('.hero-swiper .swiper-wrapper');
+    if (swiperWrapper) {
+        var slide = `<div class="swiper-slide"><a href="` + link + `"><img data-src="` + img + `" class="lazyload" alt=""></a></div>`;
+        swiperWrapper.innerHTML += slide;
+    } else {
+        var newDiv = `<div class='item'><img src=` + img + `></div>`;
+        var banner = document.getElementsByClassName('owl-carousel')[0];
+        if (banner) banner.innerHTML += newDiv;
+    }
 }
 
 function addSmallBanner(img) {
-    var newimg = `<img src=` + img + ` style="width: 100%;">`;
+    var newimg = `<img data-src="` + img + `" class="lazyload" style="width:100%;">`;
     var smallbanner = document.getElementsByClassName('smallbanner')[0];
-    smallbanner.innerHTML += newimg;
+    if (smallbanner) smallbanner.innerHTML += newimg;
 }
 
 // Thêm hãng sản xuất

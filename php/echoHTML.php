@@ -68,11 +68,13 @@ function addHeader()
                 </div> <!-- End Member -->
 
                 <div class="cart">
-                    <a href="giohang.php">
-                        <i class="fa fa-shopping-cart"></i>
-                        <span>Giỏ hàng</span>
-                        <span class="cart-number"></span>
-                    </a>
+                    <div x-data="{ count: 0 }" class="cart">
+                        <a href="giohang.php">
+                            <i class="fa fa-shopping-cart"></i>
+                            <span>Giỏ hàng</span>
+                            <span class="cart-number" x-text="count"></span>
+                        </a>
+                    </div>
                 </div> <!-- End Cart -->
 
                 <!-- <div class="check-order">
@@ -91,7 +93,13 @@ function addHome()
 {
     echo '
     <div class="banner">
-        <div class="owl-carousel owl-theme"></div>
+        <!-- Swiper hero slider -->
+        <div class="swiper hero-swiper">
+            <div class="swiper-wrapper"></div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        </div>
     </div> <!-- End Banner -->
     
     <div class="smallbanner" style="width: 100%;"></div>
