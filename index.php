@@ -49,8 +49,12 @@
 	<link rel="stylesheet" href="css/pagination_phantrang.css">
 	<link rel="stylesheet" href="css/footer.css">
 	<!-- js -->
+	<link rel="stylesheet" href="css/chatbot.css">
+	
 	<script src="js/dungchung.js"></script>
 	<script src="js/trangchu.js"></script>
+
+	<script src="js/chatbot.js"></script>
 
 	<!-- Lightweight JS libs: Alpine (UI state), Swiper, AOS, lazysizes -->
 	<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
@@ -80,6 +84,8 @@
 		<?php addFooter(); ?>
 	</div>
 
+	<?php require_once "php/chatbot_widget.php"; renderChatbotWidget(); ?>
+	
 	<i class="fa fa-arrow-up" id="goto-top-page" onclick="gotoTop()"></i>
 	<i class="fa fa-arrow-down" id="goto-bot-page" onclick="gotoBot()"></i>
 
