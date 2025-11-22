@@ -2,8 +2,7 @@
 /**
  * Chatbot API Handler
  * Handles messages from the frontend and communicates with Google Gemini API
- * 
- * Usage: POST /php/chatbot_api.php
+ * * Usage: POST /php/chatbot_api.php
  * Parameters: {"message": "user message here"}
  */
 
@@ -48,8 +47,13 @@ if ($GEMINI_API_KEY === 'YOUR_GEMINI_API_KEY_HERE') {
     exit;
 }
 
-// Prepare the request to Google Gemini API
-$apiUrl = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=' . $GEMINI_API_KEY;
+// --- START FIX ---
+
+// Use the current, recommended API endpoint and model name for chat
+$MODEL_NAME = 'gemini-2.5-flash';
+$apiUrl = 'https://generativeai.googleapis.com/v1beta/models/' . $MODEL_NAME . ':generateContent?key=' . $GEMINI_API_KEY;
+
+// --- END FIX ---
 
 // System prompt for the chatbot (customize this for your website)
 $systemPrompt = "You are a helpful assistant for a Vietnamese mobile phone e-commerce website. "
@@ -57,11 +61,21 @@ $systemPrompt = "You are a helpful assistant for a Vietnamese mobile phone e-com
     . "Be friendly, professional, and concise. Always respond in the same language as the user.";
 
 // Prepare request body
+// Prepare request body
 $requestBody = [
     'contents' => [
+        // 1. System Instruction (The role: 'system' is added here)
         [
+            'role' => 'system',
             'parts' => [
-                ['text' => $systemPrompt . "\n\nUser: " . $userMessage]
+                ['text' => $systemPrompt]
+            ]
+        ],
+        // 2. User Message (The current user's prompt)
+        [
+            'role' => 'user',
+            'parts' => [
+                ['text' => $userMessage]
             ]
         ]
     ],
@@ -96,6 +110,7 @@ if ($error) {
 if ($httpCode !== 200) {
     http_response_code($httpCode);
     $errorResponse = json_decode($response, true);
+    // Display the specific error message from the API if available
     echo json_encode(['error' => 'Gemini API error: ' . ($errorResponse['error']['message'] ?? 'Unknown error')]);
     exit;
 }
