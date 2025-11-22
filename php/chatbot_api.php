@@ -6,8 +6,6 @@
  * Usage: POST /php/chatbot_api.php
  * Parameters: {"message": "user message here"}
  */
-error_log('Using Gemini API URL: ' . $apiUrl);
-error_log('Chatbot API loaded at ' . date('Y-m-d H:i:s'));
 
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
@@ -28,6 +26,8 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 // Your Google Gemini API Key
+// IMPORTANT: Replace this with your actual API key from makersuite.google.com/app/apikey
+// For production, use environment variables or a config file
 $GEMINI_API_KEY = 'AIzaSyCvi1lCpjwzREtxLn-GOtggZUwUzb7FqtU';
 
 // Get the message from the request
@@ -48,14 +48,15 @@ if ($GEMINI_API_KEY === 'YOUR_GEMINI_API_KEY_HERE') {
     exit;
 }
 
-// ✅ Updated model and endpoint
-$apiUrl = 'https://generativelanguage.googleapis.com/v1/models/gemini-1.5-pro:generateContent?key=' . $GEMINI_API_KEY;
+// Prepare the request to Google Gemini API
+$apiUrl = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=' . $GEMINI_API_KEY;
 
-// System prompt for the chatbot
+// System prompt for the chatbot (customize this for your website)
 $systemPrompt = "You are a helpful assistant for a Vietnamese mobile phone e-commerce website. "
     . "You should help customers with product inquiries, orders, shipping, and general questions. "
     . "Be friendly, professional, and concise. Always respond in the same language as the user.";
 
+// Prepare request body
 $requestBody = [
     'contents' => [
         [
@@ -95,11 +96,7 @@ if ($error) {
 if ($httpCode !== 200) {
     http_response_code($httpCode);
     $errorResponse = json_decode($response, true);
-    $errorMsg = $errorResponse['error']['message'] ?? 'Unknown error';
-    
-    error_log('Gemini API Error: ' . $response);
-    
-    echo json_encode(['error' => 'Gemini API error: ' . $errorMsg]);
+    echo json_encode(['error' => 'Gemini API error: ' . ($errorResponse['error']['message'] ?? 'Unknown error')]);
     exit;
 }
 
