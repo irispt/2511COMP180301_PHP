@@ -25,7 +25,7 @@ class ChatbotManager {
         this.toggle.addEventListener('click', () => this.toggleChat());
         this.closeBtn.addEventListener('click', () => this.closeChat());
         this.sendBtn.addEventListener('click', () => this.sendMessage());
-        this.input.addEventListener('keydown', (e) => {
+        this.input.addEventListener('keypress', (e) => {
             if (e.key === 'Enter' && !e.shiftKey) {
                 e.preventDefault();
                 this.sendMessage();
@@ -85,7 +85,6 @@ class ChatbotManager {
         this.addMessage('', 'bot', true);
 
         try {
-            console.log('Sending message to chatbot_api.php:', message);
             const response = await fetch('php/chatbot_api.php', {
                 method: 'POST',
                 headers: {
