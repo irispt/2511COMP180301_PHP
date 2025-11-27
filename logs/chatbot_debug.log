@@ -1,0 +1,2733 @@
+[2025-11-22 15:56:45] === Chatbot API Request Started ===
+--------------------------------------------------------------------------------
+[2025-11-22 15:56:45] Request method: POST
+--------------------------------------------------------------------------------
+[2025-11-22 15:56:45] API Key configured: YES
+--------------------------------------------------------------------------------
+[2025-11-22 15:56:45] Raw input received
+{"message":"tôi muốn mua 1 chiến điện thoại giá dưới 10 triệu"}
+--------------------------------------------------------------------------------
+[2025-11-22 15:56:45] Decoded input
+Array
+(
+    [message] => tôi muốn mua 1 chiến điện thoại giá dưới 10 triệu
+)
+
+--------------------------------------------------------------------------------
+[2025-11-22 15:56:45] User message: tôi muốn mua 1 chiến điện thoại giá dưới 10 triệu
+--------------------------------------------------------------------------------
+[2025-11-22 15:56:45] API URL: https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key=AIzaSyCvi1lCpjwzREtxLn-GOtggZUwUzb7FqtU
+--------------------------------------------------------------------------------
+[2025-11-22 15:56:45] Model: gemini-2.0-flash-exp
+--------------------------------------------------------------------------------
+[2025-11-22 15:56:45] Request body prepared
+Array
+(
+    [contents] => Array
+        (
+            [0] => Array
+                (
+                    [role] => user
+                    [parts] => Array
+                        (
+                            [0] => Array
+                                (
+                                    [text] => You are a helpful assistant for a Vietnamese mobile phone e-commerce website. You should help customers with product inquiries, orders, shipping, and general questions. Be friendly, professional, and concise. Always respond in the same language as the user.
+
+User: tôi muốn mua 1 chiến điện thoại giá dưới 10 triệu
+                                )
+
+                        )
+
+                )
+
+        )
+
+    [generationConfig] => Array
+        (
+            [temperature] => 0.7
+            [topP] => 0.95
+            [topK] => 40
+            [maxOutputTokens] => 500
+        )
+
+)
+
+--------------------------------------------------------------------------------
+[2025-11-22 15:56:45] Initiating cURL request...
+--------------------------------------------------------------------------------
+[2025-11-22 15:56:45] cURL completed
+--------------------------------------------------------------------------------
+[2025-11-22 15:56:45] HTTP Code: 429
+--------------------------------------------------------------------------------
+[2025-11-22 15:56:45] cURL Error: None
+--------------------------------------------------------------------------------
+[2025-11-22 15:56:45] cURL Info
+Array
+(
+    [url] => https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key=AIzaSyCvi1lCpjwzREtxLn-GOtggZUwUzb7FqtU
+    [content_type] => application/json; charset=UTF-8
+    [http_code] => 429
+    [header_size] => 389
+    [request_size] => 719
+    [filetime] => -1
+    [ssl_verify_result] => 0
+    [redirect_count] => 0
+    [total_time] => 0.579445
+    [namelookup_time] => 0.048524
+    [connect_time] => 0.168722
+    [pretransfer_time] => 0.423126
+    [size_upload] => 501
+    [size_download] => 1841
+    [speed_download] => 3177
+    [speed_upload] => 864
+    [download_content_length] => -1
+    [upload_content_length] => 501
+    [starttransfer_time] => 0.579402
+    [redirect_time] => 0
+    [redirect_url] => 
+    [primary_ip] => 2404:6800:4005:805::200a
+    [certinfo] => Array
+        (
+        )
+
+    [primary_port] => 443
+    [local_ip] => 2402:800:637c:3746:44:71c4:d920:7d3
+    [local_port] => 59637
+    [http_version] => 3
+    [protocol] => 2
+    [ssl_verifyresult] => 0
+    [scheme] => HTTPS
+    [appconnect_time_us] => 422874
+    [connect_time_us] => 168722
+    [namelookup_time_us] => 48524
+    [pretransfer_time_us] => 423126
+    [redirect_time_us] => 0
+    [starttransfer_time_us] => 579402
+    [total_time_us] => 579445
+    [effective_method] => POST
+)
+
+--------------------------------------------------------------------------------
+[2025-11-22 15:56:45] API Response
+{
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash-exp\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash-exp\nPlease retry in 15.788032431s.",
+    "status": "RESOURCE_EXHAUSTED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.Help",
+        "links": [
+          {
+            "description": "Learn more about Gemini API quotas",
+            "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+        "violations": [
+          {
+            "quotaMetric": "generativelanguage.googleapis.com/generate_content_free_tier_requests",
+            "quotaId": "GenerateRequestsPerMinutePerProjectPerModel-FreeTier",
+            "quotaDimensions": {
+              "location": "global",
+              "model": "gemini-2.0-flash-exp"
+            }
+          },
+          {
+            "quotaMetric": "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count",
+            "quotaId": "GenerateContentInputTokensPerModelPerMinute-FreeTier",
+            "quotaDimensions": {
+              "location": "global",
+              "model": "gemini-2.0-flash-exp"
+            }
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.RetryInfo",
+        "retryDelay": "15s"
+      }
+    ]
+  }
+}
+
+--------------------------------------------------------------------------------
+[2025-11-22 15:56:45] API ERROR - HTTP Code: 429
+--------------------------------------------------------------------------------
+[2025-11-22 15:56:45] Error response decoded
+Array
+(
+    [error] => Array
+        (
+            [code] => 429
+            [message] => You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash-exp
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash-exp
+Please retry in 15.788032431s.
+            [status] => RESOURCE_EXHAUSTED
+            [details] => Array
+                (
+                    [0] => Array
+                        (
+                            [@type] => type.googleapis.com/google.rpc.Help
+                            [links] => Array
+                                (
+                                    [0] => Array
+                                        (
+                                            [description] => Learn more about Gemini API quotas
+                                            [url] => https://ai.google.dev/gemini-api/docs/rate-limits
+                                        )
+
+                                )
+
+                        )
+
+                    [1] => Array
+                        (
+                            [@type] => type.googleapis.com/google.rpc.QuotaFailure
+                            [violations] => Array
+                                (
+                                    [0] => Array
+                                        (
+                                            [quotaMetric] => generativelanguage.googleapis.com/generate_content_free_tier_requests
+                                            [quotaId] => GenerateRequestsPerMinutePerProjectPerModel-FreeTier
+                                            [quotaDimensions] => Array
+                                                (
+                                                    [location] => global
+                                                    [model] => gemini-2.0-flash-exp
+                                                )
+
+                                        )
+
+                                    [1] => Array
+                                        (
+                                            [quotaMetric] => generativelanguage.googleapis.com/generate_content_free_tier_input_token_count
+                                            [quotaId] => GenerateContentInputTokensPerModelPerMinute-FreeTier
+                                            [quotaDimensions] => Array
+                                                (
+                                                    [location] => global
+                                                    [model] => gemini-2.0-flash-exp
+                                                )
+
+                                        )
+
+                                )
+
+                        )
+
+                    [2] => Array
+                        (
+                            [@type] => type.googleapis.com/google.rpc.RetryInfo
+                            [retryDelay] => 15s
+                        )
+
+                )
+
+        )
+
+)
+
+--------------------------------------------------------------------------------
+[2025-11-22 15:56:45] Final error message: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash-exp
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash-exp
+Please retry in 15.788032431s.
+--------------------------------------------------------------------------------
+[2025-11-27 05:06:25] === Chatbot API Request Started ===
+--------------------------------------------------------------------------------
+[2025-11-27 05:06:25] Request method: POST
+--------------------------------------------------------------------------------
+[2025-11-27 05:06:25] API Key configured: YES
+--------------------------------------------------------------------------------
+[2025-11-27 05:06:25] Raw input received
+{"message":"tôi muốn mua 1 sản phẩm trên web này khoảng 10 triệu trở xuống"}
+--------------------------------------------------------------------------------
+[2025-11-27 05:06:25] Decoded input
+Array
+(
+    [message] => tôi muốn mua 1 sản phẩm trên web này khoảng 10 triệu trở xuống
+)
+
+--------------------------------------------------------------------------------
+[2025-11-27 05:06:25] User message: tôi muốn mua 1 sản phẩm trên web này khoảng 10 triệu trở xuống
+--------------------------------------------------------------------------------
+[2025-11-27 05:06:25] API URL: https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyCZ1sd5HJscKh-yK7heiHSYh960pB8Lkxo
+--------------------------------------------------------------------------------
+[2025-11-27 05:06:25] Model: gemini-1.5-flash
+--------------------------------------------------------------------------------
+[2025-11-27 05:06:25] Request body prepared
+Array
+(
+    [contents] => Array
+        (
+            [0] => Array
+                (
+                    [role] => user
+                    [parts] => Array
+                        (
+                            [0] => Array
+                                (
+                                    [text] => You are a helpful assistant for a Vietnamese mobile phone e-commerce website. You should help customers with product inquiries, orders, shipping, and general questions. Be friendly, professional, and concise. Always respond in the same language as the user.
+
+User: tôi muốn mua 1 sản phẩm trên web này khoảng 10 triệu trở xuống
+                                )
+
+                        )
+
+                )
+
+        )
+
+    [generationConfig] => Array
+        (
+            [temperature] => 0.7
+            [topP] => 0.95
+            [topK] => 40
+            [maxOutputTokens] => 500
+        )
+
+)
+
+--------------------------------------------------------------------------------
+[2025-11-27 05:06:25] Initiating cURL request...
+--------------------------------------------------------------------------------
+[2025-11-27 05:06:25] cURL completed
+--------------------------------------------------------------------------------
+[2025-11-27 05:06:25] HTTP Code: 404
+--------------------------------------------------------------------------------
+[2025-11-27 05:06:25] cURL Error: None
+--------------------------------------------------------------------------------
+[2025-11-27 05:06:25] cURL Info
+Array
+(
+    [url] => https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyCZ1sd5HJscKh-yK7heiHSYh960pB8Lkxo
+    [content_type] => application/json; charset=UTF-8
+    [http_code] => 404
+    [header_size] => 389
+    [request_size] => 728
+    [filetime] => -1
+    [ssl_verify_result] => 0
+    [redirect_count] => 0
+    [total_time] => 0.744064
+    [namelookup_time] => 0.038539
+    [connect_time] => 0.0912
+    [pretransfer_time] => 0.44753
+    [size_upload] => 514
+    [size_download] => 265
+    [speed_download] => 356
+    [speed_upload] => 690
+    [download_content_length] => -1
+    [upload_content_length] => 514
+    [starttransfer_time] => 0.743997
+    [redirect_time] => 0
+    [redirect_url] => 
+    [primary_ip] => 2404:6800:4005:823::200a
+    [certinfo] => Array
+        (
+        )
+
+    [primary_port] => 443
+    [local_ip] => 2402:800:637c:3746:c8da:ea22:6f4c:3599
+    [local_port] => 60193
+    [http_version] => 3
+    [protocol] => 2
+    [ssl_verifyresult] => 0
+    [scheme] => HTTPS
+    [appconnect_time_us] => 447130
+    [connect_time_us] => 91200
+    [namelookup_time_us] => 38539
+    [pretransfer_time_us] => 447530
+    [redirect_time_us] => 0
+    [starttransfer_time_us] => 743997
+    [total_time_us] => 744064
+    [effective_method] => POST
+)
+
+--------------------------------------------------------------------------------
+[2025-11-27 05:06:25] API Response
+{
+  "error": {
+    "code": 404,
+    "message": "models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.",
+    "status": "NOT_FOUND"
+  }
+}
+
+--------------------------------------------------------------------------------
+[2025-11-27 05:06:25] API ERROR - HTTP Code: 404
+--------------------------------------------------------------------------------
+[2025-11-27 05:06:25] Error response decoded
+Array
+(
+    [error] => Array
+        (
+            [code] => 404
+            [message] => models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+            [status] => NOT_FOUND
+        )
+
+)
+
+--------------------------------------------------------------------------------
+[2025-11-27 05:06:25] Final error message: models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+--------------------------------------------------------------------------------
+[2025-11-27 05:07:13] === Chatbot API Request Started ===
+--------------------------------------------------------------------------------
+[2025-11-27 05:07:13] Request method: POST
+--------------------------------------------------------------------------------
+[2025-11-27 05:07:13] API Key configured: YES
+--------------------------------------------------------------------------------
+[2025-11-27 05:07:13] Raw input received
+{"message":"chào bạn"}
+--------------------------------------------------------------------------------
+[2025-11-27 05:07:13] Decoded input
+Array
+(
+    [message] => chào bạn
+)
+
+--------------------------------------------------------------------------------
+[2025-11-27 05:07:13] User message: chào bạn
+--------------------------------------------------------------------------------
+[2025-11-27 05:07:13] API URL: https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=AIzaSyCZ1sd5HJscKh-yK7heiHSYh960pB8Lkxo
+--------------------------------------------------------------------------------
+[2025-11-27 05:07:13] Model: gemini-1.5-flash
+--------------------------------------------------------------------------------
+[2025-11-27 05:07:13] Request body prepared
+Array
+(
+    [contents] => Array
+        (
+            [0] => Array
+                (
+                    [role] => user
+                    [parts] => Array
+                        (
+                            [0] => Array
+                                (
+                                    [text] => You are a helpful assistant for a Vietnamese mobile phone e-commerce website. You should help customers with product inquiries, orders, shipping, and general questions. Be friendly, professional, and concise. Always respond in the same language as the user.
+
+User: chào bạn
+                                )
+
+                        )
+
+                )
+
+        )
+
+    [generationConfig] => Array
+        (
+            [temperature] => 0.7
+            [topP] => 0.95
+            [topK] => 40
+            [maxOutputTokens] => 500
+        )
+
+)
+
+--------------------------------------------------------------------------------
+[2025-11-27 05:07:13] Initiating cURL request...
+--------------------------------------------------------------------------------
+[2025-11-27 05:07:14] cURL completed
+--------------------------------------------------------------------------------
+[2025-11-27 05:07:14] HTTP Code: 404
+--------------------------------------------------------------------------------
+[2025-11-27 05:07:14] cURL Error: None
+--------------------------------------------------------------------------------
+[2025-11-27 05:07:14] cURL Info
+Array
+(
+    [url] => https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=AIzaSyCZ1sd5HJscKh-yK7heiHSYh960pB8Lkxo
+    [content_type] => application/json; charset=UTF-8
+    [http_code] => 404
+    [header_size] => 389
+    [request_size] => 630
+    [filetime] => -1
+    [ssl_verify_result] => 0
+    [redirect_count] => 0
+    [total_time] => 0.757647
+    [namelookup_time] => 0.047422
+    [connect_time] => 0.097489
+    [pretransfer_time] => 0.420616
+    [size_upload] => 420
+    [size_download] => 261
+    [speed_download] => 344
+    [speed_upload] => 554
+    [download_content_length] => -1
+    [upload_content_length] => 420
+    [starttransfer_time] => 0.757593
+    [redirect_time] => 0
+    [redirect_url] => 
+    [primary_ip] => 2404:6800:4005:823::200a
+    [certinfo] => Array
+        (
+        )
+
+    [primary_port] => 443
+    [local_ip] => 2402:800:637c:3746:c8da:ea22:6f4c:3599
+    [local_port] => 63145
+    [http_version] => 3
+    [protocol] => 2
+    [ssl_verifyresult] => 0
+    [scheme] => HTTPS
+    [appconnect_time_us] => 420217
+    [connect_time_us] => 97489
+    [namelookup_time_us] => 47422
+    [pretransfer_time_us] => 420616
+    [redirect_time_us] => 0
+    [starttransfer_time_us] => 757593
+    [total_time_us] => 757647
+    [effective_method] => POST
+)
+
+--------------------------------------------------------------------------------
+[2025-11-27 05:07:14] API Response
+{
+  "error": {
+    "code": 404,
+    "message": "models/gemini-1.5-flash is not found for API version v1, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.",
+    "status": "NOT_FOUND"
+  }
+}
+
+--------------------------------------------------------------------------------
+[2025-11-27 05:07:14] API ERROR - HTTP Code: 404
+--------------------------------------------------------------------------------
+[2025-11-27 05:07:14] Error response decoded
+Array
+(
+    [error] => Array
+        (
+            [code] => 404
+            [message] => models/gemini-1.5-flash is not found for API version v1, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+            [status] => NOT_FOUND
+        )
+
+)
+
+--------------------------------------------------------------------------------
+[2025-11-27 05:07:14] Final error message: models/gemini-1.5-flash is not found for API version v1, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+--------------------------------------------------------------------------------
+[2025-11-27 05:08:02] === Chatbot API Request Started ===
+--------------------------------------------------------------------------------
+[2025-11-27 05:08:02] Request method: POST
+--------------------------------------------------------------------------------
+[2025-11-27 05:08:02] API Key configured: YES
+--------------------------------------------------------------------------------
+[2025-11-27 05:08:02] Raw input received
+{"message":"chào bạn"}
+--------------------------------------------------------------------------------
+[2025-11-27 05:08:02] Decoded input
+Array
+(
+    [message] => chào bạn
+)
+
+--------------------------------------------------------------------------------
+[2025-11-27 05:08:02] User message: chào bạn
+--------------------------------------------------------------------------------
+[2025-11-27 05:08:02] API URL: https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=AIzaSyCZ1sd5HJscKh-yK7heiHSYh960pB8Lkxo
+--------------------------------------------------------------------------------
+[2025-11-27 05:08:02] Model: gemini-pro
+--------------------------------------------------------------------------------
+[2025-11-27 05:08:02] Request body prepared
+Array
+(
+    [contents] => Array
+        (
+            [0] => Array
+                (
+                    [role] => user
+                    [parts] => Array
+                        (
+                            [0] => Array
+                                (
+                                    [text] => You are a helpful assistant for a Vietnamese mobile phone e-commerce website. You should help customers with product inquiries, orders, shipping, and general questions. Be friendly, professional, and concise. Always respond in the same language as the user.
+
+User: chào bạn
+                                )
+
+                        )
+
+                )
+
+        )
+
+    [generationConfig] => Array
+        (
+            [temperature] => 0.7
+            [topP] => 0.95
+            [topK] => 40
+            [maxOutputTokens] => 500
+        )
+
+)
+
+--------------------------------------------------------------------------------
+[2025-11-27 05:08:02] Initiating cURL request...
+--------------------------------------------------------------------------------
+[2025-11-27 05:08:03] cURL completed
+--------------------------------------------------------------------------------
+[2025-11-27 05:08:03] HTTP Code: 404
+--------------------------------------------------------------------------------
+[2025-11-27 05:08:03] cURL Error: None
+--------------------------------------------------------------------------------
+[2025-11-27 05:08:03] cURL Info
+Array
+(
+    [url] => https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=AIzaSyCZ1sd5HJscKh-yK7heiHSYh960pB8Lkxo
+    [content_type] => application/json; charset=UTF-8
+    [http_code] => 404
+    [header_size] => 389
+    [request_size] => 624
+    [filetime] => -1
+    [ssl_verify_result] => 0
+    [redirect_count] => 0
+    [total_time] => 0.663406
+    [namelookup_time] => 0.002496
+    [connect_time] => 0.233787
+    [pretransfer_time] => 0.575529
+    [size_upload] => 420
+    [size_download] => 255
+    [speed_download] => 384
+    [speed_upload] => 633
+    [download_content_length] => -1
+    [upload_content_length] => 420
+    [starttransfer_time] => 0.663295
+    [redirect_time] => 0
+    [redirect_url] => 
+    [primary_ip] => 2404:6800:4005:823::200a
+    [certinfo] => Array
+        (
+        )
+
+    [primary_port] => 443
+    [local_ip] => 2402:800:637c:3746:c8da:ea22:6f4c:3599
+    [local_port] => 60881
+    [http_version] => 3
+    [protocol] => 2
+    [ssl_verifyresult] => 0
+    [scheme] => HTTPS
+    [appconnect_time_us] => 574966
+    [connect_time_us] => 233787
+    [namelookup_time_us] => 2496
+    [pretransfer_time_us] => 575529
+    [redirect_time_us] => 0
+    [starttransfer_time_us] => 663295
+    [total_time_us] => 663406
+    [effective_method] => POST
+)
+
+--------------------------------------------------------------------------------
+[2025-11-27 05:08:03] API Response
+{
+  "error": {
+    "code": 404,
+    "message": "models/gemini-pro is not found for API version v1, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.",
+    "status": "NOT_FOUND"
+  }
+}
+
+--------------------------------------------------------------------------------
+[2025-11-27 05:08:03] API ERROR - HTTP Code: 404
+--------------------------------------------------------------------------------
+[2025-11-27 05:08:03] Error response decoded
+Array
+(
+    [error] => Array
+        (
+            [code] => 404
+            [message] => models/gemini-pro is not found for API version v1, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+            [status] => NOT_FOUND
+        )
+
+)
+
+--------------------------------------------------------------------------------
+[2025-11-27 05:08:03] Final error message: models/gemini-pro is not found for API version v1, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+--------------------------------------------------------------------------------
+[2025-11-27 05:08:52] === Chatbot API Request Started ===
+--------------------------------------------------------------------------------
+[2025-11-27 05:08:52] Request method: POST
+--------------------------------------------------------------------------------
+[2025-11-27 05:08:52] API Key configured: YES
+--------------------------------------------------------------------------------
+[2025-11-27 05:08:52] Raw input received
+{"message":"chào bạn"}
+--------------------------------------------------------------------------------
+[2025-11-27 05:08:52] Decoded input
+Array
+(
+    [message] => chào bạn
+)
+
+--------------------------------------------------------------------------------
+[2025-11-27 05:08:52] User message: chào bạn
+--------------------------------------------------------------------------------
+[2025-11-27 05:08:52] API URL: https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash:generateContent?key=AIzaSyCZ1sd5HJscKh-yK7heiHSYh960pB8Lkxo
+--------------------------------------------------------------------------------
+[2025-11-27 05:08:52] Model: gemini-2.0-flash
+--------------------------------------------------------------------------------
+[2025-11-27 05:08:52] Request body prepared
+Array
+(
+    [contents] => Array
+        (
+            [0] => Array
+                (
+                    [role] => user
+                    [parts] => Array
+                        (
+                            [0] => Array
+                                (
+                                    [text] => You are a helpful assistant for a Vietnamese mobile phone e-commerce website. You should help customers with product inquiries, orders, shipping, and general questions. Be friendly, professional, and concise. Always respond in the same language as the user.
+
+User: chào bạn
+                                )
+
+                        )
+
+                )
+
+        )
+
+    [generationConfig] => Array
+        (
+            [temperature] => 0.7
+            [topP] => 0.95
+            [topK] => 40
+            [maxOutputTokens] => 500
+        )
+
+)
+
+--------------------------------------------------------------------------------
+[2025-11-27 05:08:52] Initiating cURL request...
+--------------------------------------------------------------------------------
+[2025-11-27 05:08:53] cURL completed
+--------------------------------------------------------------------------------
+[2025-11-27 05:08:53] HTTP Code: 200
+--------------------------------------------------------------------------------
+[2025-11-27 05:08:53] cURL Error: None
+--------------------------------------------------------------------------------
+[2025-11-27 05:08:53] cURL Info
+Array
+(
+    [url] => https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash:generateContent?key=AIzaSyCZ1sd5HJscKh-yK7heiHSYh960pB8Lkxo
+    [content_type] => application/json; charset=UTF-8
+    [http_code] => 200
+    [header_size] => 390
+    [request_size] => 630
+    [filetime] => -1
+    [ssl_verify_result] => 0
+    [redirect_count] => 0
+    [total_time] => 1.454458
+    [namelookup_time] => 0.002726
+    [connect_time] => 0.074227
+    [pretransfer_time] => 0.406433
+    [size_upload] => 420
+    [size_download] => 741
+    [speed_download] => 509
+    [speed_upload] => 288
+    [download_content_length] => -1
+    [upload_content_length] => 420
+    [starttransfer_time] => 1.453225
+    [redirect_time] => 0
+    [redirect_url] => 
+    [primary_ip] => 2404:6800:4005:823::200a
+    [certinfo] => Array
+        (
+        )
+
+    [primary_port] => 443
+    [local_ip] => 2402:800:637c:3746:c8da:ea22:6f4c:3599
+    [local_port] => 55753
+    [http_version] => 3
+    [protocol] => 2
+    [ssl_verifyresult] => 0
+    [scheme] => HTTPS
+    [appconnect_time_us] => 406103
+    [connect_time_us] => 74227
+    [namelookup_time_us] => 2726
+    [pretransfer_time_us] => 406433
+    [redirect_time_us] => 0
+    [starttransfer_time_us] => 1453225
+    [total_time_us] => 1454458
+    [effective_method] => POST
+)
+
+--------------------------------------------------------------------------------
+[2025-11-27 05:08:53] API Response
+{
+  "candidates": [
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "Chào bạn! Tôi có thể giúp gì cho bạn hôm nay? (Hello! How can I help you today?)\n"
+          }
+        ],
+        "role": "model"
+      },
+      "finishReason": "STOP",
+      "avgLogprobs": -0.049555826187133792
+    }
+  ],
+  "usageMetadata": {
+    "promptTokenCount": 54,
+    "candidatesTokenCount": 25,
+    "totalTokenCount": 79,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 54
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 25
+      }
+    ]
+  },
+  "modelVersion": "gemini-2.0-flash",
+  "responseId": "1M4naZXQJsHt1e8P9eax0Ao"
+}
+
+--------------------------------------------------------------------------------
+[2025-11-27 05:08:53] API response decoded
+Array
+(
+    [candidates] => Array
+        (
+            [0] => Array
+                (
+                    [content] => Array
+                        (
+                            [parts] => Array
+                                (
+                                    [0] => Array
+                                        (
+                                            [text] => Chào bạn! Tôi có thể giúp gì cho bạn hôm nay? (Hello! How can I help you today?)
+
+                                        )
+
+                                )
+
+                            [role] => model
+                        )
+
+                    [finishReason] => STOP
+                    [avgLogprobs] => -0.049555826187134
+                )
+
+        )
+
+    [usageMetadata] => Array
+        (
+            [promptTokenCount] => 54
+            [candidatesTokenCount] => 25
+            [totalTokenCount] => 79
+            [promptTokensDetails] => Array
+                (
+                    [0] => Array
+                        (
+                            [modality] => TEXT
+                            [tokenCount] => 54
+                        )
+
+                )
+
+            [candidatesTokensDetails] => Array
+                (
+                    [0] => Array
+                        (
+                            [modality] => TEXT
+                            [tokenCount] => 25
+                        )
+
+                )
+
+        )
+
+    [modelVersion] => gemini-2.0-flash
+    [responseId] => 1M4naZXQJsHt1e8P9eax0Ao
+)
+
+--------------------------------------------------------------------------------
+[2025-11-27 05:08:53] Bot message extracted: Chào bạn! Tôi có thể giúp gì cho bạn hôm nay? (Hello! How can I help you today?)
+
+--------------------------------------------------------------------------------
+[2025-11-27 05:08:53] SUCCESS - Sending response
+Array
+(
+    [success] => 1
+    [message] => Chào bạn! Tôi có thể giúp gì cho bạn hôm nay? (Hello! How can I help you today?)
+
+    [timestamp] => 2025-11-27 05:08:53
+)
+
+--------------------------------------------------------------------------------
+[2025-11-27 05:08:53] === Chatbot API Request Completed Successfully ===
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:09] === Chatbot API Request Started ===
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:09] Request method: POST
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:09] API Key configured: YES
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:09] Raw input received
+{"message":"tôi muốn mua 1 sản phẩm trên web này khoảng 10 triệu trở xuống"}
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:09] Decoded input
+Array
+(
+    [message] => tôi muốn mua 1 sản phẩm trên web này khoảng 10 triệu trở xuống
+)
+
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:09] User message: tôi muốn mua 1 sản phẩm trên web này khoảng 10 triệu trở xuống
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:09] API URL: https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash:generateContent?key=AIzaSyCZ1sd5HJscKh-yK7heiHSYh960pB8Lkxo
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:09] Model: gemini-2.0-flash
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:09] Request body prepared
+Array
+(
+    [contents] => Array
+        (
+            [0] => Array
+                (
+                    [role] => user
+                    [parts] => Array
+                        (
+                            [0] => Array
+                                (
+                                    [text] => You are a helpful assistant for a Vietnamese mobile phone e-commerce website. You should help customers with product inquiries, orders, shipping, and general questions. Be friendly, professional, and concise. Always respond in the same language as the user.
+
+User: tôi muốn mua 1 sản phẩm trên web này khoảng 10 triệu trở xuống
+                                )
+
+                        )
+
+                )
+
+        )
+
+    [generationConfig] => Array
+        (
+            [temperature] => 0.7
+            [topP] => 0.95
+            [topK] => 40
+            [maxOutputTokens] => 500
+        )
+
+)
+
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:09] Initiating cURL request...
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:12] cURL completed
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:12] HTTP Code: 200
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:12] cURL Error: None
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:12] cURL Info
+Array
+(
+    [url] => https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash:generateContent?key=AIzaSyCZ1sd5HJscKh-yK7heiHSYh960pB8Lkxo
+    [content_type] => application/json; charset=UTF-8
+    [http_code] => 200
+    [header_size] => 391
+    [request_size] => 724
+    [filetime] => -1
+    [ssl_verify_result] => 0
+    [redirect_count] => 0
+    [total_time] => 2.182504
+    [namelookup_time] => 0.002353
+    [connect_time] => 0.118019
+    [pretransfer_time] => 0.51206
+    [size_upload] => 514
+    [size_download] => 1352
+    [speed_download] => 619
+    [speed_upload] => 235
+    [download_content_length] => -1
+    [upload_content_length] => 514
+    [starttransfer_time] => 2.182232
+    [redirect_time] => 0
+    [redirect_url] => 
+    [primary_ip] => 2404:6800:4005:823::200a
+    [certinfo] => Array
+        (
+        )
+
+    [primary_port] => 443
+    [local_ip] => 2402:800:637c:3746:c8da:ea22:6f4c:3599
+    [local_port] => 53375
+    [http_version] => 3
+    [protocol] => 2
+    [ssl_verifyresult] => 0
+    [scheme] => HTTPS
+    [appconnect_time_us] => 511707
+    [connect_time_us] => 118019
+    [namelookup_time_us] => 2353
+    [pretransfer_time_us] => 512060
+    [redirect_time_us] => 0
+    [starttransfer_time_us] => 2182232
+    [total_time_us] => 2182504
+    [effective_method] => POST
+)
+
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:12] API Response
+{
+  "candidates": [
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "Chào bạn! Rất vui được hỗ trợ bạn tìm sản phẩm trong tầm giá 10 triệu đồng trở xuống. Để tôi giúp bạn tìm kiếm những lựa chọn phù hợp nhất, bạn có thể cho tôi biết thêm về những ưu tiên của bạn không? Ví dụ như:\n\n*   **Bạn thích hãng điện thoại nào không?** (Samsung, Xiaomi, Oppo, iPhone...)\n*   **Bạn quan tâm đến tính năng nào nhất?** (Camera, pin, hiệu năng, màn hình...)\n*   **Bạn thường dùng điện thoại để làm gì?** (Chụp ảnh, chơi game, xem phim, làm việc...)\n\nVới những thông tin này, tôi sẽ dễ dàng đưa ra những gợi ý tốt nhất cho bạn."
+          }
+        ],
+        "role": "model"
+      },
+      "finishReason": "STOP",
+      "avgLogprobs": -0.19821572147942837
+    }
+  ],
+  "usageMetadata": {
+    "promptTokenCount": 69,
+    "candidatesTokenCount": 153,
+    "totalTokenCount": 222,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 69
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 153
+      }
+    ]
+  },
+  "modelVersion": "gemini-2.0-flash",
+  "responseId": "5s4nafeFG5im1e8P4-GDyQo"
+}
+
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:12] API response decoded
+Array
+(
+    [candidates] => Array
+        (
+            [0] => Array
+                (
+                    [content] => Array
+                        (
+                            [parts] => Array
+                                (
+                                    [0] => Array
+                                        (
+                                            [text] => Chào bạn! Rất vui được hỗ trợ bạn tìm sản phẩm trong tầm giá 10 triệu đồng trở xuống. Để tôi giúp bạn tìm kiếm những lựa chọn phù hợp nhất, bạn có thể cho tôi biết thêm về những ưu tiên của bạn không? Ví dụ như:
+
+*   **Bạn thích hãng điện thoại nào không?** (Samsung, Xiaomi, Oppo, iPhone...)
+*   **Bạn quan tâm đến tính năng nào nhất?** (Camera, pin, hiệu năng, màn hình...)
+*   **Bạn thường dùng điện thoại để làm gì?** (Chụp ảnh, chơi game, xem phim, làm việc...)
+
+Với những thông tin này, tôi sẽ dễ dàng đưa ra những gợi ý tốt nhất cho bạn.
+                                        )
+
+                                )
+
+                            [role] => model
+                        )
+
+                    [finishReason] => STOP
+                    [avgLogprobs] => -0.19821572147943
+                )
+
+        )
+
+    [usageMetadata] => Array
+        (
+            [promptTokenCount] => 69
+            [candidatesTokenCount] => 153
+            [totalTokenCount] => 222
+            [promptTokensDetails] => Array
+                (
+                    [0] => Array
+                        (
+                            [modality] => TEXT
+                            [tokenCount] => 69
+                        )
+
+                )
+
+            [candidatesTokensDetails] => Array
+                (
+                    [0] => Array
+                        (
+                            [modality] => TEXT
+                            [tokenCount] => 153
+                        )
+
+                )
+
+        )
+
+    [modelVersion] => gemini-2.0-flash
+    [responseId] => 5s4nafeFG5im1e8P4-GDyQo
+)
+
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:12] Bot message extracted: Chào bạn! Rất vui được hỗ trợ bạn tìm sản phẩm trong tầm giá 10 triệu đồng trở xuống. Để tôi giúp bạn tìm kiếm những lựa chọn phù hợp nhất, bạn có thể cho tôi biết thêm về những ưu tiên của bạn không? Ví dụ như:
+
+*   **Bạn thích hãng điện thoại nào không?** (Samsung, Xiaomi, Oppo, iPhone...)
+*   **Bạn quan tâm đến tính năng nào nhất?** (Camera, pin, hiệu năng, màn hình...)
+*   **Bạn thường dùng điện thoại để làm gì?** (Chụp ảnh, chơi game, xem phim, làm việc...)
+
+Với những thông tin này, tôi sẽ dễ dàng đưa ra những gợi ý tốt nhất cho bạn.
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:12] SUCCESS - Sending response
+Array
+(
+    [success] => 1
+    [message] => Chào bạn! Rất vui được hỗ trợ bạn tìm sản phẩm trong tầm giá 10 triệu đồng trở xuống. Để tôi giúp bạn tìm kiếm những lựa chọn phù hợp nhất, bạn có thể cho tôi biết thêm về những ưu tiên của bạn không? Ví dụ như:
+
+*   **Bạn thích hãng điện thoại nào không?** (Samsung, Xiaomi, Oppo, iPhone...)
+*   **Bạn quan tâm đến tính năng nào nhất?** (Camera, pin, hiệu năng, màn hình...)
+*   **Bạn thường dùng điện thoại để làm gì?** (Chụp ảnh, chơi game, xem phim, làm việc...)
+
+Với những thông tin này, tôi sẽ dễ dàng đưa ra những gợi ý tốt nhất cho bạn.
+    [timestamp] => 2025-11-27 05:09:12
+)
+
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:12] === Chatbot API Request Completed Successfully ===
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:19] === Chatbot API Request Started ===
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:19] Request method: POST
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:19] API Key configured: YES
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:19] Raw input received
+{"message":"iphone"}
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:19] Decoded input
+Array
+(
+    [message] => iphone
+)
+
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:19] User message: iphone
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:19] API URL: https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash:generateContent?key=AIzaSyCZ1sd5HJscKh-yK7heiHSYh960pB8Lkxo
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:19] Model: gemini-2.0-flash
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:19] Request body prepared
+Array
+(
+    [contents] => Array
+        (
+            [0] => Array
+                (
+                    [role] => user
+                    [parts] => Array
+                        (
+                            [0] => Array
+                                (
+                                    [text] => You are a helpful assistant for a Vietnamese mobile phone e-commerce website. You should help customers with product inquiries, orders, shipping, and general questions. Be friendly, professional, and concise. Always respond in the same language as the user.
+
+User: iphone
+                                )
+
+                        )
+
+                )
+
+        )
+
+    [generationConfig] => Array
+        (
+            [temperature] => 0.7
+            [topP] => 0.95
+            [topK] => 40
+            [maxOutputTokens] => 500
+        )
+
+)
+
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:19] Initiating cURL request...
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:21] cURL completed
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:21] HTTP Code: 200
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:21] cURL Error: None
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:21] cURL Info
+Array
+(
+    [url] => https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash:generateContent?key=AIzaSyCZ1sd5HJscKh-yK7heiHSYh960pB8Lkxo
+    [content_type] => application/json; charset=UTF-8
+    [http_code] => 200
+    [header_size] => 391
+    [request_size] => 618
+    [filetime] => -1
+    [ssl_verify_result] => 0
+    [redirect_count] => 0
+    [total_time] => 2.175864
+    [namelookup_time] => 0.002845
+    [connect_time] => 0.236659
+    [pretransfer_time] => 0.641605
+    [size_upload] => 408
+    [size_download] => 988
+    [speed_download] => 454
+    [speed_upload] => 187
+    [download_content_length] => -1
+    [upload_content_length] => 408
+    [starttransfer_time] => 2.175798
+    [redirect_time] => 0
+    [redirect_url] => 
+    [primary_ip] => 2404:6800:4005:823::200a
+    [certinfo] => Array
+        (
+        )
+
+    [primary_port] => 443
+    [local_ip] => 2402:800:637c:3746:c8da:ea22:6f4c:3599
+    [local_port] => 58159
+    [http_version] => 3
+    [protocol] => 2
+    [ssl_verifyresult] => 0
+    [scheme] => HTTPS
+    [appconnect_time_us] => 641305
+    [connect_time_us] => 236659
+    [namelookup_time_us] => 2845
+    [pretransfer_time_us] => 641605
+    [redirect_time_us] => 0
+    [starttransfer_time_us] => 2175798
+    [total_time_us] => 2175864
+    [effective_method] => POST
+)
+
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:21] API Response
+{
+  "candidates": [
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "Chào bạn! Bạn quan tâm đến iPhone phải không ạ? Bạn muốn biết thông tin về mẫu iPhone nào? Ví dụ như iPhone 14, iPhone 15, iPhone 13, v.v...? Hoặc bạn có yêu cầu cụ thể nào về dung lượng, màu sắc, hoặc giá cả không ạ? Mình sẽ hỗ trợ bạn tìm sản phẩm phù hợp nhất.\n"
+          }
+        ],
+        "role": "model"
+      },
+      "finishReason": "STOP",
+      "avgLogprobs": -0.237457298938139
+    }
+  ],
+  "usageMetadata": {
+    "promptTokenCount": 53,
+    "candidatesTokenCount": 81,
+    "totalTokenCount": 134,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 53
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 81
+      }
+    ]
+  },
+  "modelVersion": "gemini-2.0-flash",
+  "responseId": "784nafm4OdiN1e8P34SC4AQ"
+}
+
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:21] API response decoded
+Array
+(
+    [candidates] => Array
+        (
+            [0] => Array
+                (
+                    [content] => Array
+                        (
+                            [parts] => Array
+                                (
+                                    [0] => Array
+                                        (
+                                            [text] => Chào bạn! Bạn quan tâm đến iPhone phải không ạ? Bạn muốn biết thông tin về mẫu iPhone nào? Ví dụ như iPhone 14, iPhone 15, iPhone 13, v.v...? Hoặc bạn có yêu cầu cụ thể nào về dung lượng, màu sắc, hoặc giá cả không ạ? Mình sẽ hỗ trợ bạn tìm sản phẩm phù hợp nhất.
+
+                                        )
+
+                                )
+
+                            [role] => model
+                        )
+
+                    [finishReason] => STOP
+                    [avgLogprobs] => -0.23745729893814
+                )
+
+        )
+
+    [usageMetadata] => Array
+        (
+            [promptTokenCount] => 53
+            [candidatesTokenCount] => 81
+            [totalTokenCount] => 134
+            [promptTokensDetails] => Array
+                (
+                    [0] => Array
+                        (
+                            [modality] => TEXT
+                            [tokenCount] => 53
+                        )
+
+                )
+
+            [candidatesTokensDetails] => Array
+                (
+                    [0] => Array
+                        (
+                            [modality] => TEXT
+                            [tokenCount] => 81
+                        )
+
+                )
+
+        )
+
+    [modelVersion] => gemini-2.0-flash
+    [responseId] => 784nafm4OdiN1e8P34SC4AQ
+)
+
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:21] Bot message extracted: Chào bạn! Bạn quan tâm đến iPhone phải không ạ? Bạn muốn biết thông tin về mẫu iPhone nào? Ví dụ như iPhone 14, iPhone 15, iPhone 13, v.v...? Hoặc bạn có yêu cầu cụ thể nào về dung lượng, màu sắc, hoặc giá cả không ạ? Mình sẽ hỗ trợ bạn tìm sản phẩm phù hợp nhất.
+
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:21] SUCCESS - Sending response
+Array
+(
+    [success] => 1
+    [message] => Chào bạn! Bạn quan tâm đến iPhone phải không ạ? Bạn muốn biết thông tin về mẫu iPhone nào? Ví dụ như iPhone 14, iPhone 15, iPhone 13, v.v...? Hoặc bạn có yêu cầu cụ thể nào về dung lượng, màu sắc, hoặc giá cả không ạ? Mình sẽ hỗ trợ bạn tìm sản phẩm phù hợp nhất.
+
+    [timestamp] => 2025-11-27 05:09:21
+)
+
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:21] === Chatbot API Request Completed Successfully ===
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:31] === Chatbot API Request Started ===
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:31] Request method: POST
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:31] API Key configured: YES
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:31] Raw input received
+{"message":"bạn giới thiệu 1 số con trên web này đi"}
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:31] Decoded input
+Array
+(
+    [message] => bạn giới thiệu 1 số con trên web này đi
+)
+
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:31] User message: bạn giới thiệu 1 số con trên web này đi
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:31] API URL: https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash:generateContent?key=AIzaSyCZ1sd5HJscKh-yK7heiHSYh960pB8Lkxo
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:31] Model: gemini-2.0-flash
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:31] Request body prepared
+Array
+(
+    [contents] => Array
+        (
+            [0] => Array
+                (
+                    [role] => user
+                    [parts] => Array
+                        (
+                            [0] => Array
+                                (
+                                    [text] => You are a helpful assistant for a Vietnamese mobile phone e-commerce website. You should help customers with product inquiries, orders, shipping, and general questions. Be friendly, professional, and concise. Always respond in the same language as the user.
+
+User: bạn giới thiệu 1 số con trên web này đi
+                                )
+
+                        )
+
+                )
+
+        )
+
+    [generationConfig] => Array
+        (
+            [temperature] => 0.7
+            [topP] => 0.95
+            [topK] => 40
+            [maxOutputTokens] => 500
+        )
+
+)
+
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:31] Initiating cURL request...
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:33] cURL completed
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:33] HTTP Code: 200
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:33] cURL Error: None
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:33] cURL Info
+Array
+(
+    [url] => https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash:generateContent?key=AIzaSyCZ1sd5HJscKh-yK7heiHSYh960pB8Lkxo
+    [content_type] => application/json; charset=UTF-8
+    [http_code] => 200
+    [header_size] => 391
+    [request_size] => 686
+    [filetime] => -1
+    [ssl_verify_result] => 0
+    [redirect_count] => 0
+    [total_time] => 2.116121
+    [namelookup_time] => 0.00866
+    [connect_time] => 0.228882
+    [pretransfer_time] => 0.544352
+    [size_upload] => 476
+    [size_download] => 1225
+    [speed_download] => 578
+    [speed_upload] => 224
+    [download_content_length] => -1
+    [upload_content_length] => 476
+    [starttransfer_time] => 2.116069
+    [redirect_time] => 0
+    [redirect_url] => 
+    [primary_ip] => 2404:6800:4005:823::200a
+    [certinfo] => Array
+        (
+        )
+
+    [primary_port] => 443
+    [local_ip] => 2402:800:637c:3746:c8da:ea22:6f4c:3599
+    [local_port] => 64911
+    [http_version] => 3
+    [protocol] => 2
+    [ssl_verifyresult] => 0
+    [scheme] => HTTPS
+    [appconnect_time_us] => 544026
+    [connect_time_us] => 228882
+    [namelookup_time_us] => 8660
+    [pretransfer_time_us] => 544352
+    [redirect_time_us] => 0
+    [starttransfer_time_us] => 2116069
+    [total_time_us] => 2116121
+    [effective_method] => POST
+)
+
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:33] API Response
+{
+  "candidates": [
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "Chào bạn! Rất vui được hỗ trợ bạn. Để giới thiệu sản phẩm trên website, bạn vui lòng cho mình biết bạn quan tâm đến những tiêu chí nào không? Ví dụ như:\n\n*   **Mức giá** bạn mong muốn?\n*   **Hãng điện thoại** bạn thích (Samsung, iPhone, Xiaomi, Oppo, v.v.)?\n*   **Tính năng** quan trọng (chụp ảnh đẹp, pin trâu, màn hình lớn, v.v.)?\n\nNếu bạn không có yêu cầu cụ thể, mình có thể giới thiệu một vài mẫu đang bán chạy hoặc mới ra mắt trên website nhé!\n"
+          }
+        ],
+        "role": "model"
+      },
+      "finishReason": "STOP",
+      "avgLogprobs": -0.23055766070330586
+    }
+  ],
+  "usageMetadata": {
+    "promptTokenCount": 63,
+    "candidatesTokenCount": 135,
+    "totalTokenCount": 198,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 63
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 135
+      }
+    ]
+  },
+  "modelVersion": "gemini-2.0-flash",
+  "responseId": "_M4naZasEvWlvr0PktXnwAo"
+}
+
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:33] API response decoded
+Array
+(
+    [candidates] => Array
+        (
+            [0] => Array
+                (
+                    [content] => Array
+                        (
+                            [parts] => Array
+                                (
+                                    [0] => Array
+                                        (
+                                            [text] => Chào bạn! Rất vui được hỗ trợ bạn. Để giới thiệu sản phẩm trên website, bạn vui lòng cho mình biết bạn quan tâm đến những tiêu chí nào không? Ví dụ như:
+
+*   **Mức giá** bạn mong muốn?
+*   **Hãng điện thoại** bạn thích (Samsung, iPhone, Xiaomi, Oppo, v.v.)?
+*   **Tính năng** quan trọng (chụp ảnh đẹp, pin trâu, màn hình lớn, v.v.)?
+
+Nếu bạn không có yêu cầu cụ thể, mình có thể giới thiệu một vài mẫu đang bán chạy hoặc mới ra mắt trên website nhé!
+
+                                        )
+
+                                )
+
+                            [role] => model
+                        )
+
+                    [finishReason] => STOP
+                    [avgLogprobs] => -0.23055766070331
+                )
+
+        )
+
+    [usageMetadata] => Array
+        (
+            [promptTokenCount] => 63
+            [candidatesTokenCount] => 135
+            [totalTokenCount] => 198
+            [promptTokensDetails] => Array
+                (
+                    [0] => Array
+                        (
+                            [modality] => TEXT
+                            [tokenCount] => 63
+                        )
+
+                )
+
+            [candidatesTokensDetails] => Array
+                (
+                    [0] => Array
+                        (
+                            [modality] => TEXT
+                            [tokenCount] => 135
+                        )
+
+                )
+
+        )
+
+    [modelVersion] => gemini-2.0-flash
+    [responseId] => _M4naZasEvWlvr0PktXnwAo
+)
+
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:33] Bot message extracted: Chào bạn! Rất vui được hỗ trợ bạn. Để giới thiệu sản phẩm trên website, bạn vui lòng cho mình biết bạn quan tâm đến những tiêu chí nào không? Ví dụ như:
+
+*   **Mức giá** bạn mong muốn?
+*   **Hãng điện thoại** bạn thích (Samsung, iPhone, Xiaomi, Oppo, v.v.)?
+*   **Tính năng** quan trọng (chụp ảnh đẹp, pin trâu, màn hình lớn, v.v.)?
+
+Nếu bạn không có yêu cầu cụ thể, mình có thể giới thiệu một vài mẫu đang bán chạy hoặc mới ra mắt trên website nhé!
+
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:33] SUCCESS - Sending response
+Array
+(
+    [success] => 1
+    [message] => Chào bạn! Rất vui được hỗ trợ bạn. Để giới thiệu sản phẩm trên website, bạn vui lòng cho mình biết bạn quan tâm đến những tiêu chí nào không? Ví dụ như:
+
+*   **Mức giá** bạn mong muốn?
+*   **Hãng điện thoại** bạn thích (Samsung, iPhone, Xiaomi, Oppo, v.v.)?
+*   **Tính năng** quan trọng (chụp ảnh đẹp, pin trâu, màn hình lớn, v.v.)?
+
+Nếu bạn không có yêu cầu cụ thể, mình có thể giới thiệu một vài mẫu đang bán chạy hoặc mới ra mắt trên website nhé!
+
+    [timestamp] => 2025-11-27 05:09:33
+)
+
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:33] === Chatbot API Request Completed Successfully ===
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:47] === Chatbot API Request Started ===
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:47] Request method: POST
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:47] API Key configured: YES
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:47] Raw input received
+{"message":"10 triệu và là iphone thế thôi"}
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:47] Decoded input
+Array
+(
+    [message] => 10 triệu và là iphone thế thôi
+)
+
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:47] User message: 10 triệu và là iphone thế thôi
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:47] API URL: https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash:generateContent?key=AIzaSyCZ1sd5HJscKh-yK7heiHSYh960pB8Lkxo
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:47] Model: gemini-2.0-flash
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:47] Request body prepared
+Array
+(
+    [contents] => Array
+        (
+            [0] => Array
+                (
+                    [role] => user
+                    [parts] => Array
+                        (
+                            [0] => Array
+                                (
+                                    [text] => You are a helpful assistant for a Vietnamese mobile phone e-commerce website. You should help customers with product inquiries, orders, shipping, and general questions. Be friendly, professional, and concise. Always respond in the same language as the user.
+
+User: 10 triệu và là iphone thế thôi
+                                )
+
+                        )
+
+                )
+
+        )
+
+    [generationConfig] => Array
+        (
+            [temperature] => 0.7
+            [topP] => 0.95
+            [topK] => 40
+            [maxOutputTokens] => 500
+        )
+
+)
+
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:47] Initiating cURL request...
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:49] cURL completed
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:49] HTTP Code: 200
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:49] cURL Error: None
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:49] cURL Info
+Array
+(
+    [url] => https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash:generateContent?key=AIzaSyCZ1sd5HJscKh-yK7heiHSYh960pB8Lkxo
+    [content_type] => application/json; charset=UTF-8
+    [http_code] => 200
+    [header_size] => 391
+    [request_size] => 667
+    [filetime] => -1
+    [ssl_verify_result] => 0
+    [redirect_count] => 0
+    [total_time] => 2.323315
+    [namelookup_time] => 0.002421
+    [connect_time] => 0.049161
+    [pretransfer_time] => 0.384914
+    [size_upload] => 457
+    [size_download] => 1439
+    [speed_download] => 619
+    [speed_upload] => 196
+    [download_content_length] => -1
+    [upload_content_length] => 457
+    [starttransfer_time] => 2.323252
+    [redirect_time] => 0
+    [redirect_url] => 
+    [primary_ip] => 2404:6800:4005:823::200a
+    [certinfo] => Array
+        (
+        )
+
+    [primary_port] => 443
+    [local_ip] => 2402:800:637c:3746:c8da:ea22:6f4c:3599
+    [local_port] => 54339
+    [http_version] => 3
+    [protocol] => 2
+    [ssl_verifyresult] => 0
+    [scheme] => HTTPS
+    [appconnect_time_us] => 384328
+    [connect_time_us] => 49161
+    [namelookup_time_us] => 2421
+    [pretransfer_time_us] => 384914
+    [redirect_time_us] => 0
+    [starttransfer_time_us] => 2323252
+    [total_time_us] => 2323315
+    [effective_method] => POST
+)
+
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:49] API Response
+{
+  "candidates": [
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "Chào bạn! Với ngân sách 10 triệu và muốn mua iPhone, mình có một vài gợi ý sau:\n\n*   **iPhone SE (2022):** Đây là lựa chọn hợp lý nhất với chip A15 Bionic mạnh mẽ, thiết kế nhỏ gọn, giá thường dao động quanh mức 10 triệu cho bản 64GB.\n*   **iPhone XR (đã qua sử dụng):** Bạn có thể tìm mua iPhone XR đã qua sử dụng với hình thức còn tốt. Ưu điểm là màn hình lớn hơn iPhone SE và thời lượng pin tốt hơn.\n*   **iPhone 11 (đã qua sử dụng):** Tương tự, iPhone 11 đã qua sử dụng cũng là lựa chọn đáng cân nhắc.\n\nBạn muốn mình tư vấn kỹ hơn về mẫu nào không? Hoặc bạn có yêu cầu nào khác về dung lượng, màu sắc không ạ?\n"
+          }
+        ],
+        "role": "model"
+      },
+      "finishReason": "STOP",
+      "avgLogprobs": -0.20327612991732452
+    }
+  ],
+  "usageMetadata": {
+    "promptTokenCount": 61,
+    "candidatesTokenCount": 191,
+    "totalTokenCount": 252,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 61
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 191
+      }
+    ]
+  },
+  "modelVersion": "gemini-2.0-flash",
+  "responseId": "C88naaOSLISavr0PnZCj0AQ"
+}
+
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:49] API response decoded
+Array
+(
+    [candidates] => Array
+        (
+            [0] => Array
+                (
+                    [content] => Array
+                        (
+                            [parts] => Array
+                                (
+                                    [0] => Array
+                                        (
+                                            [text] => Chào bạn! Với ngân sách 10 triệu và muốn mua iPhone, mình có một vài gợi ý sau:
+
+*   **iPhone SE (2022):** Đây là lựa chọn hợp lý nhất với chip A15 Bionic mạnh mẽ, thiết kế nhỏ gọn, giá thường dao động quanh mức 10 triệu cho bản 64GB.
+*   **iPhone XR (đã qua sử dụng):** Bạn có thể tìm mua iPhone XR đã qua sử dụng với hình thức còn tốt. Ưu điểm là màn hình lớn hơn iPhone SE và thời lượng pin tốt hơn.
+*   **iPhone 11 (đã qua sử dụng):** Tương tự, iPhone 11 đã qua sử dụng cũng là lựa chọn đáng cân nhắc.
+
+Bạn muốn mình tư vấn kỹ hơn về mẫu nào không? Hoặc bạn có yêu cầu nào khác về dung lượng, màu sắc không ạ?
+
+                                        )
+
+                                )
+
+                            [role] => model
+                        )
+
+                    [finishReason] => STOP
+                    [avgLogprobs] => -0.20327612991732
+                )
+
+        )
+
+    [usageMetadata] => Array
+        (
+            [promptTokenCount] => 61
+            [candidatesTokenCount] => 191
+            [totalTokenCount] => 252
+            [promptTokensDetails] => Array
+                (
+                    [0] => Array
+                        (
+                            [modality] => TEXT
+                            [tokenCount] => 61
+                        )
+
+                )
+
+            [candidatesTokensDetails] => Array
+                (
+                    [0] => Array
+                        (
+                            [modality] => TEXT
+                            [tokenCount] => 191
+                        )
+
+                )
+
+        )
+
+    [modelVersion] => gemini-2.0-flash
+    [responseId] => C88naaOSLISavr0PnZCj0AQ
+)
+
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:49] Bot message extracted: Chào bạn! Với ngân sách 10 triệu và muốn mua iPhone, mình có một vài gợi ý sau:
+
+*   **iPhone SE (2022):** Đây là lựa chọn hợp lý nhất với chip A15 Bionic mạnh mẽ, thiết kế nhỏ gọn, giá thường dao động quanh mức 10 triệu cho bản 64GB.
+*   **iPhone XR (đã qua sử dụng):** Bạn có thể tìm mua iPhone XR đã qua sử dụng với hình thức còn tốt. Ưu điểm là màn hình lớn hơn iPhone SE và thời lượng pin tốt hơn.
+*   **iPhone 11 (đã qua sử dụng):** Tương tự, iPhone 11 đã qua sử dụng cũng là lựa chọn đáng cân nhắc.
+
+Bạn muốn mình tư vấn kỹ hơn về mẫu nào không? Hoặc bạn có yêu cầu nào khác về dung lượng, màu sắc không ạ?
+
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:49] SUCCESS - Sending response
+Array
+(
+    [success] => 1
+    [message] => Chào bạn! Với ngân sách 10 triệu và muốn mua iPhone, mình có một vài gợi ý sau:
+
+*   **iPhone SE (2022):** Đây là lựa chọn hợp lý nhất với chip A15 Bionic mạnh mẽ, thiết kế nhỏ gọn, giá thường dao động quanh mức 10 triệu cho bản 64GB.
+*   **iPhone XR (đã qua sử dụng):** Bạn có thể tìm mua iPhone XR đã qua sử dụng với hình thức còn tốt. Ưu điểm là màn hình lớn hơn iPhone SE và thời lượng pin tốt hơn.
+*   **iPhone 11 (đã qua sử dụng):** Tương tự, iPhone 11 đã qua sử dụng cũng là lựa chọn đáng cân nhắc.
+
+Bạn muốn mình tư vấn kỹ hơn về mẫu nào không? Hoặc bạn có yêu cầu nào khác về dung lượng, màu sắc không ạ?
+
+    [timestamp] => 2025-11-27 05:09:49
+)
+
+--------------------------------------------------------------------------------
+[2025-11-27 05:09:49] === Chatbot API Request Completed Successfully ===
+--------------------------------------------------------------------------------
+[2025-11-27 05:10:08] === Chatbot API Request Started ===
+--------------------------------------------------------------------------------
+[2025-11-27 05:10:08] Request method: POST
+--------------------------------------------------------------------------------
+[2025-11-27 05:10:08] API Key configured: YES
+--------------------------------------------------------------------------------
+[2025-11-27 05:10:08] Raw input received
+{"message":"ồ thế trên web máy nào là mắc nhất vậy"}
+--------------------------------------------------------------------------------
+[2025-11-27 05:10:08] Decoded input
+Array
+(
+    [message] => ồ thế trên web máy nào là mắc nhất vậy
+)
+
+--------------------------------------------------------------------------------
+[2025-11-27 05:10:08] User message: ồ thế trên web máy nào là mắc nhất vậy
+--------------------------------------------------------------------------------
+[2025-11-27 05:10:08] API URL: https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash:generateContent?key=AIzaSyCZ1sd5HJscKh-yK7heiHSYh960pB8Lkxo
+--------------------------------------------------------------------------------
+[2025-11-27 05:10:08] Model: gemini-2.0-flash
+--------------------------------------------------------------------------------
+[2025-11-27 05:10:08] Request body prepared
+Array
+(
+    [contents] => Array
+        (
+            [0] => Array
+                (
+                    [role] => user
+                    [parts] => Array
+                        (
+                            [0] => Array
+                                (
+                                    [text] => You are a helpful assistant for a Vietnamese mobile phone e-commerce website. You should help customers with product inquiries, orders, shipping, and general questions. Be friendly, professional, and concise. Always respond in the same language as the user.
+
+User: ồ thế trên web máy nào là mắc nhất vậy
+                                )
+
+                        )
+
+                )
+
+        )
+
+    [generationConfig] => Array
+        (
+            [temperature] => 0.7
+            [topP] => 0.95
+            [topK] => 40
+            [maxOutputTokens] => 500
+        )
+
+)
+
+--------------------------------------------------------------------------------
+[2025-11-27 05:10:08] Initiating cURL request...
+--------------------------------------------------------------------------------
+[2025-11-27 05:10:10] cURL completed
+--------------------------------------------------------------------------------
+[2025-11-27 05:10:10] HTTP Code: 200
+--------------------------------------------------------------------------------
+[2025-11-27 05:10:10] cURL Error: None
+--------------------------------------------------------------------------------
+[2025-11-27 05:10:10] cURL Info
+Array
+(
+    [url] => https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash:generateContent?key=AIzaSyCZ1sd5HJscKh-yK7heiHSYh960pB8Lkxo
+    [content_type] => application/json; charset=UTF-8
+    [http_code] => 200
+    [header_size] => 390
+    [request_size] => 695
+    [filetime] => -1
+    [ssl_verify_result] => 0
+    [redirect_count] => 0
+    [total_time] => 1.76996
+    [namelookup_time] => 0.002261
+    [connect_time] => 0.336703
+    [pretransfer_time] => 0.654908
+    [size_upload] => 485
+    [size_download] => 871
+    [speed_download] => 492
+    [speed_upload] => 274
+    [download_content_length] => -1
+    [upload_content_length] => 485
+    [starttransfer_time] => 1.769877
+    [redirect_time] => 0
+    [redirect_url] => 
+    [primary_ip] => 142.250.198.42
+    [certinfo] => Array
+        (
+        )
+
+    [primary_port] => 443
+    [local_ip] => 192.168.1.6
+    [local_port] => 64728
+    [http_version] => 3
+    [protocol] => 2
+    [ssl_verifyresult] => 0
+    [scheme] => HTTPS
+    [appconnect_time_us] => 654583
+    [connect_time_us] => 336703
+    [namelookup_time_us] => 2261
+    [pretransfer_time_us] => 654908
+    [redirect_time_us] => 0
+    [starttransfer_time_us] => 1769877
+    [total_time_us] => 1769960
+    [effective_method] => POST
+)
+
+--------------------------------------------------------------------------------
+[2025-11-27 05:10:10] API Response
+{
+  "candidates": [
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "Chào bạn! Hiện tại, trên website của chúng tôi, mẫu điện thoại đắt nhất là **Samsung Galaxy Z Fold5 phiên bản 1TB**. Bạn có muốn xem thông tin chi tiết về sản phẩm này không ạ?\n"
+          }
+        ],
+        "role": "model"
+      },
+      "finishReason": "STOP",
+      "avgLogprobs": -0.14072988471206355
+    }
+  ],
+  "usageMetadata": {
+    "promptTokenCount": 63,
+    "candidatesTokenCount": 49,
+    "totalTokenCount": 112,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 63
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 49
+      }
+    ]
+  },
+  "modelVersion": "gemini-2.0-flash",
+  "responseId": "Ic8naaOYA4yivr0PoouCgAw"
+}
+
+--------------------------------------------------------------------------------
+[2025-11-27 05:10:10] API response decoded
+Array
+(
+    [candidates] => Array
+        (
+            [0] => Array
+                (
+                    [content] => Array
+                        (
+                            [parts] => Array
+                                (
+                                    [0] => Array
+                                        (
+                                            [text] => Chào bạn! Hiện tại, trên website của chúng tôi, mẫu điện thoại đắt nhất là **Samsung Galaxy Z Fold5 phiên bản 1TB**. Bạn có muốn xem thông tin chi tiết về sản phẩm này không ạ?
+
+                                        )
+
+                                )
+
+                            [role] => model
+                        )
+
+                    [finishReason] => STOP
+                    [avgLogprobs] => -0.14072988471206
+                )
+
+        )
+
+    [usageMetadata] => Array
+        (
+            [promptTokenCount] => 63
+            [candidatesTokenCount] => 49
+            [totalTokenCount] => 112
+            [promptTokensDetails] => Array
+                (
+                    [0] => Array
+                        (
+                            [modality] => TEXT
+                            [tokenCount] => 63
+                        )
+
+                )
+
+            [candidatesTokensDetails] => Array
+                (
+                    [0] => Array
+                        (
+                            [modality] => TEXT
+                            [tokenCount] => 49
+                        )
+
+                )
+
+        )
+
+    [modelVersion] => gemini-2.0-flash
+    [responseId] => Ic8naaOYA4yivr0PoouCgAw
+)
+
+--------------------------------------------------------------------------------
+[2025-11-27 05:10:10] Bot message extracted: Chào bạn! Hiện tại, trên website của chúng tôi, mẫu điện thoại đắt nhất là **Samsung Galaxy Z Fold5 phiên bản 1TB**. Bạn có muốn xem thông tin chi tiết về sản phẩm này không ạ?
+
+--------------------------------------------------------------------------------
+[2025-11-27 05:10:10] SUCCESS - Sending response
+Array
+(
+    [success] => 1
+    [message] => Chào bạn! Hiện tại, trên website của chúng tôi, mẫu điện thoại đắt nhất là **Samsung Galaxy Z Fold5 phiên bản 1TB**. Bạn có muốn xem thông tin chi tiết về sản phẩm này không ạ?
+
+    [timestamp] => 2025-11-27 05:10:10
+)
+
+--------------------------------------------------------------------------------
+[2025-11-27 05:10:10] === Chatbot API Request Completed Successfully ===
+--------------------------------------------------------------------------------
+[2025-11-27 05:13:00] === Chatbot API Request Started ===
+--------------------------------------------------------------------------------
+[2025-11-27 05:13:00] Request method: POST
+--------------------------------------------------------------------------------
+[2025-11-27 05:13:00] API Key configured: YES
+--------------------------------------------------------------------------------
+[2025-11-27 05:13:00] Raw input received
+{"message":"hiện tại website có bao nhiêu sản phẩm"}
+--------------------------------------------------------------------------------
+[2025-11-27 05:13:00] Decoded input
+Array
+(
+    [message] => hiện tại website có bao nhiêu sản phẩm
+)
+
+--------------------------------------------------------------------------------
+[2025-11-27 05:13:00] User message: hiện tại website có bao nhiêu sản phẩm
+--------------------------------------------------------------------------------
+[2025-11-27 05:13:00] API URL: https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash:generateContent?key=AIzaSyCZ1sd5HJscKh-yK7heiHSYh960pB8Lkxo
+--------------------------------------------------------------------------------
+[2025-11-27 05:13:00] Model: gemini-2.0-flash
+--------------------------------------------------------------------------------
+[2025-11-27 05:13:00] System prompt prepared
+Bạn là trợ lý AI thông minh cho website bán điện thoại di động tại Việt Nam. Nhiệm vụ của bạn:
+1. Tư vấn sản phẩm điện thoại dựa trên thông tin được cung cấp
+2. Giải đáp thắc mắc về đơn hàng, giao hàng, bảo hành
+3. Hỗ trợ khách hàng một cách thân thiện, chuyên nghiệp
+4. Luôn trả lời bằng tiếng Việt
+5. Nếu khách hỏi về sản phẩm cụ thể, hãy dựa vào dữ liệu sản phẩm có sẵn đ�...
+--------------------------------------------------------------------------------
+[2025-11-27 05:13:00] Request body prepared
+Array
+(
+    [contents] => Array
+        (
+            [0] => Array
+                (
+                    [role] => user
+                    [parts] => Array
+                        (
+                            [0] => Array
+                                (
+                                    [text] => Bạn là trợ lý AI thông minh cho website bán điện thoại di động tại Việt Nam. Nhiệm vụ của bạn:
+1. Tư vấn sản phẩm điện thoại dựa trên thông tin được cung cấp
+2. Giải đáp thắc mắc về đơn hàng, giao hàng, bảo hành
+3. Hỗ trợ khách hàng một cách thân thiện, chuyên nghiệp
+4. Luôn trả lời bằng tiếng Việt
+5. Nếu khách hỏi về sản phẩm cụ thể, hãy dựa vào dữ liệu sản phẩm có sẵn để tư vấn
+
+Dưới đây là danh sách sản phẩm hiện có trên website:
+
+- SamSung Galaxy J4+
+  + Giá: 1.490.000đ
+  + Loại: SamSung
+  + Còn hàng: 10 sản phẩm
+
+- Oppo F9
+  + Giá: 7.690.000đ
+  + Loại: Oppo
+  + Còn hàng: 10 sản phẩm
+
+- Nokia 5.1 Plus
+  + Giá: 4.790.000đ
+  + Loại: Nokia
+  + Còn hàng: 10 sản phẩm
+
+- iPhone X 256GB Silver
+  + Giá: 8.690.000đ
+  + Loại: Apple
+  + Còn hàng: 10 sản phẩm
+
+- Samsung Galaxy J8
+  + Giá: 1.890.000đ
+  + Loại: SamSung
+  + Còn hàng: 10 sản phẩm
+
+- Samsung Galaxy A8+ (2018)
+  + Giá: 11.990.000đ
+  + Loại: SamSung
+  + Còn hàng: 10 sản phẩm
+
+- Oppo A3s 32GB
+  + Giá: 4.690.000đ
+  + Loại: Oppo
+  + Còn hàng: 10 sản phẩm
+
+- Xiaomi Mi 8 Lite
+  + Giá: 6.690.000đ
+  + Loại: Xiaomi
+  + Còn hàng: 10 sản phẩm
+
+- iPad 2018 Wifi 32GB
+  + Giá: 8.990.000đ
+  + Loại: Apple
+  + Còn hàng: 10 sản phẩm
+
+- Xiaomi Mi 8
+  + Giá: 12.990.000đ
+  + Loại: Xiaomi
+  + Còn hàng: 10 sản phẩm
+
+- iPhone 7 Plus 32GB
+  + Giá: 17.000.000đ
+  + Loại: Apple
+  + Còn hàng: 10 sản phẩm
+
+- Mobiistar X
+  + Giá: 3.490.000đ
+  + Loại: Mobiistar
+  + Còn hàng: 10 sản phẩm
+
+- Mobiistar E Selfie
+  + Giá: 2.490.000đ
+  + Loại: Mobiistar
+  + Còn hàng: 10 sản phẩm
+
+- Xiaomi Redmi 5 Plus 4GB
+  + Giá: 4.790.000đ
+  + Loại: Xiaomi
+  + Còn hàng: 10 sản phẩm
+
+- Nokia black future
+  + Giá: 999.999.000đ
+  + Loại: Nokia
+  + Còn hàng: 10 sản phẩm
+
+- Samsung Galaxy A7 (2018)
+  + Giá: 8.990.000đ
+  + Loại: SamSung
+  + Còn hàng: 10 sản phẩm
+
+- Vivo V9
+  + Giá: 849.000đ
+  + Loại: Vivo
+  + Còn hàng: 10 sản phẩm
+
+- Vivo V11
+  + Giá: 2.390.000đ
+  + Loại: Vivo
+  + Còn hàng: 10 sản phẩm
+
+- Vivo Y71
+  + Giá: 3.290.000đ
+  + Loại: Vivo
+  + Còn hàng: 10 sản phẩm
+
+- Vivo Y85
+  + Giá: 4.990.000đ
+  + Loại: Vivo
+  + Còn hàng: 10 sản phẩm
+
+
+Hãy sử dụng thông tin trên để tư vấn chính xác cho khách hàng.
+
+
+User: hiện tại website có bao nhiêu sản phẩm
+                                )
+
+                        )
+
+                )
+
+        )
+
+    [generationConfig] => Array
+        (
+            [temperature] => 0.7
+            [topP] => 0.95
+            [topK] => 40
+            [maxOutputTokens] => 500
+        )
+
+)
+
+--------------------------------------------------------------------------------
+[2025-11-27 05:13:00] Initiating cURL request...
+--------------------------------------------------------------------------------
+[2025-11-27 05:13:02] cURL completed
+--------------------------------------------------------------------------------
+[2025-11-27 05:13:02] HTTP Code: 200
+--------------------------------------------------------------------------------
+[2025-11-27 05:13:02] cURL Error: None
+--------------------------------------------------------------------------------
+[2025-11-27 05:13:02] cURL Info
+Array
+(
+    [url] => https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash:generateContent?key=AIzaSyCZ1sd5HJscKh-yK7heiHSYh960pB8Lkxo
+    [content_type] => application/json; charset=UTF-8
+    [http_code] => 200
+    [header_size] => 390
+    [request_size] => 3897
+    [filetime] => -1
+    [ssl_verify_result] => 0
+    [redirect_count] => 0
+    [total_time] => 2.066296
+    [namelookup_time] => 0.04337
+    [connect_time] => 0.102369
+    [pretransfer_time] => 0.664425
+    [size_upload] => 3686
+    [size_download] => 840
+    [speed_download] => 406
+    [speed_upload] => 1783
+    [download_content_length] => -1
+    [upload_content_length] => 3686
+    [starttransfer_time] => 2.06622
+    [redirect_time] => 0
+    [redirect_url] => 
+    [primary_ip] => 2404:6800:4005:824::200a
+    [certinfo] => Array
+        (
+        )
+
+    [primary_port] => 443
+    [local_ip] => 2402:800:637c:3746:c8da:ea22:6f4c:3599
+    [local_port] => 56477
+    [http_version] => 3
+    [protocol] => 2
+    [ssl_verifyresult] => 0
+    [scheme] => HTTPS
+    [appconnect_time_us] => 664028
+    [connect_time_us] => 102369
+    [namelookup_time_us] => 43370
+    [pretransfer_time_us] => 664425
+    [redirect_time_us] => 0
+    [starttransfer_time_us] => 2066220
+    [total_time_us] => 2066296
+    [effective_method] => POST
+)
+
+--------------------------------------------------------------------------------
+[2025-11-27 05:13:02] API Response
+{
+  "candidates": [
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "Chào bạn! Hiện tại website của chúng tôi đang có 20 sản phẩm điện thoại di động khác nhau. Bạn có muốn tìm hiểu thêm về sản phẩm nào không ạ?\n"
+          }
+        ],
+        "role": "model"
+      },
+      "finishReason": "STOP",
+      "avgLogprobs": -0.11931387583414714
+    }
+  ],
+  "usageMetadata": {
+    "promptTokenCount": 1017,
+    "candidatesTokenCount": 39,
+    "totalTokenCount": 1056,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 1017
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 39
+      }
+    ]
+  },
+  "modelVersion": "gemini-2.0-flash",
+  "responseId": "zc8naa3gGfe40-kPsI_MuQQ"
+}
+
+--------------------------------------------------------------------------------
+[2025-11-27 05:13:02] API response decoded
+Array
+(
+    [candidates] => Array
+        (
+            [0] => Array
+                (
+                    [content] => Array
+                        (
+                            [parts] => Array
+                                (
+                                    [0] => Array
+                                        (
+                                            [text] => Chào bạn! Hiện tại website của chúng tôi đang có 20 sản phẩm điện thoại di động khác nhau. Bạn có muốn tìm hiểu thêm về sản phẩm nào không ạ?
+
+                                        )
+
+                                )
+
+                            [role] => model
+                        )
+
+                    [finishReason] => STOP
+                    [avgLogprobs] => -0.11931387583415
+                )
+
+        )
+
+    [usageMetadata] => Array
+        (
+            [promptTokenCount] => 1017
+            [candidatesTokenCount] => 39
+            [totalTokenCount] => 1056
+            [promptTokensDetails] => Array
+                (
+                    [0] => Array
+                        (
+                            [modality] => TEXT
+                            [tokenCount] => 1017
+                        )
+
+                )
+
+            [candidatesTokensDetails] => Array
+                (
+                    [0] => Array
+                        (
+                            [modality] => TEXT
+                            [tokenCount] => 39
+                        )
+
+                )
+
+        )
+
+    [modelVersion] => gemini-2.0-flash
+    [responseId] => zc8naa3gGfe40-kPsI_MuQQ
+)
+
+--------------------------------------------------------------------------------
+[2025-11-27 05:13:02] Bot message extracted: Chào bạn! Hiện tại website của chúng tôi đang có 20 sản phẩm điện thoại di động khác nhau. Bạn có muốn tìm hiểu thêm về sản phẩm nào không ạ?
+
+--------------------------------------------------------------------------------
+[2025-11-27 05:13:02] SUCCESS - Sending response
+Array
+(
+    [success] => 1
+    [message] => Chào bạn! Hiện tại website của chúng tôi đang có 20 sản phẩm điện thoại di động khác nhau. Bạn có muốn tìm hiểu thêm về sản phẩm nào không ạ?
+
+    [timestamp] => 2025-11-27 05:13:02
+)
+
+--------------------------------------------------------------------------------
+[2025-11-27 05:13:02] === Chatbot API Request Completed Successfully ===
+--------------------------------------------------------------------------------
+[2025-11-27 05:13:43] === Chatbot API Request Started ===
+--------------------------------------------------------------------------------
+[2025-11-27 05:13:43] Request method: POST
+--------------------------------------------------------------------------------
+[2025-11-27 05:13:43] API Key configured: YES
+--------------------------------------------------------------------------------
+[2025-11-27 05:13:43] Raw input received
+{"message":"tôi muốn mua máy xịn nhất ở đây là con nào"}
+--------------------------------------------------------------------------------
+[2025-11-27 05:13:43] Decoded input
+Array
+(
+    [message] => tôi muốn mua máy xịn nhất ở đây là con nào
+)
+
+--------------------------------------------------------------------------------
+[2025-11-27 05:13:43] User message: tôi muốn mua máy xịn nhất ở đây là con nào
+--------------------------------------------------------------------------------
+[2025-11-27 05:13:43] API URL: https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash:generateContent?key=AIzaSyCZ1sd5HJscKh-yK7heiHSYh960pB8Lkxo
+--------------------------------------------------------------------------------
+[2025-11-27 05:13:43] Model: gemini-2.0-flash
+--------------------------------------------------------------------------------
+[2025-11-27 05:13:44] System prompt prepared
+Bạn là trợ lý AI thông minh cho website bán điện thoại di động tại Việt Nam. Nhiệm vụ của bạn:
+1. Tư vấn sản phẩm điện thoại dựa trên thông tin được cung cấp
+2. Giải đáp thắc mắc về đơn hàng, giao hàng, bảo hành
+3. Hỗ trợ khách hàng một cách thân thiện, chuyên nghiệp
+4. Luôn trả lời bằng tiếng Việt
+5. Nếu khách hỏi về sản phẩm cụ thể, hãy dựa vào dữ liệu sản phẩm có sẵn đ�...
+--------------------------------------------------------------------------------
+[2025-11-27 05:13:44] Request body prepared
+Array
+(
+    [contents] => Array
+        (
+            [0] => Array
+                (
+                    [role] => user
+                    [parts] => Array
+                        (
+                            [0] => Array
+                                (
+                                    [text] => Bạn là trợ lý AI thông minh cho website bán điện thoại di động tại Việt Nam. Nhiệm vụ của bạn:
+1. Tư vấn sản phẩm điện thoại dựa trên thông tin được cung cấp
+2. Giải đáp thắc mắc về đơn hàng, giao hàng, bảo hành
+3. Hỗ trợ khách hàng một cách thân thiện, chuyên nghiệp
+4. Luôn trả lời bằng tiếng Việt
+5. Nếu khách hỏi về sản phẩm cụ thể, hãy dựa vào dữ liệu sản phẩm có sẵn để tư vấn
+
+Dưới đây là danh sách sản phẩm hiện có trên website:
+
+- SamSung Galaxy J4+
+  + Giá: 1.490.000đ
+  + Loại: SamSung
+  + Còn hàng: 10 sản phẩm
+
+- Oppo F9
+  + Giá: 7.690.000đ
+  + Loại: Oppo
+  + Còn hàng: 10 sản phẩm
+
+- Nokia 5.1 Plus
+  + Giá: 4.790.000đ
+  + Loại: Nokia
+  + Còn hàng: 10 sản phẩm
+
+- iPhone X 256GB Silver
+  + Giá: 8.690.000đ
+  + Loại: Apple
+  + Còn hàng: 10 sản phẩm
+
+- Samsung Galaxy J8
+  + Giá: 1.890.000đ
+  + Loại: SamSung
+  + Còn hàng: 10 sản phẩm
+
+- Samsung Galaxy A8+ (2018)
+  + Giá: 11.990.000đ
+  + Loại: SamSung
+  + Còn hàng: 10 sản phẩm
+
+- Oppo A3s 32GB
+  + Giá: 4.690.000đ
+  + Loại: Oppo
+  + Còn hàng: 10 sản phẩm
+
+- Xiaomi Mi 8 Lite
+  + Giá: 6.690.000đ
+  + Loại: Xiaomi
+  + Còn hàng: 10 sản phẩm
+
+- iPad 2018 Wifi 32GB
+  + Giá: 8.990.000đ
+  + Loại: Apple
+  + Còn hàng: 10 sản phẩm
+
+- Xiaomi Mi 8
+  + Giá: 12.990.000đ
+  + Loại: Xiaomi
+  + Còn hàng: 10 sản phẩm
+
+- iPhone 7 Plus 32GB
+  + Giá: 17.000.000đ
+  + Loại: Apple
+  + Còn hàng: 10 sản phẩm
+
+- Mobiistar X
+  + Giá: 3.490.000đ
+  + Loại: Mobiistar
+  + Còn hàng: 10 sản phẩm
+
+- Mobiistar E Selfie
+  + Giá: 2.490.000đ
+  + Loại: Mobiistar
+  + Còn hàng: 10 sản phẩm
+
+- Xiaomi Redmi 5 Plus 4GB
+  + Giá: 4.790.000đ
+  + Loại: Xiaomi
+  + Còn hàng: 10 sản phẩm
+
+- Nokia black future
+  + Giá: 999.999.000đ
+  + Loại: Nokia
+  + Còn hàng: 10 sản phẩm
+
+- Samsung Galaxy A7 (2018)
+  + Giá: 8.990.000đ
+  + Loại: SamSung
+  + Còn hàng: 10 sản phẩm
+
+- Vivo V9
+  + Giá: 849.000đ
+  + Loại: Vivo
+  + Còn hàng: 10 sản phẩm
+
+- Vivo V11
+  + Giá: 2.390.000đ
+  + Loại: Vivo
+  + Còn hàng: 10 sản phẩm
+
+- Vivo Y71
+  + Giá: 3.290.000đ
+  + Loại: Vivo
+  + Còn hàng: 10 sản phẩm
+
+- Vivo Y85
+  + Giá: 4.990.000đ
+  + Loại: Vivo
+  + Còn hàng: 10 sản phẩm
+
+
+Hãy sử dụng thông tin trên để tư vấn chính xác cho khách hàng.
+
+
+User: tôi muốn mua máy xịn nhất ở đây là con nào
+                                )
+
+                        )
+
+                )
+
+        )
+
+    [generationConfig] => Array
+        (
+            [temperature] => 0.7
+            [topP] => 0.95
+            [topK] => 40
+            [maxOutputTokens] => 500
+        )
+
+)
+
+--------------------------------------------------------------------------------
+[2025-11-27 05:13:44] Initiating cURL request...
+--------------------------------------------------------------------------------
+[2025-11-27 05:13:45] cURL completed
+--------------------------------------------------------------------------------
+[2025-11-27 05:13:45] HTTP Code: 200
+--------------------------------------------------------------------------------
+[2025-11-27 05:13:45] cURL Error: None
+--------------------------------------------------------------------------------
+[2025-11-27 05:13:45] cURL Info
+Array
+(
+    [url] => https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash:generateContent?key=AIzaSyCZ1sd5HJscKh-yK7heiHSYh960pB8Lkxo
+    [content_type] => application/json; charset=UTF-8
+    [http_code] => 200
+    [header_size] => 391
+    [request_size] => 3921
+    [filetime] => -1
+    [ssl_verify_result] => 0
+    [redirect_count] => 0
+    [total_time] => 1.559301
+    [namelookup_time] => 0.008993
+    [connect_time] => 0.051058
+    [pretransfer_time] => 0.387684
+    [size_upload] => 3710
+    [size_download] => 934
+    [speed_download] => 598
+    [speed_upload] => 2379
+    [download_content_length] => -1
+    [upload_content_length] => 3710
+    [starttransfer_time] => 1.559221
+    [redirect_time] => 0
+    [redirect_url] => 
+    [primary_ip] => 2404:6800:4005:824::200a
+    [certinfo] => Array
+        (
+        )
+
+    [primary_port] => 443
+    [local_ip] => 2402:800:637c:3746:c8da:ea22:6f4c:3599
+    [local_port] => 59788
+    [http_version] => 3
+    [protocol] => 2
+    [ssl_verifyresult] => 0
+    [scheme] => HTTPS
+    [appconnect_time_us] => 387292
+    [connect_time_us] => 51058
+    [namelookup_time_us] => 8993
+    [pretransfer_time_us] => 387684
+    [redirect_time_us] => 0
+    [starttransfer_time_us] => 1559221
+    [total_time_us] => 1559301
+    [effective_method] => POST
+)
+
+--------------------------------------------------------------------------------
+[2025-11-27 05:13:45] API Response
+{
+  "candidates": [
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "Chào bạn! Nếu bạn muốn mua máy xịn nhất hiện tại bên mình thì đó là chiếc Nokia black future với giá 999.999.000đ. Máy này hiện tại bên mình còn 10 sản phẩm. Bạn có muốn biết thêm thông tin gì về sản phẩm này không ạ?\n"
+          }
+        ],
+        "role": "model"
+      },
+      "finishReason": "STOP",
+      "avgLogprobs": -0.24214565052705653
+    }
+  ],
+  "usageMetadata": {
+    "promptTokenCount": 1021,
+    "candidatesTokenCount": 68,
+    "totalTokenCount": 1089,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 1021
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 68
+      }
+    ]
+  },
+  "modelVersion": "gemini-2.0-flash",
+  "responseId": "-M8naf6BJ7S20-kP-qqi4Q0"
+}
+
+--------------------------------------------------------------------------------
+[2025-11-27 05:13:45] API response decoded
+Array
+(
+    [candidates] => Array
+        (
+            [0] => Array
+                (
+                    [content] => Array
+                        (
+                            [parts] => Array
+                                (
+                                    [0] => Array
+                                        (
+                                            [text] => Chào bạn! Nếu bạn muốn mua máy xịn nhất hiện tại bên mình thì đó là chiếc Nokia black future với giá 999.999.000đ. Máy này hiện tại bên mình còn 10 sản phẩm. Bạn có muốn biết thêm thông tin gì về sản phẩm này không ạ?
+
+                                        )
+
+                                )
+
+                            [role] => model
+                        )
+
+                    [finishReason] => STOP
+                    [avgLogprobs] => -0.24214565052706
+                )
+
+        )
+
+    [usageMetadata] => Array
+        (
+            [promptTokenCount] => 1021
+            [candidatesTokenCount] => 68
+            [totalTokenCount] => 1089
+            [promptTokensDetails] => Array
+                (
+                    [0] => Array
+                        (
+                            [modality] => TEXT
+                            [tokenCount] => 1021
+                        )
+
+                )
+
+            [candidatesTokensDetails] => Array
+                (
+                    [0] => Array
+                        (
+                            [modality] => TEXT
+                            [tokenCount] => 68
+                        )
+
+                )
+
+        )
+
+    [modelVersion] => gemini-2.0-flash
+    [responseId] => -M8naf6BJ7S20-kP-qqi4Q0
+)
+
+--------------------------------------------------------------------------------
+[2025-11-27 05:13:45] Bot message extracted: Chào bạn! Nếu bạn muốn mua máy xịn nhất hiện tại bên mình thì đó là chiếc Nokia black future với giá 999.999.000đ. Máy này hiện tại bên mình còn 10 sản phẩm. Bạn có muốn biết thêm thông tin gì về sản phẩm này không ạ?
+
+--------------------------------------------------------------------------------
+[2025-11-27 05:13:45] SUCCESS - Sending response
+Array
+(
+    [success] => 1
+    [message] => Chào bạn! Nếu bạn muốn mua máy xịn nhất hiện tại bên mình thì đó là chiếc Nokia black future với giá 999.999.000đ. Máy này hiện tại bên mình còn 10 sản phẩm. Bạn có muốn biết thêm thông tin gì về sản phẩm này không ạ?
+
+    [timestamp] => 2025-11-27 05:13:45
+)
+
+--------------------------------------------------------------------------------
+[2025-11-27 05:13:45] === Chatbot API Request Completed Successfully ===
+--------------------------------------------------------------------------------

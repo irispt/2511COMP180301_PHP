@@ -109,10 +109,13 @@ class ChatbotManager {
                 this.addMessage('Error: ' + (data.error || 'Unable to process your request'), 'bot');
             }
         } catch (error) {
-            console.error('Chatbot error:', error);
+            console.error('=== Chatbot Error ===');
+            console.error('Error:', error);
+            console.error('Error message:', error.message);
+            console.error('Error stack:', error.stack);
             this.removeTypingIndicator();
             this.addMessage(
-                'Sorry, I encountered an error: ' + error.message + '. Please try again later.',
+                'Sorry, I encountered an error: ' + error.message + '. Please check console for details.',
                 'bot'
             );
         } finally {
