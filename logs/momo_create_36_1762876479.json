@@ -1,0 +1,30 @@
+{
+    "request": {
+        "partnerCode": "MOMO",
+        "accessKey": "F8BBA842ECF85",
+        "requestId": "1762876479",
+        "amount": "8690000",
+        "orderId": "36_1762876479",
+        "orderInfo": "Thanh toan don hang #36 - sadha đâsd",
+        "redirectUrl": "http:\/\/localhost\/Project-PHP\/momo_return.php",
+        "ipnUrl": "http:\/\/localhost\/Project-PHP\/momo_ipn.php",
+        "extraData": "eyJtYUhEIjoiMzYiLCJtYU5ndW9pRHVuZyI6IjEyIiwicGF5bWVudFR5cGUiOiJjYXB0dXJlV2FsbGV0In0=",
+        "requestType": "captureWallet",
+        "signature": "7873f8cbc343c9550ec166065c187dd4775a7724331110072bff85d0d7612018",
+        "lang": "vi"
+    },
+    "response": {
+        "partnerCode": "MOMO",
+        "orderId": "36_1762876479",
+        "requestId": "1762876479",
+        "amount": 8690000,
+        "responseTime": 1762876480383,
+        "message": "Thành công.",
+        "resultCode": 0,
+        "payUrl": "https:\/\/test-payment.momo.vn\/v2\/gateway\/pay?t=TU9NT3wzNl8xNzYyODc2NDc5&s=7860860594d12393ab067bd01e231504cf35bd57cbf5d51e7a0366a6b223c944",
+        "deeplink": "momo:\/\/app?action=payWithApp&isScanQR=false&serviceType=app&sid=TU9NT3wzNl8xNzYyODc2NDc5&v=3.0",
+        "qrCodeUrl": "momo:\/\/app?action=payWithApp&isScanQR=true&serviceType=qr&sid=TU9NT3wzNl8xNzYyODc2NDc5&v=3.0",
+        "deeplinkMiniApp": "momo:\/\/app?action=payWithApp&isScanQR=false&serviceType=miniapp&sid=TU9NT3wzNl8xNzYyODc2NDc5&v=3.0"
+    },
+    "timestamp": "2025-11-11 22:54:40"
+}
