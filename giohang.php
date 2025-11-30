@@ -26,13 +26,14 @@
 	<!-- our files -->
 	<!-- css -->
 	<link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="css/topnav.css">
-	<link rel="stylesheet" href="css/header.css">
+	<link rel="stylesheet" href="css/header_samsung.css">
 	<link rel="stylesheet" href="css/taikhoan.css">
-	<link rel="stylesheet" href="css/gioHang.css">
+	<link rel="stylesheet" href="css/gioHang_samsung.css">
+	<link rel="stylesheet" href="css/swal_custom.css">
 	<link rel="stylesheet" href="css/footer.css">
 	<!-- js -->
-	<script src="js/dungchung.js"></script>
+	<script src="js/dungchung.js?v=<?php echo time(); ?>"></script>
+	<script src="js/header_samsung.js?v=<?php echo time(); ?>"></script>
 	<script src="js/giohang.js?v=<?php echo time(); ?>"></script>
 
 	<?php require_once "php/echoHTML.php"; ?>
@@ -42,10 +43,10 @@
 <body>
 	<?php addTopNav(); ?>
 
-	<section style="min-height: 85vh">
+	<section style="min-height: 85vh; background: #f8f9fa;">
 		<?php addHeader(); ?>
 
-		<table class="listSanPham"></table>
+		<div class="listSanPham"></div>
 
 		<div class="modal fade" id="exampleModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog" role="document">

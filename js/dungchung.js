@@ -3,7 +3,10 @@ function khoiTao() {
     setupEventTaiKhoan();
     capNhatThongTinUser();
 
-    document.getElementsByClassName('cart-number')[0].innerHTML = getSoLuongGioHang();;
+    var cartNumber = document.getElementsByClassName('cart-number')[0];
+    if (cartNumber) {
+        cartNumber.innerHTML = getSoLuongGioHang();
+    }
 }
 
 // ========= Các hàm liên quan tới danh sách sản phẩm =========
@@ -140,11 +143,18 @@ function showTaiKhoan(show) {
 // Check xem có ai đăng nhập hay chưa (CurrentUser có hay chưa)
 // Hàm này chạy khi ấn vào nút tài khoản trên header
 function checkTaiKhoan() {
+    // Toggle account dropdown for Samsung header
+    const accountDropdown = document.querySelector('.account-dropdown');
+    if (accountDropdown) {
+        accountDropdown.classList.toggle('show');
+        return;
+    }
+    
+    // Fallback for old header
     getCurrentUser((data) => {
         if(!data) {
             showTaiKhoan(true);
         }
-
     }, (error) => {
         
     })
@@ -303,12 +313,23 @@ function checkDangXuat(onSuccess) {
 function capNhatThongTinUser() {
     getCurrentUser((data) => {
         if(!data) {
-            document.getElementById("btnTaiKhoan").innerHTML = '<i class="fa fa-user"></i> Tài khoản';
-            document.getElementsByClassName("menuMember")[0].classList.add('hide');
-
+            // User not logged in - show default
+            var accountHeader = document.getElementById('accountUserName');
+            if (accountHeader) {
+                var span = accountHeader.querySelector('span');
+                if (span) span.textContent = 'Tài khoản';
+            }
         } else {
-            document.getElementById("btnTaiKhoan").innerHTML = '<i class="fa fa-user"></i> ' + data['TaiKhoan'];
-            document.getElementsByClassName("menuMember")[0].classList.remove('hide');
+            // User logged in - show user name
+            var accountHeader = document.getElementById('accountUserName');
+            if (accountHeader) {
+                var span = accountHeader.querySelector('span');
+                if (span && data['ho'] && data['ten']) {
+                    span.textContent = data['ho'] + ' ' + data['ten'];
+                } else if (span && data['TaiKhoan']) {
+                    span.textContent = data['TaiKhoan'];
+                }
+            }
         }
     })
 }
@@ -534,7 +555,9 @@ function addTags(nameTag, link) {
 
     // Thêm <a> vừa tạo vào khung tìm kiếm
     var khung_tags = document.getElementsByClassName('tags')[0];
-    khung_tags.innerHTML += new_tag;
+    if (khung_tags) {
+        khung_tags.innerHTML += new_tag;
+    }
 }
 
 function smallmenu(number) {

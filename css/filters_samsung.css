@@ -1,0 +1,235 @@
+/* ===== SAMSUNG STYLE FILTERS ===== */
+
+.timNangCao {
+    background: #fff;
+    padding: 16px 20px;
+    margin: 20px 0;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.timNangCao > .flexContain {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+/* Filter buttons */
+.timNangCao .dropdown {
+    position: relative;
+}
+
+.timNangCao .dropbtn {
+    background: #fff;
+    color: #000;
+    border: 2px solid #e0e0e0;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.timNangCao .dropbtn:after {
+    content: "▼";
+    font-size: 10px;
+    margin-left: 4px;
+}
+
+.timNangCao .dropbtn:hover {
+    border-color: #999;
+    background: #f8f9fa;
+}
+
+.timNangCao .dropdown.show .dropbtn {
+    border-color: #000;
+    background: #000;
+    color: #fff;
+}
+
+.timNangCao .dropdown-content {
+    display: none;
+    position: absolute;
+    background: #fff;
+    min-width: 200px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    z-index: 1;
+    border-radius: 12px;
+    padding: 8px 0;
+    margin-top: 8px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.timNangCao .dropdown.show .dropdown-content {
+    display: block;
+}
+
+.timNangCao .dropdown-content label {
+    display: flex;
+    align-items: center;
+    padding: 10px 16px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #000;
+    transition: background 0.2s;
+}
+
+.timNangCao .dropdown-content label:hover {
+    background: #f8f9fa;
+}
+
+.timNangCao .dropdown-content input[type="checkbox"],
+.timNangCao .dropdown-content input[type="radio"] {
+    margin-right: 10px;
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+/* Price range slider */
+.timNangCao > div:last-child {
+    margin-top: 20px;
+}
+
+/* Ion Range Slider customization */
+.irs {
+    font-family: inherit;
+}
+
+.irs-line {
+    height: 6px;
+    background: #e0e0e0;
+    border-radius: 3px;
+}
+
+.irs-bar {
+    height: 6px;
+    background: #0066ff;
+    border-radius: 3px;
+}
+
+.irs-slider {
+    width: 20px;
+    height: 20px;
+    top: 22px;
+    background: #fff;
+    border: 3px solid #0066ff;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.irs-slider:hover {
+    transform: scale(1.1);
+}
+
+.irs-min, .irs-max {
+    display: none;
+}
+
+.irs-from, .irs-to, .irs-single {
+    background: #000;
+    color: #fff;
+    font-size: 13px;
+    padding: 4px 10px;
+    border-radius: 6px;
+}
+
+.irs-from:before, .irs-to:before, .irs-single:before {
+    border-top-color: #000;
+}
+
+/* Filter tags/pills (active filters display) */
+.filter-tags {
+    display: flex;
+    gap: 8px;
+    margin-top: 16px;
+    flex-wrap: wrap;
+}
+
+.filter-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #0066ff;
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.filter-tag button {
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 0;
+    margin-left: 4px;
+}
+
+.filter-tag button:hover {
+    opacity: 0.8;
+}
+
+.clear-all-filters {
+    background: #fff;
+    color: #0066ff;
+    border: 2px solid #0066ff;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.clear-all-filters:hover {
+    background: #0066ff;
+    color: #fff;
+}
+
+/* Result count */
+.result-count {
+    margin: 20px 0;
+    padding: 16px 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 500;
+    color: #000;
+}
+
+.result-count strong {
+    color: #0066ff;
+    font-size: 18px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .timNangCao > .flexContain {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .timNangCao .dropbtn {
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .timNangCao .dropdown-content {
+        position: static;
+        box-shadow: none;
+        border: 1px solid #e0e0e0;
+        margin-top: 8px;
+    }
+}

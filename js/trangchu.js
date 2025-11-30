@@ -1,18 +1,20 @@
-var SoLuongTrangHienThi = 4;
-var ProductsPerPage = 4;
+// DEPRECATED: Pagination variables - no longer using pagination
+// var SoLuongTrangHienThi = 4;
+// var ProductsPerPage = 4;
 var DanhSachSanPham = [];
 var DataCompany = [];
 var CurrentFilters = [];
 
 window.onload = function() {
+    console.log('Trangchu.js loaded - Starting initialization');
     khoiTao();
 
     // autocomplete cho khung tim kiem
     // autocomplete(document.getElementById('search-box'), list_products);
 
-    // thêm tags (từ khóa) vào khung tìm kiếm
-    var tags = ["Samsung", "iPhone", "Coolpad", "Oppo", "Mobi"];
-    for (var t of tags) addTags(t, "index.php?search=" + t);
+    // Tags - disabled for new header
+    // var tags = ["Samsung", "iPhone", "Coolpad", "Oppo", "Mobi"];
+    // for (var t of tags) addTags(t, "index.php?search=" + t);
 
     // =================== web 2 tìm nâng cao ================
     // Thêm hình vào banner
@@ -21,41 +23,27 @@ window.onload = function() {
     // Thêm danh sách hãng điện thoại
     setupCompany();
 
-    // slider chọn khoảng giá
-    $("#demoSlider").ionRangeSlider({
-        type: "double",
-        grid: true,
-        min: 0,
-        max: 50,
-        from: 0,
-        to: 50,
-        step: 0.5,
-        drag_interval: true,
-        postfix: " triệu",
-        prettify_enabled: true,
-        prettify_separator: ",",
-        values_separator: " →   ",
-        onFinish: function(data) {
-            filtersAjax(createFilters('price', data.from * 1E6 + "-" + data.to * 1E6));
-        },
-    });
+    // Setup dropdown toggles
+    setupDropdowns();
+
     // ==================== End ===========================
 
     // Thêm sản phẩm vào trang
     var filters = getFilterFromURL();
+    console.log('Filters from URL:', filters);
     if (filters.length) { // có filter
         filtersAjax(filters);
-
-    } else { // ko có filter : trang chính mặc định sẽ hiển thị các sp hot, ...
-        hienThiKhungSanPhamMacDinh();
+    } else { // ko có filter : hiển thị tất cả sản phẩm
+        console.log('No filters - showing all products');
+        hienThiTatCaSanPham();
     }
 
     // Thêm chọn mức giá
-    addPricesRange(0, 2000000);
-    addPricesRange(2000000, 4000000);
+    addPricesRange(0, 4000000);
     addPricesRange(4000000, 7000000);
-    addPricesRange(7000000, 13000000);
-    addPricesRange(13000000, 0);
+    addPricesRange(7000000, 15000000);
+    addPricesRange(15000000, 25000000);
+    addPricesRange(25000000, 0);
 
     // Thêm chọn khuyến mãi
     addPromotion('Nothing');
@@ -84,24 +72,48 @@ window.onload = function() {
 };
 
 // ============================== web2 ===========================
-function hienThiKhungSanPhamMacDinh() {
-
+function hienThiTatCaSanPham() {
     $('.contain-khungSanPham').html('');
+    
+    // Load all products without filters
+    filtersAjax([]);
+}
 
-    var soLuong = (window.innerWidth < 1200 ? 4 : 5); // màn hình nhỏ thì hiển thị 4 sp, to thì hiển thị 5
+function hienThiKhungSanPhamMacDinh() {
+    // Deprecated - now showing all products
+    hienThiTatCaSanPham();
+}
 
-    // Các màu
-    var yellow_red = ['#ff9c00', '#ec1f1f'];
-    var blue = ['#42bcf4', '#004c70'];
-    var green = ['#5de272', '#007012'];
-
-    // Thêm các khung sản phẩm
-    addKhungSanPham('NỔI BẬT NHẤT', yellow_red, ['star=0', 'sort=SoDanhGia-desc', 'page=0'], soLuong);
-    addKhungSanPham('SẢN PHẨM MỚI', blue, ['promo=moiramat', 'sort=SoDanhGia-desc', 'page=0'], soLuong);
-    addKhungSanPham('TRẢ GÓP 0%', yellow_red, ['promo=tragop', 'page=0'], soLuong);
-    addKhungSanPham('GIÁ SỐC ONLINE', green, ['promo=giareonline', 'page=0'], soLuong);
-    addKhungSanPham('GIẢM GIÁ LỚN', yellow_red, ['promo=giamgia', 'page=0'], soLuong);
-    addKhungSanPham('GIÁ RẺ CHO MỌI NHÀ', green, ['price=0-3000000', 'sort=DonGia-asc', 'page=0'], soLuong);
+// Setup dropdown toggles for filters
+function setupDropdowns() {
+    var dropdowns = document.querySelectorAll('.timNangCao .dropdown');
+    
+    dropdowns.forEach(function(dropdown) {
+        var button = dropdown.querySelector('.dropbtn');
+        
+        button.addEventListener('click', function(e) {
+            e.stopPropagation();
+            
+            // Close all other dropdowns
+            dropdowns.forEach(function(otherDropdown) {
+                if (otherDropdown !== dropdown) {
+                    otherDropdown.classList.remove('show');
+                }
+            });
+            
+            // Toggle current dropdown
+            dropdown.classList.toggle('show');
+        });
+    });
+    
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.timNangCao .dropdown')) {
+            dropdowns.forEach(function(dropdown) {
+                dropdown.classList.remove('show');
+            });
+        }
+    });
 }
 
 function setupBanner() {
@@ -127,9 +139,9 @@ function setupBanner() {
                     }
                     window.heroSwiper = new Swiper('.hero-swiper', {
                         slidesPerView: 1,
-                        spaceBetween: 30,
+                        spaceBetween: 0,
                         loop: true,
-                        centeredSlides: true,
+                        centeredSlides: false,
                         autoplay: {
                             delay: 3500,
                             disableOnInteraction: false
@@ -144,9 +156,9 @@ function setupBanner() {
                 }, 50);
             } else {
                 $('.owl-carousel').owlCarousel({
-                    items: 1.5,
-                    margin: 100,
-                    center: true,
+                    items: 1,
+                    margin: 0,
+                    center: false,
                     loop: true,
                     smartSpeed: 450,
                     nav: false,
@@ -156,8 +168,8 @@ function setupBanner() {
 
                     responsive: {
                         0: { items: 1 },
-                        600: { items: 1.25 },
-                        1000: { items: 1.5 }
+                        600: { items: 1 },
+                        1000: { items: 1 }
                     }
                 });
             }
@@ -223,7 +235,6 @@ function setupCompany() {
 
 function addProductsFromList(list, filters) {
     DanhSachSanPham = list; // lưu danh sách hiện thời
-    $("#divSoLuongSanPham").html("Tìm thấy <span>"+ list.length + "</span> sản phẩm")
 
     if (list.length == 0) {
         alertNotHaveProduct(false); // nếu length = 0 thì hiện ko có sản phẩm
@@ -232,61 +243,44 @@ function addProductsFromList(list, filters) {
         alertNotHaveProduct(true);
     }
 
-    var phantrang = 1;
-    for (var f of filters) {
-        var splitValue = f.split('=');
-        var left = splitValue[0];
-        if (left == 'page') {
-            phantrang = parseInt(splitValue[1]) || 1;
-            break;
-        }
-    }
-
-    if (phantrang) {
-        chuyenTrang(phantrang);
-
-    } else {
-        for (var p of list) {
-            addToWeb(p);
-        }
-    }
-
-    document.getElementById("divSoLuongSanPham").scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-    });
-}
-
-function chuyenTrang(vitriTrang) {
-    // xóa các sản phẩm trang cũ
-    $("#products li.sanPham").remove();
-    pushState(createFilters('page', vitriTrang));
-
-    var sanPhamDu = DanhSachSanPham.length % ProductsPerPage;
-    var soTrang = parseInt(DanhSachSanPham.length / ProductsPerPage) + (sanPhamDu ? 1 : 0);
-    var trangHienTai = parseInt(vitriTrang < soTrang ? vitriTrang : soTrang);
-
-    themNutPhanTrang(soTrang, trangHienTai);
-    var start = ProductsPerPage * (trangHienTai - 1);
-    var temp = copyObject(DanhSachSanPham);
-    temp = temp.splice(start, ProductsPerPage);
-    for (var p of temp) {
+    // Display all products without pagination
+    for (var p of list) {
         addToWeb(p);
     }
+
+    // Hide pagination
+    $('.pagination').hide();
 }
 
-function filtersAjax(filters, callback) {
-    if(filters.length == 0) {
-        removeAllFilters();
-        return;
-    }
+// DEPRECATED: No longer using pagination - showing all products
+// function chuyenTrang(vitriTrang) {
+//     $("#products li.sanPham").remove();
+//     pushState(createFilters('page', vitriTrang));
+//     var sanPhamDu = DanhSachSanPham.length % ProductsPerPage;
+//     var soTrang = parseInt(DanhSachSanPham.length / ProductsPerPage) + (sanPhamDu ? 1 : 0);
+//     var trangHienTai = parseInt(vitriTrang < soTrang ? vitriTrang : soTrang);
+//     themNutPhanTrang(soTrang, trangHienTai);
+//     var start = ProductsPerPage * (trangHienTai - 1);
+//     var temp = copyObject(DanhSachSanPham);
+//     temp = temp.splice(start, ProductsPerPage);
+//     for (var p of temp) {
+//         addToWeb(p);
+//     }
+// }
 
+function filtersAjax(filters, callback) {
     if (!callback) { // ko có call back -> mặc định là thêm vào contain-products
         // hiển thị list sản phẩm
         $(".contain-products").css("display", "block");
         $(".contain-khungSanPham").css("display", "none");
         $(".contain-products li.sanPham").remove(); // xóa các sản phẩm hiện tại
         $(".loader").css("display", "block");
+        
+        // Clear filter pills if no filters
+        if(filters.length == 0) {
+            CurrentFilters = [];
+            $(".choosedFilter").html("").css("display", "none");
+        }
     }
     $.ajax({
         type: "POST",
@@ -383,24 +377,25 @@ function addToWeb(p, ele, returnString) {
     // Tạo link tới chi tiết sản phẩm, chuyển tất cả ' ' thành '-'
     var chitietSp = 'chitietsanpham.php?' + p.MaSP;
 
-    // Cho mọi thứ vào tag <li>... </li>
+    // Samsung-style product card
     var newLi =
-        `<li class="sanPham" data-aos="fade-up">
+        `<li class="sanPham product-card" data-aos="fade-up">
         <a href="` + chitietSp + `">
-            <img data-src="` + p.HinhAnh + `" class="lazyload" alt="` + (p.TenSP || '') + `">
-            <h3>` + p.TenSP + `</h3>
-            <div class="price">
-                ` + pricediv + `
+            <div class="product-card-image">
+                <img data-src="` + p.HinhAnh + `" class="lazyload" alt="` + (p.TenSP || '') + `">
             </div>
-            <div class="ratingresult">
-                ` + rating + `
+            <div class="product-card-content">
+                <h3 class="product-card-title">` + p.TenSP + `</h3>
+                <div class="product-card-price">
+                    ` + pricediv + `
+                </div>
+                <div class="product-card-rating">
+                    ` + rating + `
+                </div>
             </div>
-            ` + (promoToWeb(p.KM.LoaiKM, giaTrikhuyenMai)) + `
-            <div class="tooltip">
-                <button class="themvaogio" onclick="return themVaoGioHang('` + p.MaSP + `', '` + p.TenSP + `');">
-                    <span class="tooltiptext" style="font-size: 15px;">Thêm vào giỏ</span>
-                    +
-                </button>
+            <div class="product-card-footer">
+                <button class="btn-buy-now" onclick="event.preventDefault(); return themVaoGioHang('` + p.MaSP + `', '` + p.TenSP + `');">Mua ngay</button>
+                <a href="` + chitietSp + `" class="btn-learn-more">Tìm hiểu thêm</a>
             </div>
         </a>
     </li>`;
@@ -467,32 +462,28 @@ function addKhungSanPham(tenKhung, color, filters, len) {
 }
 
 // Nút phân trang
-function themNutPhanTrang(soTrang, trangHienTai) {
-    var divPhanTrang = document.getElementsByClassName('pagination')[0];
-
-    divPhanTrang.innerHTML = ""; // xóa phân trang cũ
-
-    if (trangHienTai > 1) { // Nút về phân trang trước
-        divPhanTrang.innerHTML += `<a onclick="chuyenTrang(1)"><i class="fa fa-angle-double-left"></i></a>`;
-        divPhanTrang.innerHTML += `<a onclick="chuyenTrang(` + (trangHienTai - 1) + `)"><i class="fa fa-angle-left"></i></a>`;
-    }
-
-    if (soTrang > 1) { // Chỉ hiện nút phân trang nếu số trang > 1
-        for (var i = trangHienTai - (SoLuongTrangHienThi - 2); i <= trangHienTai + (SoLuongTrangHienThi - 2); i++) {
-            if (i == trangHienTai) {
-                divPhanTrang.innerHTML += `<a href="javascript:;" class="current">` + i + `</a>`
-
-            } else if (i >= 1 && i <= soTrang) {
-                divPhanTrang.innerHTML += `<a onclick="chuyenTrang(` + i + `)">` + i + `</a>`
-            }
-        }
-    }
-
-    if (trangHienTai < soTrang) { // Nút tới phân trang sau
-        divPhanTrang.innerHTML += `<a onclick="chuyenTrang(` + (trangHienTai + 1) + `)"><i class="fa fa-angle-right"></i></a>`;
-        divPhanTrang.innerHTML += `<a onclick="chuyenTrang(` + (soTrang) + `)"><i class="fa fa-angle-double-right"></i></a>`;
-    }
-}
+// DEPRECATED: No longer using pagination buttons
+// function themNutPhanTrang(soTrang, trangHienTai) {
+//     var divPhanTrang = document.getElementsByClassName('pagination')[0];
+//     divPhanTrang.innerHTML = "";
+//     if (trangHienTai > 1) {
+//         divPhanTrang.innerHTML += `<a onclick="chuyenTrang(1)"><i class="fa fa-angle-double-left"></i></a>`;
+//         divPhanTrang.innerHTML += `<a onclick="chuyenTrang(` + (trangHienTai - 1) + `)"><i class="fa fa-angle-left"></i></a>`;
+//     }
+//     if (soTrang > 1) {
+//         for (var i = trangHienTai - (SoLuongTrangHienThi - 2); i <= trangHienTai + (SoLuongTrangHienThi - 2); i++) {
+//             if (i == trangHienTai) {
+//                 divPhanTrang.innerHTML += `<a href="javascript:;" class="current">` + i + `</a>`
+//             } else if (i >= 1 && i <= soTrang) {
+//                 divPhanTrang.innerHTML += `<a onclick="chuyenTrang(` + i + `)">` + i + `</a>`
+//             }
+//         }
+//     }
+//     if (trangHienTai < soTrang) {
+//         divPhanTrang.innerHTML += `<a onclick="chuyenTrang(` + (trangHienTai + 1) + `)"><i class="fa fa-angle-right"></i></a>`;
+//         divPhanTrang.innerHTML += `<a onclick="chuyenTrang(` + (soTrang) + `)"><i class="fa fa-angle-double-right"></i></a>`;
+//     }
+// }
 
 function pushState(filters) {
     var str = "index.php?";
@@ -558,13 +549,10 @@ function craeteRemoveFilters(type) {
 
 function removeAllFilters() {
     CurrentFilters = [];
-    if($('.contain-khungSanPham').html() == "") {
-        hienThiKhungSanPhamMacDinh();
-    }
     pushState([]);
-    $(".choosedFilter").css("display", "none");
-    $(".contain-khungSanPham").css("display", "block");
-    $(".contain-products").css("display", "none");
+    $(".choosedFilter").html("").css("display", "none");
+    // Load all products without filters
+    filtersAjax([]);
 }
 
 // Thêm bộ lọc đã chọn vào html
@@ -577,14 +565,13 @@ function addChoosedFilter(type, textInside) {
 
 // Thêm nhiều bộ lọc cùng lúc 
 function addAllChoosedFilter(filters) {
-    // xóa tất cả bộ lọc cũ
-    $(".choosedFilter").html(`<a onclick="removeAllFilters()"><h3>Xóa bộ lọc <i class="fa fa-close"></i></h3></a>`);
-    $(".choosedFilter").css("display", "");
-
     // Lưu bộ lọc mới
     CurrentFilters = filters;
 
     if (filters.length) {
+        // xóa tất cả bộ lọc cũ và thêm nút "Xóa bộ lọc"
+        $(".choosedFilter").html(`<a onclick="removeAllFilters()"><h3>Xóa bộ lọc <i class="fa fa-close"></i></h3></a>`);
+        $(".choosedFilter").css("display", "");
 
         for (var f of filters) {
             var data = f.split('=');
@@ -675,28 +662,24 @@ function getNameFromLi(li) {
     return name;
 }
 
-function filterProductsName(ele) {
-    var filter = ele.value.toUpperCase();
-    var listLi = getLiArray();
-    var coSanPham = false;
-
-    var soLuong = 0;
-
-    for (var i = 0; i < listLi.length; i++) {
-        if (getNameFromLi(listLi[i]).toUpperCase().indexOf(filter) > -1 &&
-            soLuong < ProductsPerPage) {
-            showLi(listLi[i]);
-            coSanPham = true;
-            soLuong++;
-
-        } else {
-            hideLi(listLi[i]);
-        }
-    }
-
-    // Thông báo nếu không có sản phẩm
-    alertNotHaveProduct(coSanPham);
-}
+// DEPRECATED: In-page filtering by name - removed search bar
+// function filterProductsName(ele) {
+//     var filter = ele.value.toUpperCase();
+//     var listLi = getLiArray();
+//     var coSanPham = false;
+//     var soLuong = 0;
+//     for (var i = 0; i < listLi.length; i++) {
+//         if (getNameFromLi(listLi[i]).toUpperCase().indexOf(filter) > -1 &&
+//             soLuong < ProductsPerPage) {
+//             showLi(listLi[i]);
+//             coSanPham = true;
+//             soLuong++;
+//         } else {
+//             hideLi(listLi[i]);
+//         }
+//     }
+//     alertNotHaveProduct(coSanPham);
+// }
 
 // ================= Hàm khác ==================
 
@@ -731,10 +714,21 @@ function addCompany(img, nameCompany) {
 // Thêm chọn mức giá
 function addPricesRange(min, max) {
     var text = priceToString(min, max);
-    var a = `<a onclick="filtersAjax(createFilters('price', '` + (min + "-" + max) + `'))">` + text + `</a>`
+    var value = min + "-" + max;
+    var checkbox = `
+        <label>
+            <input type="checkbox" value="${value}" onchange="handlePriceFilter(this, '${value}')">
+            ${text}
+        </label>
+    `;
 
     document.getElementsByClassName('pricesRangeFilter')[0]
-        .getElementsByClassName('dropdown-content')[0].innerHTML += a;
+        .getElementsByClassName('dropdown-content')[0].innerHTML += checkbox;
+}
+
+// Handle price filter checkbox
+function handlePriceFilter(checkbox, value) {
+    filtersAjax(createFilters('price', value));
 }
 
 // Thêm chọn khuyến mãi
@@ -770,9 +764,9 @@ function searchToString(value) {
 
 // Chuyển mức giá về dạng chuỗi tiếng việt
 function priceToString(min, max) {
-    if (min == 0) return 'Dưới ' + max / 1E6 + ' triệu';
-    if (max == 0) return 'Trên ' + min / 1E6 + ' triệu';
-    return 'Từ ' + min / 1E6 + ' - ' + max / 1E6 + ' triệu';
+    if (min == 0) return 'Below ' + (max / 1000).toLocaleString() + '.000 ₫';
+    if (max == 0) return 'Above ' + (min / 1000).toLocaleString() + '.000 ₫';
+    return (min / 1000).toLocaleString() + ' ₫ - ' + (max / 1000).toLocaleString() + '.000 ₫';
 }
 
 // Chuyển khuyến mãi vễ dạng chuỗi tiếng việt

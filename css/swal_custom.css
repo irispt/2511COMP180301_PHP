@@ -1,0 +1,59 @@
+/* Custom SweetAlert2 styles for Samsung theme */
+.swal2-popup {
+    border-radius: 16px !important;
+    padding: 32px !important;
+}
+
+.swal2-title {
+    font-size: 20px !important;
+    font-weight: 600 !important;
+    color: #000 !important;
+    margin-bottom: 16px !important;
+}
+
+.swal2-html-container {
+    font-size: 14px !important;
+    color: #666 !important;
+    line-height: 1.6 !important;
+}
+
+.swal2-confirm-custom {
+    background: #0066ff !important;
+    color: #fff !important;
+    border: none !important;
+    border-radius: 25px !important;
+    padding: 12px 32px !important;
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    min-width: 120px !important;
+}
+
+.swal2-confirm-custom:hover {
+    background: #0052cc !important;
+}
+
+.swal2-cancel-custom {
+    background: #fff !important;
+    color: #666 !important;
+    border: 2px solid #e0e0e0 !important;
+    border-radius: 25px !important;
+    padding: 12px 32px !important;
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    min-width: 120px !important;
+}
+
+.swal2-cancel-custom:hover {
+    border-color: #999 !important;
+    color: #000 !important;
+    background: #f5f5f5 !important;
+}
+
+.swal2-actions {
+    gap: 12px !important;
+}
+
+.swal2-icon.swal2-warning {
+    border-color: #ffa500 !important;
+    color: #ffa500 !important;
+}

@@ -157,8 +157,8 @@
     }
 
     function phanTich_Filters() {
-        $filters = $_POST['filters'];
-        $ori = "SELECT * FROM SanPham WHERE TrangThai=1 AND SoLuong>0 AND ";
+        $filters = isset($_POST['filters']) ? $_POST['filters'] : [];
+        $ori = "SELECT * FROM SanPham WHERE TrangThai=1 AND SoLuong>0";
         $sql = $ori;
         $db = new DB_driver();
         $db->connect();
@@ -174,7 +174,7 @@
                     $dauBang[1] = explode("+", $dauBang[1]);
                     $dauBang[1] = join(" ", $dauBang[1]);
                     $dauBang[1] = mysqli_escape_string($db->__conn, $dauBang[1]);
-                    $sql .= ($sql==$ori?"":" AND ") . " TenSP LIKE '%$dauBang[1]%' ";
+                    $sql .= " AND TenSP LIKE '%$dauBang[1]%' ";
                     break;
 
                 case 'price':
@@ -185,17 +185,17 @@
                     // nếu giá đến = 0 thì cho giá đến = 100 triệu
                     if($giaDen == 0) $giaDen = 1000000000;
 
-                    $sql .= ($sql==$ori?"":" AND ") . " DonGia >= $giaTu AND DonGia <= $giaDen";
+                    $sql .= " AND DonGia >= $giaTu AND DonGia <= $giaDen";
                     break;
 
                 case 'company':
                     $companyID = $dauBang[1];
-                    $sql .= ($sql==$ori?"":" AND ") . " MaLSP='$companyID'";
+                    $sql .= " AND MaLSP='$companyID'";
                     break;
 
                 case 'star':
                     $soSao = (int)$dauBang[1];
-                    $sql .= ($sql==$ori?"":" AND ") . " SoSao >= $soSao";
+                    $sql .= " AND SoSao >= $soSao";
                     break;
 
                 case 'promo':
@@ -204,7 +204,7 @@
                     $khuyenmai = (new DB_driver())->get_row("SELECT * FROM KhuyenMai WHERE LoaiKM='$loaikm'");
                     $khuyenmaiID = $khuyenmai["MaKM"];
                     
-                    $sql .= ($sql==$ori?"":" AND ") . " MaKM='$khuyenmaiID'";
+                    $sql .= " AND MaKM='$khuyenmaiID'";
                     break;
 
                 case 'sort':
@@ -225,7 +225,6 @@
 
         // sort phải để cuối
         if($tenThanhPhanCanSort != null && $typeSort != null) {
-            $sql .= ($sql==$ori?" 1=1 ":""); // fix lỗi dư chữ AND 
             $sql .= " ORDER BY $tenThanhPhanCanSort $typeSort";
         }
 
