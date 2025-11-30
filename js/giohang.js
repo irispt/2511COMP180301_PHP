@@ -74,33 +74,27 @@ function getListFromDB(list) {
 }
 
 function addProductToTable(listProduct) {
-    var table = document.getElementsByClassName('listSanPham')[0];
+    var container = document.getElementsByClassName('listSanPham')[0];
 
-    var s = `
-		<tbody>
-			<tr>
-				<th>Sản phẩm</th>
-				<th>Giá</th>
-				<th>Số lượng</th>
-				<th>Thành tiền</th>
-				<th>Xóa</th>
-			</tr>`;
-
+    // Empty cart
     if (!listProduct || listProduct.length == 0) {
-        s += `
-			<tr>
-				<td colspan="7"> 
-					<h1 style="color:green; background-color:white; font-weight:bold; text-align:center; padding: 15px 0;">
-						Giỏ hàng trống !!
-					</h1> 
-				</td>
-			</tr>
-		`;
-        table.innerHTML = s;
+        container.innerHTML = `
+            <div class="cart-empty">
+                <i class="fa fa-shopping-cart"></i>
+                <h2>Giỏ hàng trống</h2>
+                <p>Hãy thêm sản phẩm vào giỏ hàng để tiếp tục mua sắm</p>
+                <a href="index.php" class="btn-continue-shopping">
+                    <i class="fa fa-arrow-left"></i> Tiếp tục mua sắm
+                </a>
+            </div>
+        `;
         return;
     }
 
     var totalPrice = 0;
+    var itemsHTML = '';
+
+    // Generate cart items
     for (var i = 0; i < listProduct.length; i++) {
         var p = listProduct[i];
         var masp = p.MaSP;
@@ -108,64 +102,120 @@ function addProductToTable(listProduct) {
         var price = Number(p.DonGia) - Number(p.KM.GiaTriKM);
         var thanhtien = price * soluongSp;
 
-        s += `
-			<tr>
-				<td class="noPadding">
-					<a target="_blank" href="chitietsanpham.html?` + p.MaSP + `" title="Xem chi tiết">
-						<img class="smallImg" src="` + p.HinhAnh + `">
-						<br>
-						` + p.TenSP + `
-					</a>
-				</td>
-				<td class="alignRight">` + numToString(price) + ` ₫</td>
-				<td class="soluong" >
-					<button onclick="giamSoLuong('` + masp + `')"><i class="fa fa-minus"></i></button>
-					<input size="1" onchange="capNhatSoLuongFromInput(this, '` + masp + `')" value=` + soluongSp + `>
-					<button onclick="tangSoLuong('` + masp + `')"><i class="fa fa-plus"></i></button>
-				</td>
-				<td class="alignRight">` + numToString(thanhtien) + ` ₫</td>
-				<td class="noPadding"> 
-					<i class="fa fa-trash" onclick="xoaSanPhamTrongGioHang(` + masp + ",'" + p.TenSP + `')"></i> 
-				</td>
-			</tr>
-		`;
-        // Chú ý nháy cho đúng ở giamsoluong, tangsoluong
+        itemsHTML += `
+            <div class="cart-item">
+                <img class="cart-item-image" src="${p.HinhAnh}" alt="${p.TenSP}">
+                
+                <div class="cart-item-info">
+                    <a href="chitietsanpham.php?${p.MaSP}" class="cart-item-name" title="Xem chi tiết">
+                        ${p.TenSP}
+                    </a>
+                    <div class="cart-item-sku">Mã SP: ${masp}</div>
+                    <div class="cart-item-stock">Còn hàng</div>
+                </div>
+                
+                <div class="cart-item-price">${numToString(price)} ₫</div>
+                
+                <div class="cart-item-quantity">
+                    <button onclick="giamSoLuong('${masp}')" ${soluongSp <= 1 ? 'disabled' : ''}>
+                        <i class="fa fa-minus"></i>
+                    </button>
+                    <input type="number" value="${soluongSp}" min="1" max="99" 
+                           onchange="capNhatSoLuongFromInput(this, '${masp}')">
+                    <button onclick="tangSoLuong('${masp}')">
+                        <i class="fa fa-plus"></i>
+                    </button>
+                </div>
+                
+                <div class="cart-item-total">${numToString(thanhtien)} ₫</div>
+                
+                <div class="cart-item-remove">
+                    <button onclick="xoaSanPhamTrongGioHang(${masp}, '${p.TenSP}')">
+                        <i class="fa fa-trash-o"></i>
+                    </button>
+                </div>
+            </div>
+        `;
+
         totalPrice += thanhtien;
     }
 
     TotalPrice = totalPrice;
 
-    s += `
-			<tr style="font-weight:bold; text-align:center">
-				<td colspan="3">TỔNG TIỀN: </td>
-				<td class="alignRight" style="color:red">` + numToString(totalPrice) + ` ₫</td>
-				<td></td>
-			</tr>
-			<tr>
-				<td colspan="5">
-					<button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onclick="thanhToan()">
-						<i class="fa fa-usd"></i> Thanh Toán 
-					</button> 
-					<button class="btn btn-danger" onclick="xoaHet()">
-						<i class="fa fa-trash-o"></i> Xóa hết 
-					</button>
-				</td>
-			</tr>
-		</tbody>
-	`;
-
-    table.innerHTML = s;
+    // Render cart layout
+    container.innerHTML = `
+        <div class="cart-container">
+            <div class="cart-header">
+                <h1>Giỏ hàng</h1>
+                <div class="cart-item-count">${listProduct.length} sản phẩm</div>
+            </div>
+            
+            <div class="cart-content">
+                <div class="cart-items">
+                    ${itemsHTML}
+                </div>
+                
+                <div class="cart-summary">
+                    <h2>Bản tóm tắt</h2>
+                    
+                    <div class="promo-code">
+                        <div class="promo-code-title">Mã giảm giá</div>
+                        <div class="promo-code-input">
+                            <input type="text" placeholder="Nhập mã giảm giá">
+                            <button>Áp dụng</button>
+                        </div>
+                    </div>
+                    
+                    <div class="summary-row">
+                        <span class="summary-row-label">Tạm tính (${listProduct.length} sản phẩm)</span>
+                        <span class="summary-row-value">${numToString(totalPrice)} ₫</span>
+                    </div>
+                    
+                    <div class="summary-row">
+                        <span class="summary-row-label">Phí vận chuyển</span>
+                        <span class="summary-row-value">Miễn phí</span>
+                    </div>
+                    
+                    <div class="summary-divider"></div>
+                    
+                    <div class="summary-total">
+                        <span class="summary-total-label">Tổng cộng</span>
+                        <span class="summary-total-value">${numToString(totalPrice)} ₫</span>
+                    </div>
+                    
+                    <div class="summary-note">
+                        (Đã bao gồm VAT nếu có)
+                    </div>
+                    
+                    <div class="cart-actions">
+                        <button class="btn-checkout" onclick="window.location.href='checkout.php'">
+                            Thanh Toán
+                        </button>
+                        <button class="btn-clear" onclick="xoaHet()">
+                            Xóa tất cả
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
 }
 
 function xoaSanPhamTrongGioHang(masp, tensp) {
 
     Swal.fire({
-        type: "question",
-        title: "Xác nhận?",
-        html: "Bạn có chắc muốn xóa sản phẩm <b style='color:red'>" + tensp + "</b> ?",
-        grow: "row",
-        cancelButtonText: 'Hủy',
-        showCancelButton: true
+        title: "Xóa mặt hàng khỏi giỏ hàng?",
+        html: "Bạn sắp xóa <b>" + tensp + "</b> khỏi giỏ hàng của mình. Bạn có chắc chắn muốn tiếp tục với lựa chọn này không?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: 'Đúng',
+        cancelButtonText: 'Không',
+        confirmButtonColor: '#0066ff',
+        cancelButtonColor: '#fff',
+        customClass: {
+            confirmButton: 'swal2-confirm-custom',
+            cancelButton: 'swal2-cancel-custom'
+        }
 
     }).then((result) => {
         if (result.value) {
@@ -386,14 +436,18 @@ function xoaHet() {
 
     if (listProduct.length) {
         Swal.fire({
-            title: 'Xóa Hết?',
-            text: 'Bạn có chắc muốn xóa hết sản phẩm trong giỏ! Việc này không thể được hoàn lại.',
-            type: 'warning',
-            grow: 'row',
-            confirmButtonText: 'Tôi đồng ý',
-            cancelButtonText: 'Hủy',
-            showCancelButton: true
-
+            title: 'Xóa mặt hàng khỏi giỏ hàng?',
+            html: 'Bạn sắp xóa <b>tất cả sản phẩm</b> khỏi giỏ hàng của mình. Bạn có chắc chắn muốn tiếp tục với lựa chọn này không?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Đúng',
+            cancelButtonText: 'Không',
+            confirmButtonColor: '#0066ff',
+            cancelButtonColor: '#fff',
+            customClass: {
+                confirmButton: 'swal2-confirm-custom',
+                cancelButton: 'swal2-cancel-custom'
+            }
         }).then((result) => {
             if (result.value) {
                 listProduct = [];

@@ -21,14 +21,14 @@
     <!-- our files -->
     <!-- css -->
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/topnav.css">
-    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/header_samsung.css">
     <link rel="stylesheet" href="css/taikhoan.css">
     <link rel="stylesheet" href="css/chitietsanpham.css">
     <link rel="stylesheet" href="css/footer.css">
     <!-- js -->
-    <script src="js/dungchung.js"></script>
-    <script src="js/chitietsanpham.js"></script>
+    <script src="js/dungchung.js?v=<?php echo time(); ?>"></script>
+    <script src="js/header_samsung.js?v=<?php echo time(); ?>"></script>
+    <script src="js/chitietsanpham.js?v=<?php echo time(); ?>"></script>
 
     <?php 
         require_once "php/echoHTML.php";

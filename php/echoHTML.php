@@ -1,91 +1,79 @@
 <?php
 session_start();
 
-// Thêm topnav vào trang
+// Thêm topnav vào trang (Samsung style - minimalist)
 function addTopNav()
 {
-    echo '
-	<div class="top-nav group">
-        <section>
-            <div class="social-top-nav">
-                <a class="fa fa-facebook"></a>
-                <a class="fa fa-twitter"></a>
-                <a class="fa fa-google"></a>
-                <a class="fa fa-youtube"></a>
-            </div> <!-- End Social Topnav -->
-
-            <ul class="top-nav-quicklink flexContain">
-                <li><a href="index.php"><i class="fa fa-home"></i> Trang chủ</a></li>
-                <li><a href=""><i class="fa fa-newspaper-o"></i> Tin tức</a></li>
-                <li><a href=""><i class="fa fa-handshake-o"></i> Tuyển dụng</a></li>
-                <li><a href=""><i class="fa fa-info-circle"></i> Giới thiệu</a></li>
-                <li><a href=""><i class="fa fa-wrench"></i> Bảo hành</a></li>
-                <li><a href=""><i class="fa fa-phone"></i> Liên hệ</a></li>
-            </ul> <!-- End Quick link -->
-        </section><!-- End Section -->
-    </div><!-- End Top Nav  -->';
+    // Top nav removed - clean minimal design
 }
 
-// Thêm header
+// Thêm header Samsung style
 function addHeader()
 {
     echo '        
-	<div class="header group">
-        <div class="smallmenu" id="openmenu" onclick="smallmenu(1)">≡</div>
-        <div style="display: none;" class="smallmenu" id="closemenu" onclick="smallmenu(0)">×</div>
-        <div class="logo">
-            <a href="index.php">
-                <img src="img/logo.jpg" alt="Trang chủ Smartphone Store" title="Trang chủ Smartphone Store">
-            </a>
-        </div> <!-- End Logo -->
+	<div class="header-samsung">
+        <div class="header-container">
+            <!-- Logo bên trái -->
+            <div class="header-logo">
+                <a href="index.php">
+                    <img src="img/logo.jpg" alt="Smartphone Store" title="Smartphone Store">
+                </a>
+            </div>
 
-        <div class="content">
-            <div class="search-header">
-                <form class="input-search" method="get" action="index.php">
-                    <div class="autocomplete">
-                        <input id="search-box" name="search" autocomplete="off" type="text" placeholder="Nhập từ khóa tìm kiếm...">
-                        <button type="submit">
-                            <i class="fa fa-search"></i>
-                            Tìm kiếm
-                        </button>
+            <!-- Menu chính ở giữa -->
+            <nav class="header-nav">
+                <ul class="nav-menu">
+                    <li><a href="index.php" class="nav-link">Trang chủ</a></li>
+                    <li><a href="?category=new" class="nav-link">Sản phẩm mới</a></li>
+                    <li><a href="?featured=1" class="nav-link">Nổi bật nhất</a></li>
+                    <li><a href="?promotion=1" class="nav-link">Khuyến mãi</a></li>
+                    <li><a href="?installment=1" class="nav-link">Trả góp</a></li>
+                    <li><a href="?category=accessories" class="nav-link">Phụ kiện</a></li>
+                    <li><a href="#support" class="nav-link">Hỗ trợ</a></li>
+                </ul>
+            </nav>
+
+            <!-- Tools bên phải -->
+            <div class="header-tools">
+                <!-- Search -->
+                <div class="tool-search">
+                    <button class="search-toggle" onclick="toggleSearch()">
+                        <i class="fa fa-search"></i>
+                    </button>
+                    <div class="search-dropdown" id="searchDropdown" style="display: none;">
+                        <form method="get" action="index.php">
+                            <input type="text" name="search" placeholder="Tìm kiếm..." autocomplete="off">
+                            <button type="submit"><i class="fa fa-search"></i></button>
+                        </form>
                     </div>
-                </form> <!-- End Form search -->
-                <div class="tags">
-                    <strong>Từ khóa: </strong>
                 </div>
-            </div> <!-- End Search header -->
 
-            <div class="tools-member">
-                <div class="member">
-                    <a onclick="checkTaiKhoan()" id="btnTaiKhoan">
-                        <i class="fa fa-user"></i>
-                        Tài khoản
+                <!-- Cart -->
+                <div class="tool-cart">
+                    <a href="giohang.php" class="cart-link">
+                        <i class="fa fa-shopping-cart"></i>
+                        <span class="cart-badge cart-number" x-data="{ count: 0 }" x-text="count"></span>
                     </a>
-                    <div class="menuMember hide">
-                        <a href="nguoidung.php">Trang người dùng</a>
-                        <a onclick="checkDangXuat();">Đăng xuất</a>
-                    </div>
-                </div> <!-- End Member -->
+                </div>
 
-                <div class="cart">
-                    <div x-data="{ count: 0 }" class="cart">
-                        <a href="giohang.php">
-                            <i class="fa fa-shopping-cart"></i>
-                            <span>Giỏ hàng</span>
-                            <span class="cart-number" x-text="count"></span>
-                        </a>
+                <!-- User Account -->
+                <div class="tool-account">
+                    <button class="account-toggle" onclick="checkTaiKhoan()" id="btnTaiKhoan">
+                        <i class="fa fa-user-circle-o"></i>
+                    </button>
+                    <div class="account-dropdown menuMember">
+                        <div class="account-header" id="accountUserName">
+                            <i class="fa fa-user"></i>
+                            <span>Tài khoản</span>
+                        </div>
+                        <a href="nguoidung.php">Tài khoản của tôi</a>
+                        <a href="nguoidung.php?tab=orders">Sản phẩm đã mua</a>
+                        <a onclick="checkDangXuat();" style="cursor: pointer;">Đăng xuất</a>
                     </div>
-                </div> <!-- End Cart -->
-
-                <!-- <div class="check-order">
-                    <a>
-                        <i class="fa fa-truck"></i>
-                        <span>Đơn hàng</span>
-                    </a>
-                </div>  -->
-            </div><!-- End Tools Member -->
-        </div> <!-- End Content -->
-    </div> <!-- End Header -->';
+                </div>
+            </div>
+        </div>
+    </div>';
 }
 
 // thêm home
@@ -116,7 +104,7 @@ function addHome()
     <div class="timNangCao">
         <div class="flexContain">
             <div class="pricesRangeFilter dropdown">
-                <button class="dropbtn">Giá tiền</button>
+                <button class="dropbtn">Khoảng Giá</button>
                 <div class="dropdown-content"></div>
             </div>
 
@@ -136,9 +124,16 @@ function addHome()
             </div>            
         </div>
         
-        <div>
-            <input type="text" class="js-range-slider" id="demoSlider">
+        <!-- Active filters display -->
+        <div class="filter-tags" id="activeFilters" style="display:none;">
+            <!-- Active filter tags will be inserted here by JS -->
         </div>
+
+        <!-- Result count -->
+        <div class="result-count" id="resultCount" style="display:none;">
+            Tìm thấy <strong>0</strong> sản phẩm
+        </div>
+    </div>
 
     </div> <!-- End khung chọn bộ lọc -->
 
@@ -147,17 +142,15 @@ function addHome()
 
     <!-- Mặc định mới vào trang sẽ ẩn đi, nế có filter thì mới hiện lên -->
     <div class="contain-products" style="display:none">
-    <div class="filterName">
-        <div id="divSoLuongSanPham"></div>
-        <input type="text" placeholder="Lọc trong trang theo tên..." onkeyup="filterProductsName(this)">
-        <div class="loader" style="display: none"></div>
-    </div> <!-- End FilterName -->
+    <!-- Removed filterName div with product count -->
+    <div class="loader" style="display: none"></div>
 
-    <ul id="products" class="homeproduct group flexContain">
-        <div id="khongCoSanPham">
-            <i class="fa fa-times-circle"></i>
-            Không có sản phẩm nào
-        </div> <!-- End Khong co san pham -->
+    <div id="khongCoSanPham">
+        <i class="fa fa-times-circle"></i>
+        Không có sản phẩm nào
+    </div> <!-- End Khong co san pham -->
+
+    <ul id="products" class="products-grid">
     </ul><!-- End products -->
 
     <div class="pagination"></div>

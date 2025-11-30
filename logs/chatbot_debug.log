@@ -2731,3 +2731,774 @@ Array
 --------------------------------------------------------------------------------
 [2025-11-27 05:13:45] === Chatbot API Request Completed Successfully ===
 --------------------------------------------------------------------------------
+[2025-11-29 06:15:16] === Chatbot API Request Started ===
+--------------------------------------------------------------------------------
+[2025-11-29 06:15:16] Request method: POST
+--------------------------------------------------------------------------------
+[2025-11-29 06:15:16] API Key configured: YES
+--------------------------------------------------------------------------------
+[2025-11-29 06:15:16] Raw input received
+{"message":"hi"}
+--------------------------------------------------------------------------------
+[2025-11-29 06:15:16] Decoded input
+Array
+(
+    [message] => hi
+)
+
+--------------------------------------------------------------------------------
+[2025-11-29 06:15:16] User message: hi
+--------------------------------------------------------------------------------
+[2025-11-29 06:15:16] API URL: https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash:generateContent?key=AIzaSyCZ1sd5HJscKh-yK7heiHSYh960pB8Lkxo
+--------------------------------------------------------------------------------
+[2025-11-29 06:15:16] Model: gemini-2.0-flash
+--------------------------------------------------------------------------------
+[2025-11-29 06:15:17] System prompt prepared
+Bạn là trợ lý AI thông minh cho website bán điện thoại di động tại Việt Nam. Nhiệm vụ của bạn:
+1. Tư vấn sản phẩm điện thoại dựa trên thông tin được cung cấp
+2. Giải đáp thắc mắc về đơn hàng, giao hàng, bảo hành
+3. Hỗ trợ khách hàng một cách thân thiện, chuyên nghiệp
+4. Luôn trả lời bằng tiếng Việt
+5. Nếu khách hỏi về sản phẩm cụ thể, hãy dựa vào dữ liệu sản phẩm có sẵn đ�...
+--------------------------------------------------------------------------------
+[2025-11-29 06:15:17] Request body prepared
+Array
+(
+    [contents] => Array
+        (
+            [0] => Array
+                (
+                    [role] => user
+                    [parts] => Array
+                        (
+                            [0] => Array
+                                (
+                                    [text] => Bạn là trợ lý AI thông minh cho website bán điện thoại di động tại Việt Nam. Nhiệm vụ của bạn:
+1. Tư vấn sản phẩm điện thoại dựa trên thông tin được cung cấp
+2. Giải đáp thắc mắc về đơn hàng, giao hàng, bảo hành
+3. Hỗ trợ khách hàng một cách thân thiện, chuyên nghiệp
+4. Luôn trả lời bằng tiếng Việt
+5. Nếu khách hỏi về sản phẩm cụ thể, hãy dựa vào dữ liệu sản phẩm có sẵn để tư vấn
+
+Dưới đây là danh sách sản phẩm hiện có trên website:
+
+- iPhone 16 Pro Max
+  + Giá: 34.990.000đ
+  + Loại: Apple
+  + Còn hàng: 25 sản phẩm
+
+- iPhone 16 Pro
+  + Giá: 28.990.000đ
+  + Loại: Apple
+  + Còn hàng: 30 sản phẩm
+
+- iPhone 16 Plus
+  + Giá: 25.990.000đ
+  + Loại: Apple
+  + Còn hàng: 35 sản phẩm
+
+- iPhone 16
+  + Giá: 22.990.000đ
+  + Loại: Apple
+  + Còn hàng: 40 sản phẩm
+
+- iPhone 15 Pro Max
+  + Giá: 29.990.000đ
+  + Loại: Apple
+  + Còn hàng: 20 sản phẩm
+
+- iPhone 15
+  + Giá: 19.990.000đ
+  + Loại: Apple
+  + Còn hàng: 45 sản phẩm
+
+- Samsung Galaxy S24 Ultra
+  + Giá: 33.990.000đ
+  + Loại: SamSung
+  + Còn hàng: 28 sản phẩm
+
+- Samsung Galaxy S24 Plus
+  + Giá: 27.990.000đ
+  + Loại: SamSung
+  + Còn hàng: 32 sản phẩm
+
+- Samsung Galaxy S24
+  + Giá: 22.990.000đ
+  + Loại: SamSung
+  + Còn hàng: 38 sản phẩm
+
+- Samsung Galaxy Z Fold6
+  + Giá: 44.990.000đ
+  + Loại: SamSung
+  + Còn hàng: 15 sản phẩm
+
+- Samsung Galaxy Z Flip6
+  + Giá: 26.990.000đ
+  + Loại: SamSung
+  + Còn hàng: 22 sản phẩm
+
+- Samsung Galaxy A55 5G
+  + Giá: 11.990.000đ
+  + Loại: SamSung
+  + Còn hàng: 50 sản phẩm
+
+- Xiaomi 14 Ultra
+  + Giá: 29.990.000đ
+  + Loại: Xiaomi
+  + Còn hàng: 20 sản phẩm
+
+- Xiaomi 14
+  + Giá: 19.990.000đ
+  + Loại: Xiaomi
+  + Còn hàng: 35 sản phẩm
+
+- Xiaomi Redmi Note 13 Pro+
+  + Giá: 9.990.000đ
+  + Loại: Xiaomi
+  + Còn hàng: 60 sản phẩm
+
+- Xiaomi Redmi Note 13 Pro
+  + Giá: 7.990.000đ
+  + Loại: Xiaomi
+  + Còn hàng: 70 sản phẩm
+
+- OPPO Find X7 Ultra
+  + Giá: 27.990.000đ
+  + Loại: Oppo
+  + Còn hàng: 18 sản phẩm
+
+- OPPO Reno12 Pro
+  + Giá: 12.990.000đ
+  + Loại: Oppo
+  + Còn hàng: 45 sản phẩm
+
+- OPPO A3 Pro 5G
+  + Giá: 7.990.000đ
+  + Loại: Oppo
+  + Còn hàng: 55 sản phẩm
+
+- Vivo X100 Pro
+  + Giá: 25.990.000đ
+  + Loại: Vivo
+  + Còn hàng: 22 sản phẩm
+
+
+Hãy sử dụng thông tin trên để tư vấn chính xác cho khách hàng.
+
+
+User: hi
+                                )
+
+                        )
+
+                )
+
+        )
+
+    [generationConfig] => Array
+        (
+            [temperature] => 0.7
+            [topP] => 0.95
+            [topK] => 40
+            [maxOutputTokens] => 500
+        )
+
+)
+
+--------------------------------------------------------------------------------
+[2025-11-29 06:15:17] Initiating cURL request...
+--------------------------------------------------------------------------------
+[2025-11-29 06:15:17] cURL completed
+--------------------------------------------------------------------------------
+[2025-11-29 06:15:17] HTTP Code: 403
+--------------------------------------------------------------------------------
+[2025-11-29 06:15:17] cURL Error: None
+--------------------------------------------------------------------------------
+[2025-11-29 06:15:17] cURL Info
+Array
+(
+    [url] => https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash:generateContent?key=AIzaSyCZ1sd5HJscKh-yK7heiHSYh960pB8Lkxo
+    [content_type] => application/json; charset=UTF-8
+    [http_code] => 403
+    [header_size] => 389
+    [request_size] => 3882
+    [filetime] => -1
+    [ssl_verify_result] => 0
+    [redirect_count] => 0
+    [total_time] => 0.455355
+    [namelookup_time] => 0.025981
+    [connect_time] => 0.063777
+    [pretransfer_time] => 0.373056
+    [size_upload] => 3671
+    [size_download] => 155
+    [speed_download] => 340
+    [speed_upload] => 8061
+    [download_content_length] => -1
+    [upload_content_length] => 3671
+    [starttransfer_time] => 0.455309
+    [redirect_time] => 0
+    [redirect_url] => 
+    [primary_ip] => 2404:6800:4005:81f::200a
+    [certinfo] => Array
+        (
+        )
+
+    [primary_port] => 443
+    [local_ip] => 2402:800:637c:3746:2c18:8279:276a:71db
+    [local_port] => 52318
+    [http_version] => 3
+    [protocol] => 2
+    [ssl_verifyresult] => 0
+    [scheme] => HTTPS
+    [appconnect_time_us] => 372805
+    [connect_time_us] => 63777
+    [namelookup_time_us] => 25981
+    [pretransfer_time_us] => 373056
+    [redirect_time_us] => 0
+    [starttransfer_time_us] => 455309
+    [total_time_us] => 455355
+    [effective_method] => POST
+)
+
+--------------------------------------------------------------------------------
+[2025-11-29 06:15:17] API Response
+{
+  "error": {
+    "code": 403,
+    "message": "Your API key was reported as leaked. Please use another API key.",
+    "status": "PERMISSION_DENIED"
+  }
+}
+
+--------------------------------------------------------------------------------
+[2025-11-29 06:15:17] API ERROR - HTTP Code: 403
+--------------------------------------------------------------------------------
+[2025-11-29 06:15:17] Error response decoded
+Array
+(
+    [error] => Array
+        (
+            [code] => 403
+            [message] => Your API key was reported as leaked. Please use another API key.
+            [status] => PERMISSION_DENIED
+        )
+
+)
+
+--------------------------------------------------------------------------------
+[2025-11-29 06:15:17] Final error message: Your API key was reported as leaked. Please use another API key.
+--------------------------------------------------------------------------------
+[2025-11-29 06:24:45] === Chatbot API Request Started ===
+--------------------------------------------------------------------------------
+[2025-11-29 06:24:45] Request method: POST
+--------------------------------------------------------------------------------
+[2025-11-29 06:24:45] API Key configured: YES
+--------------------------------------------------------------------------------
+[2025-11-29 06:24:45] Raw input received
+{"message":"hi"}
+--------------------------------------------------------------------------------
+[2025-11-29 06:24:45] Decoded input
+Array
+(
+    [message] => hi
+)
+
+--------------------------------------------------------------------------------
+[2025-11-29 06:24:45] User message: hi
+--------------------------------------------------------------------------------
+[2025-11-29 06:24:45] API URL: https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash:generateContent?key=AIzaSyCZ1sd5HJscKh-yK7heiHSYh960pB8Lkxo
+--------------------------------------------------------------------------------
+[2025-11-29 06:24:45] Model: gemini-2.0-flash
+--------------------------------------------------------------------------------
+[2025-11-29 06:24:45] System prompt prepared
+Bạn là trợ lý AI thông minh cho website bán điện thoại di động tại Việt Nam. Nhiệm vụ của bạn:
+1. Tư vấn sản phẩm điện thoại dựa trên thông tin được cung cấp
+2. Giải đáp thắc mắc về đơn hàng, giao hàng, bảo hành
+3. Hỗ trợ khách hàng một cách thân thiện, chuyên nghiệp
+4. Luôn trả lời bằng tiếng Việt
+5. Nếu khách hỏi về sản phẩm cụ thể, hãy dựa vào dữ liệu sản phẩm có sẵn đ�...
+--------------------------------------------------------------------------------
+[2025-11-29 06:24:45] Request body prepared
+Array
+(
+    [contents] => Array
+        (
+            [0] => Array
+                (
+                    [role] => user
+                    [parts] => Array
+                        (
+                            [0] => Array
+                                (
+                                    [text] => Bạn là trợ lý AI thông minh cho website bán điện thoại di động tại Việt Nam. Nhiệm vụ của bạn:
+1. Tư vấn sản phẩm điện thoại dựa trên thông tin được cung cấp
+2. Giải đáp thắc mắc về đơn hàng, giao hàng, bảo hành
+3. Hỗ trợ khách hàng một cách thân thiện, chuyên nghiệp
+4. Luôn trả lời bằng tiếng Việt
+5. Nếu khách hỏi về sản phẩm cụ thể, hãy dựa vào dữ liệu sản phẩm có sẵn để tư vấn
+
+Dưới đây là danh sách sản phẩm hiện có trên website:
+
+- iPhone 16 Pro Max
+  + Giá: 34.990.000đ
+  + Loại: Apple
+  + Còn hàng: 25 sản phẩm
+
+- iPhone 16 Pro
+  + Giá: 28.990.000đ
+  + Loại: Apple
+  + Còn hàng: 30 sản phẩm
+
+- iPhone 16 Plus
+  + Giá: 25.990.000đ
+  + Loại: Apple
+  + Còn hàng: 35 sản phẩm
+
+- iPhone 16
+  + Giá: 22.990.000đ
+  + Loại: Apple
+  + Còn hàng: 40 sản phẩm
+
+- iPhone 15 Pro Max
+  + Giá: 29.990.000đ
+  + Loại: Apple
+  + Còn hàng: 20 sản phẩm
+
+- iPhone 15
+  + Giá: 19.990.000đ
+  + Loại: Apple
+  + Còn hàng: 45 sản phẩm
+
+- Samsung Galaxy S24 Ultra
+  + Giá: 33.990.000đ
+  + Loại: SamSung
+  + Còn hàng: 28 sản phẩm
+
+- Samsung Galaxy S24 Plus
+  + Giá: 27.990.000đ
+  + Loại: SamSung
+  + Còn hàng: 32 sản phẩm
+
+- Samsung Galaxy S24
+  + Giá: 22.990.000đ
+  + Loại: SamSung
+  + Còn hàng: 38 sản phẩm
+
+- Samsung Galaxy Z Fold6
+  + Giá: 44.990.000đ
+  + Loại: SamSung
+  + Còn hàng: 15 sản phẩm
+
+- Samsung Galaxy Z Flip6
+  + Giá: 26.990.000đ
+  + Loại: SamSung
+  + Còn hàng: 22 sản phẩm
+
+- Samsung Galaxy A55 5G
+  + Giá: 11.990.000đ
+  + Loại: SamSung
+  + Còn hàng: 50 sản phẩm
+
+- Xiaomi 14 Ultra
+  + Giá: 29.990.000đ
+  + Loại: Xiaomi
+  + Còn hàng: 20 sản phẩm
+
+- Xiaomi 14
+  + Giá: 19.990.000đ
+  + Loại: Xiaomi
+  + Còn hàng: 35 sản phẩm
+
+- Xiaomi Redmi Note 13 Pro+
+  + Giá: 9.990.000đ
+  + Loại: Xiaomi
+  + Còn hàng: 60 sản phẩm
+
+- Xiaomi Redmi Note 13 Pro
+  + Giá: 7.990.000đ
+  + Loại: Xiaomi
+  + Còn hàng: 70 sản phẩm
+
+- OPPO Find X7 Ultra
+  + Giá: 27.990.000đ
+  + Loại: Oppo
+  + Còn hàng: 18 sản phẩm
+
+- OPPO Reno12 Pro
+  + Giá: 12.990.000đ
+  + Loại: Oppo
+  + Còn hàng: 45 sản phẩm
+
+- OPPO A3 Pro 5G
+  + Giá: 7.990.000đ
+  + Loại: Oppo
+  + Còn hàng: 55 sản phẩm
+
+- Vivo X100 Pro
+  + Giá: 25.990.000đ
+  + Loại: Vivo
+  + Còn hàng: 22 sản phẩm
+
+
+Hãy sử dụng thông tin trên để tư vấn chính xác cho khách hàng.
+
+
+User: hi
+                                )
+
+                        )
+
+                )
+
+        )
+
+    [generationConfig] => Array
+        (
+            [temperature] => 0.7
+            [topP] => 0.95
+            [topK] => 40
+            [maxOutputTokens] => 500
+        )
+
+)
+
+--------------------------------------------------------------------------------
+[2025-11-29 06:24:45] Initiating cURL request...
+--------------------------------------------------------------------------------
+[2025-11-29 06:24:46] cURL completed
+--------------------------------------------------------------------------------
+[2025-11-29 06:24:46] HTTP Code: 403
+--------------------------------------------------------------------------------
+[2025-11-29 06:24:46] cURL Error: None
+--------------------------------------------------------------------------------
+[2025-11-29 06:24:46] cURL Info
+Array
+(
+    [url] => https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash:generateContent?key=AIzaSyCZ1sd5HJscKh-yK7heiHSYh960pB8Lkxo
+    [content_type] => application/json; charset=UTF-8
+    [http_code] => 403
+    [header_size] => 389
+    [request_size] => 3882
+    [filetime] => -1
+    [ssl_verify_result] => 0
+    [redirect_count] => 0
+    [total_time] => 0.611341
+    [namelookup_time] => 0.033237
+    [connect_time] => 0.08905
+    [pretransfer_time] => 0.530313
+    [size_upload] => 3671
+    [size_download] => 155
+    [speed_download] => 253
+    [speed_upload] => 6004
+    [download_content_length] => -1
+    [upload_content_length] => 3671
+    [starttransfer_time] => 0.611274
+    [redirect_time] => 0
+    [redirect_url] => 
+    [primary_ip] => 2404:6800:4005:817::200a
+    [certinfo] => Array
+        (
+        )
+
+    [primary_port] => 443
+    [local_ip] => 2402:800:637c:3746:2c18:8279:276a:71db
+    [local_port] => 61128
+    [http_version] => 3
+    [protocol] => 2
+    [ssl_verifyresult] => 0
+    [scheme] => HTTPS
+    [appconnect_time_us] => 529653
+    [connect_time_us] => 89050
+    [namelookup_time_us] => 33237
+    [pretransfer_time_us] => 530313
+    [redirect_time_us] => 0
+    [starttransfer_time_us] => 611274
+    [total_time_us] => 611341
+    [effective_method] => POST
+)
+
+--------------------------------------------------------------------------------
+[2025-11-29 06:24:46] API Response
+{
+  "error": {
+    "code": 403,
+    "message": "Your API key was reported as leaked. Please use another API key.",
+    "status": "PERMISSION_DENIED"
+  }
+}
+
+--------------------------------------------------------------------------------
+[2025-11-29 06:24:46] API ERROR - HTTP Code: 403
+--------------------------------------------------------------------------------
+[2025-11-29 06:24:46] Error response decoded
+Array
+(
+    [error] => Array
+        (
+            [code] => 403
+            [message] => Your API key was reported as leaked. Please use another API key.
+            [status] => PERMISSION_DENIED
+        )
+
+)
+
+--------------------------------------------------------------------------------
+[2025-11-29 06:24:46] Final error message: Your API key was reported as leaked. Please use another API key.
+--------------------------------------------------------------------------------
+[2025-11-30 16:05:59] === Chatbot API Request Started ===
+--------------------------------------------------------------------------------
+[2025-11-30 16:05:59] Request method: POST
+--------------------------------------------------------------------------------
+[2025-11-30 16:05:59] API Key configured: YES
+--------------------------------------------------------------------------------
+[2025-11-30 16:05:59] Raw input received
+{"message":"hi"}
+--------------------------------------------------------------------------------
+[2025-11-30 16:05:59] Decoded input
+Array
+(
+    [message] => hi
+)
+
+--------------------------------------------------------------------------------
+[2025-11-30 16:05:59] User message: hi
+--------------------------------------------------------------------------------
+[2025-11-30 16:05:59] API URL: https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash:generateContent?key=AIzaSyCZ1sd5HJscKh-yK7heiHSYh960pB8Lkxo
+--------------------------------------------------------------------------------
+[2025-11-30 16:05:59] Model: gemini-2.0-flash
+--------------------------------------------------------------------------------
+[2025-11-30 16:05:59] System prompt prepared
+Bạn là trợ lý AI thông minh cho website bán điện thoại di động tại Việt Nam. Nhiệm vụ của bạn:
+1. Tư vấn sản phẩm điện thoại dựa trên thông tin được cung cấp
+2. Giải đáp thắc mắc về đơn hàng, giao hàng, bảo hành
+3. Hỗ trợ khách hàng một cách thân thiện, chuyên nghiệp
+4. Luôn trả lời bằng tiếng Việt
+5. Nếu khách hỏi về sản phẩm cụ thể, hãy dựa vào dữ liệu sản phẩm có sẵn đ�...
+--------------------------------------------------------------------------------
+[2025-11-30 16:05:59] Request body prepared
+Array
+(
+    [contents] => Array
+        (
+            [0] => Array
+                (
+                    [role] => user
+                    [parts] => Array
+                        (
+                            [0] => Array
+                                (
+                                    [text] => Bạn là trợ lý AI thông minh cho website bán điện thoại di động tại Việt Nam. Nhiệm vụ của bạn:
+1. Tư vấn sản phẩm điện thoại dựa trên thông tin được cung cấp
+2. Giải đáp thắc mắc về đơn hàng, giao hàng, bảo hành
+3. Hỗ trợ khách hàng một cách thân thiện, chuyên nghiệp
+4. Luôn trả lời bằng tiếng Việt
+5. Nếu khách hỏi về sản phẩm cụ thể, hãy dựa vào dữ liệu sản phẩm có sẵn để tư vấn
+
+Dưới đây là danh sách sản phẩm hiện có trên website:
+
+- iPhone 16 Pro Max
+  + Giá: 34.990.000đ
+  + Loại: Apple
+  + Còn hàng: 25 sản phẩm
+
+- iPhone 16 Pro
+  + Giá: 28.990.000đ
+  + Loại: Apple
+  + Còn hàng: 30 sản phẩm
+
+- iPhone 16 Plus
+  + Giá: 25.990.000đ
+  + Loại: Apple
+  + Còn hàng: 35 sản phẩm
+
+- iPhone 16
+  + Giá: 22.990.000đ
+  + Loại: Apple
+  + Còn hàng: 40 sản phẩm
+
+- iPhone 15 Pro Max
+  + Giá: 29.990.000đ
+  + Loại: Apple
+  + Còn hàng: 20 sản phẩm
+
+- iPhone 15
+  + Giá: 19.990.000đ
+  + Loại: Apple
+  + Còn hàng: 45 sản phẩm
+
+- Samsung Galaxy S24 Ultra
+  + Giá: 33.990.000đ
+  + Loại: SamSung
+  + Còn hàng: 28 sản phẩm
+
+- Samsung Galaxy S24 Plus
+  + Giá: 27.990.000đ
+  + Loại: SamSung
+  + Còn hàng: 32 sản phẩm
+
+- Samsung Galaxy S24
+  + Giá: 22.990.000đ
+  + Loại: SamSung
+  + Còn hàng: 38 sản phẩm
+
+- Samsung Galaxy Z Fold6
+  + Giá: 44.990.000đ
+  + Loại: SamSung
+  + Còn hàng: 15 sản phẩm
+
+- Samsung Galaxy Z Flip6
+  + Giá: 26.990.000đ
+  + Loại: SamSung
+  + Còn hàng: 22 sản phẩm
+
+- Samsung Galaxy A55 5G
+  + Giá: 11.990.000đ
+  + Loại: SamSung
+  + Còn hàng: 50 sản phẩm
+
+- Xiaomi 14 Ultra
+  + Giá: 29.990.000đ
+  + Loại: Xiaomi
+  + Còn hàng: 20 sản phẩm
+
+- Xiaomi 14
+  + Giá: 19.990.000đ
+  + Loại: Xiaomi
+  + Còn hàng: 35 sản phẩm
+
+- Xiaomi Redmi Note 13 Pro+
+  + Giá: 9.990.000đ
+  + Loại: Xiaomi
+  + Còn hàng: 60 sản phẩm
+
+- Xiaomi Redmi Note 13 Pro
+  + Giá: 7.990.000đ
+  + Loại: Xiaomi
+  + Còn hàng: 70 sản phẩm
+
+- OPPO Find X7 Ultra
+  + Giá: 27.990.000đ
+  + Loại: Oppo
+  + Còn hàng: 18 sản phẩm
+
+- OPPO Reno12 Pro
+  + Giá: 12.990.000đ
+  + Loại: Oppo
+  + Còn hàng: 45 sản phẩm
+
+- OPPO A3 Pro 5G
+  + Giá: 7.990.000đ
+  + Loại: Oppo
+  + Còn hàng: 55 sản phẩm
+
+- Vivo X100 Pro
+  + Giá: 25.990.000đ
+  + Loại: Vivo
+  + Còn hàng: 22 sản phẩm
+
+
+Hãy sử dụng thông tin trên để tư vấn chính xác cho khách hàng.
+
+
+User: hi
+                                )
+
+                        )
+
+                )
+
+        )
+
+    [generationConfig] => Array
+        (
+            [temperature] => 0.7
+            [topP] => 0.95
+            [topK] => 40
+            [maxOutputTokens] => 500
+        )
+
+)
+
+--------------------------------------------------------------------------------
+[2025-11-30 16:05:59] Initiating cURL request...
+--------------------------------------------------------------------------------
+[2025-11-30 16:06:00] cURL completed
+--------------------------------------------------------------------------------
+[2025-11-30 16:06:00] HTTP Code: 403
+--------------------------------------------------------------------------------
+[2025-11-30 16:06:00] cURL Error: None
+--------------------------------------------------------------------------------
+[2025-11-30 16:06:00] cURL Info
+Array
+(
+    [url] => https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash:generateContent?key=AIzaSyCZ1sd5HJscKh-yK7heiHSYh960pB8Lkxo
+    [content_type] => application/json; charset=UTF-8
+    [http_code] => 403
+    [header_size] => 389
+    [request_size] => 3882
+    [filetime] => -1
+    [ssl_verify_result] => 0
+    [redirect_count] => 0
+    [total_time] => 0.598618
+    [namelookup_time] => 0.030919
+    [connect_time] => 0.079639
+    [pretransfer_time] => 0.502526
+    [size_upload] => 3671
+    [size_download] => 155
+    [speed_download] => 258
+    [speed_upload] => 6132
+    [download_content_length] => -1
+    [upload_content_length] => 3671
+    [starttransfer_time] => 0.598517
+    [redirect_time] => 0
+    [redirect_url] => 
+    [primary_ip] => 2404:6800:4005:827::200a
+    [certinfo] => Array
+        (
+        )
+
+    [primary_port] => 443
+    [local_ip] => 2402:800:637c:3746:97f:ffd2:5f36:ee5d
+    [local_port] => 59733
+    [http_version] => 3
+    [protocol] => 2
+    [ssl_verifyresult] => 0
+    [scheme] => HTTPS
+    [appconnect_time_us] => 500518
+    [connect_time_us] => 79639
+    [namelookup_time_us] => 30919
+    [pretransfer_time_us] => 502526
+    [redirect_time_us] => 0
+    [starttransfer_time_us] => 598517
+    [total_time_us] => 598618
+    [effective_method] => POST
+)
+
+--------------------------------------------------------------------------------
+[2025-11-30 16:06:00] API Response
+{
+  "error": {
+    "code": 403,
+    "message": "Your API key was reported as leaked. Please use another API key.",
+    "status": "PERMISSION_DENIED"
+  }
+}
+
+--------------------------------------------------------------------------------
+[2025-11-30 16:06:00] API ERROR - HTTP Code: 403
+--------------------------------------------------------------------------------
+[2025-11-30 16:06:00] Error response decoded
+Array
+(
+    [error] => Array
+        (
+            [code] => 403
+            [message] => Your API key was reported as leaked. Please use another API key.
+            [status] => PERMISSION_DENIED
+        )
+
+)
+
+--------------------------------------------------------------------------------
+[2025-11-30 16:06:00] Final error message: Your API key was reported as leaked. Please use another API key.
+--------------------------------------------------------------------------------

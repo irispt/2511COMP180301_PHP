@@ -24,10 +24,7 @@
 	<!-- Sweet Alert -->
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 
-	<!-- Slider -->
-	<link rel="stylesheet" href="lib/ion.rangeSlider-2.2.0/css/ion.rangeSlider.css">
-	<link rel="stylesheet" href="lib/ion.rangeSlider-2.2.0/css/ion.rangeSlider.skinHTML5.css">
-	<script src="lib/ion.rangeSlider-2.2.0/js/ion-rangeSlider/ion.rangeSlider.min.js"></script>
+	<!-- REMOVED: ion.rangeSlider - replaced with checkbox filters -->
 
     <!-- Swiper (hero slider) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
@@ -40,21 +37,20 @@
 	<!-- our files -->
 	<!-- css -->
 	<link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="css/topnav.css">
-	<link rel="stylesheet" href="css/header.css">
+	<link rel="stylesheet" href="css/header_samsung.css">
 	<link rel="stylesheet" href="css/banner.css">
 	<link rel="stylesheet" href="css/taikhoan.css">
 	<link rel="stylesheet" href="css/trangchu.css">
-	<link rel="stylesheet" href="css/home_products.css">
-	<link rel="stylesheet" href="css/pagination_phantrang.css">
+	<link rel="stylesheet" href="css/products_grid_samsung.css">
+	<link rel="stylesheet" href="css/filters_samsung.css">
 	<link rel="stylesheet" href="css/footer.css">
-	<!-- js -->
 	<link rel="stylesheet" href="css/chatbot.css">
 	
-	<script src="js/dungchung.js"></script>
-	<script src="js/trangchu.js"></script>
-
-	<script src="js/chatbot.js"></script>
+	<!-- js -->
+	<script src="js/dungchung.js?v=<?php echo time(); ?>"></script>
+	<script src="js/header_samsung.js?v=<?php echo time(); ?>"></script>
+	<script src="js/trangchu.js?v=<?php echo time(); ?>"></script>
+	<script src="js/chatbot.js?v=<?php echo time(); ?>"></script>
 
 	<!-- Lightweight JS libs: Alpine (UI state), Swiper, AOS, lazysizes -->
 	<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>

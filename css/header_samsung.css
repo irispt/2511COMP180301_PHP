@@ -1,0 +1,422 @@
+/* ===== SAMSUNG STYLE HEADER ===== */
+
+/* Top Navigation Bar */
+.top-nav-samsung {
+    background: #000;
+    color: #fff;
+    padding: 8px 0;
+    font-size: 12px;
+}
+
+.top-nav-right {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+}
+
+.top-nav-link {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 400;
+    transition: opacity 0.2s;
+}
+
+.top-nav-link:hover {
+    opacity: 0.7;
+}
+
+.top-nav-link i {
+    font-size: 10px;
+    margin-left: 4px;
+}
+
+/* Main Header */
+.header-samsung {
+    background: #fff;
+    border-bottom: 1px solid #e0e0e0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.header-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+}
+
+/* Logo */
+.header-logo {
+    flex-shrink: 0;
+}
+
+.header-logo a {
+    display: block;
+}
+
+.header-logo img {
+    height: 40px;
+    width: auto;
+    display: block;
+}
+
+/* Navigation Menu */
+.header-nav {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    margin: 0 40px;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 5px;
+}
+
+.nav-menu li {
+    position: relative;
+}
+
+.nav-link {
+    display: block;
+    padding: 20px 16px;
+    color: #000;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s;
+    position: relative;
+}
+
+.nav-link:hover {
+    color: #1428a0;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background: #1428a0;
+    transition: width 0.3s;
+}
+
+.nav-link:hover::after {
+    width: 80%;
+}
+
+/* Header Tools */
+.header-tools {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-shrink: 0;
+}
+
+/* Search Tool */
+.tool-search {
+    position: relative;
+}
+
+.search-toggle {
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #000;
+    cursor: pointer;
+    padding: 8px;
+    transition: color 0.2s;
+}
+
+.search-toggle:hover {
+    color: #1428a0;
+}
+
+.search-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 15px;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 24px;
+    padding: 8px;
+    min-width: 300px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.search-dropdown::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    right: 20px;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid #fff;
+}
+
+.search-dropdown form {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.search-dropdown input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 8px 12px;
+    font-size: 14px;
+    background: transparent;
+}
+
+.search-dropdown button {
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    padding: 8px;
+    font-size: 16px;
+}
+
+.search-dropdown button:hover {
+    color: #000;
+}
+
+/* Cart Tool */
+.tool-cart {
+    position: relative;
+}
+
+.cart-link {
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    color: #000;
+    text-decoration: none;
+    padding: 8px;
+    position: relative;
+    transition: color 0.2s;
+}
+
+.cart-link:hover {
+    color: #1428a0;
+}
+
+.cart-badge {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    background: #ff0000;
+    color: #fff;
+    font-size: 10px;
+    font-weight: bold;
+    min-width: 16px;
+    height: 16px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 4px;
+}
+
+.cart-badge:empty {
+    display: none;
+}
+
+/* Account Tool */
+.tool-account {
+    position: relative;
+}
+
+.account-toggle {
+    background: none;
+    border: none;
+    font-size: 26px;
+    color: #000;
+    cursor: pointer;
+    padding: 8px;
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.account-toggle:hover {
+    color: #1428a0;
+}
+
+.account-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 15px;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    min-width: 200px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    overflow: hidden;
+    display: none;
+}
+
+.account-dropdown.show {
+    display: block;
+}
+
+.account-dropdown::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    right: 20px;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid #fff;
+}
+
+.account-header {
+    padding: 14px 20px;
+    background: #f8f9fa;
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    color: #000;
+    font-size: 14px;
+}
+
+.account-header i {
+    color: #1428a0;
+    font-size: 16px;
+}
+
+.account-dropdown a {
+    display: block;
+    padding: 12px 20px;
+    color: #333;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background 0.2s;
+}
+
+.account-dropdown a:hover {
+    background: #f8f9fa;
+    color: #1428a0;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .header-container {
+        padding: 0 15px;
+    }
+    
+    .nav-menu {
+        gap: 0;
+    }
+    
+    .nav-link {
+        padding: 20px 12px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 992px) {
+    .header-nav {
+        display: none;
+    }
+    
+    .header-container {
+        justify-content: space-between;
+    }
+    
+    .header-logo {
+        margin-right: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .top-nav-samsung {
+        display: none;
+    }
+    
+    .header-container {
+        height: 50px;
+    }
+    
+    .header-logo img {
+        height: 30px;
+    }
+    
+    .header-tools {
+        gap: 15px;
+    }
+    
+    .search-toggle,
+    .cart-link,
+    .account-toggle {
+        font-size: 18px;
+    }
+    
+    .search-dropdown {
+        min-width: 250px;
+        right: -50px;
+    }
+}
+
+/* Animation for dropdowns */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.search-dropdown,
+.account-dropdown {
+    animation: slideDown 0.2s ease-out;
+}
+
+/* Active state for navigation */
+.nav-link.active {
+    color: #1428a0;
+}
+
+.nav-link.active::after {
+    width: 80%;
+}
+
+/* Ensure content below header is visible */
+section {
+    position: relative;
+    z-index: 1;
+}
+
+.banner,
+.home-products,
+.plc-store {
+    position: relative;
+    z-index: 1;
+}
